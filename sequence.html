@@ -1,14 +1,203 @@
 <!DOCTYPE html>
-<link rel="stylesheet" href="format.css" type="text/css" />
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <title>SEQUENCE - a CECS491 project</title>
 
-<body>
-	<div id="gameboard" style="background:gray; height:100vh;">
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
         
-<title>Sequence</title>
-<script src="jquery-2.2.0.min.js"></script>
+        <!-- Custom styles for this template -->
+        <link href="css/jumbotron.css" rel="stylesheet">
 
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+  
+    <body>
+    
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h1>SEQUENCE</h1>
+        </div>
+        <div class="col-md-4">
+          <h1>Players Turn</h1>
+        </div>
+        <div class="col-md-4">
+          <p><a class="btn btn-lg btn-success" href="#" role="button">Rules</a></p>
+        </div>
+      </div>
+    
+    <div class="jumbotron">
+      <table style="width:100%">
+          <tr>
+            <td>wild</td>
+            <td>spade10</td>		
+            <td>spadeQ</td>
+            <td>spadeK</td>
+            <td>spadeA</td>		
+            <td>diamond2</td>
+            <td>diamond3</td>
+            <td>diamond4</td>		
+            <td>diamond5</td>
+            <td>wild</td>
+          </tr>
+          <tr>
+            <td>spade9</td>
+            <td>heart10</td>		
+            <td>heart9</td>
+            <td>heart8</td>
+            <td>heart7</td>		
+            <td>heart6</td>
+            <td>heart5</td>
+            <td>heart4</td>		
+            <td>heart3</td>
+            <td>diamond6</td>
+          </tr><tr>
+            <td>spade8</td>
+            <td>heartQ</td>		
+            <td>diamond7</td>
+            <td>diamond8</td>
+            <td>diamond9</td>		
+            <td>diamond10</td>
+            <td>diamondQ</td>
+            <td>diamondK</td>		
+            <td>heart2</td>
+            <td>diamond7</td>
+          </tr>
+          <tr>
+            <td>spade7</td>
+            <td>heartK</td>		
+            <td>diamond6</td>
+            <td>club2</td>
+            <td>heartA</td>		
+            <td>heartK</td>
+            <td>heartQ</td>
+            <td>diamondA</td>		
+            <td>spade2</td>
+            <td>diamond8</td>
+          </tr>
+          <tr>
+            <td>spade6</td>
+            <td>heartA</td>		
+            <td>diamond5</td>
+            <td>club3</td>
+            <td>heart4</td>		
+            <td>heart3</td>
+            <td>heart10</td>
+            <td>clubA</td>		
+            <td>spade3</td>
+            <td>diamond9</td>
+          </tr>
+          <tr>
+            <td>spade5</td>
+            <td>club2</td>		
+            <td>diamond4</td>
+            <td>club4</td>
+            <td>heart5</td>		
+            <td>heart2</td>
+            <td>heart9</td>
+            <td>clubK</td>		
+            <td>spade4</td>
+            <td>diamond10</td>
+          </tr>
+          <tr>
+            <td>spade4</td>
+            <td>club3</td>		
+            <td>diamond3</td>
+            <td>club5</td>
+            <td>heart6</td>		
+            <td>heart7</td>
+            <td>heart8</td>
+            <td>clubQ</td>		
+            <td>spade5</td>
+            <td>diamondQ</td>
+          </tr>
+          <tr>
+            <td>spade3</td>
+            <td>club4</td>		
+            <td>diamond2</td>
+            <td>club6</td>
+            <td>club7</td>		
+            <td>club8</td>
+            <td>club9</td>
+            <td>club10</td>		
+            <td>spade6</td>
+            <td>dimaondK</td>
+          </tr>
+          <tr>
+            <td>spade2</td>
+            <td>club5</td>		
+            <td>spadeA</td>
+            <td>spadeK</td>
+            <td>spadeQ</td>		
+            <td>spade10</td>
+            <td>spade9</td>
+            <td>spade8</td>		
+            <td>spade7</td>
+            <td>diamondA</td>
+          </tr>
+          <tr>
+            <td>wild</td>
+            <td>club6</td>		
+            <td>club7</td>
+            <td>club8</td>
+            <td>club9</td>		
+            <td>club10</td>
+            <td>clubQ</td>
+            <td>clubK</td>		
+            <td>clubA</td>
+            <td>wild</td>
+          </tr>
+      </table>
+    </div>
 
-<script>
-    //this is where the javascript will go  
-    $("#gameboard").css("background", "purple");    
-</script>
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h1>JACK 1</h1>
+          <h1>JACK 2</h1>
+        </div>
+        <div class="col-md-4">
+          <h1>HAND PLACEHOLDER</h1>
+          <table>
+            <tr>
+              <td>card 1</td>
+              <td>card 2</td>
+              <td>card 3</td>
+              <td>card 4</td>
+              <td>card 5</td>
+              <td>card 6</td>
+              <td>card 7 (optional)</td>
+            </tr>
+          </table>
+       </div>
+        <div class="col-md-4">
+          <h1>Discard Pile</h1>
+          <h1>Deck</h1>
+        </div>
+      </div>
+    <hr>
+    <footer>
+        <p><i>CSULB Senior Project by Thomas, Michael, Wilburn</i></p>
+    </footer>
+    
+    </div> <!-- /container -->
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+  
+</html>
