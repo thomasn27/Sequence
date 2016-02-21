@@ -12,6 +12,9 @@
         
         <!-- Custom styles for this template -->
         <link href="css/jumbotron.css" rel="stylesheet">
+        
+        <!-- Custom styles for sequence boardgame -->
+        <link href="css/format.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -26,21 +29,21 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3 leftAlign">
           <h1>SEQUENCE</h1>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6 centerAlign">
           <h1>Players Turn</h1>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3 rightAlign">
           <p><a class="btn btn-lg btn-success" href="#" role="button">Rules</a></p>
         </div>
       </div>
     
     <div class="jumbotron">
-      <table style="width:100%">
+      <table class="area_boardgame">
           <tr>
-            <td id = "wild">wild</td>
+            <td id = "wild_1">wild</td>
             <td id = "spade10">spade10</td>		
             <td id = "spade12">spadeQ</td>
             <td id = "spade13">spadeK</td>
@@ -49,7 +52,7 @@
             <td id = "diamond3">diamond3</td>
             <td id = "diamond4">diamond4</td>		
             <td id = "diamond5">diamond5</td>
-            <td id = "wild_1">wild</td>
+            <td id = "wild_2">wild</td>
           </tr>
           <tr>
             <td id = "spade9">spade9</td>
@@ -147,7 +150,7 @@
             <td id = "diamond1_1">diamondA</td>
           </tr>
           <tr>
-            <td id = "wild_2">wild</td>
+            <td id = "wild_3">wild</td>
             <td id = "clover6_1">clover6</td>		
             <td id = "clover7_1">clover7</td>
             <td id = "clover8_1">clover8</td>
@@ -156,7 +159,7 @@
             <td id = "clover12_1">cloverQ</td>
             <td id = "clover13_1">cloverK</td>		
             <td id = "clover1_1">cloverA</td>
-            <td id = "wild_3">wild</td>
+            <td id = "wild_4">wild</td>
           </tr>
       </table>
     </div>
@@ -164,25 +167,24 @@
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <h1>JACK 1</h1>
           <h1>JACK 2</h1>
         </div>
-        <div class="col-md-4">
-          <h1>HAND PLACEHOLDER</h1>
-          <table>
+        <div class="col-md-8">
+          <table class="area_hand">
             <tr>
-              <td>card 1</td>
-              <td>card 2</td>
-              <td>card 3</td>
-              <td>card 4</td>
-              <td>card 5</td>
-              <td>card 6</td>
-              <td>card 7 (optional)</td>
+              <td id="hand1">card 1</td>
+              <td id="hand2">card 2</td>
+              <td id="hand3">card 3</td>
+              <td id="hand4">card 4</td>
+              <td id="hand5">card 5</td>
+              <td id="hand6">card 6</td>
+              <td id="hand7">card 7 (optional)</td>
             </tr>
           </table>
        </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
           <h1>Discard Pile</h1>
           <h1>Deck</h1>
         </div>
@@ -202,18 +204,30 @@
     </body>
 <script>
 
+// temporary js
+// will be moved to the board/hand generation javascript in next sprint
 function setUpBoard() {
-    //set up the spade images
+    //set up for boardgame wild images
+    for (var i = 1; i < 8; i++) {
+        $("#wild_" + i).html("<img class='bgcard' id='wild_"  + i + "img' src = 'assets/svg/cardback.svg' height = '100' width = '90' draggable = 'false'/>");
+    }
+    
+    //set up the boardgame card images
     for (var i = 1; i < 14; i++) {   
-        $("#spade" + i).html("<img id = 'spade"  + i + "img' src = 'assets/svg/spade" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
-        $("#spade" + i + "_1").html("<img id = 'spade" + i + "_1img' src = 'assets/svg/spade" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
-        $("#diamond" + i).html("<img id = 'diamond" + i + "img' src = 'assets/svg/diamond" + i +".svg' height = '100' width = '90' draggable = 'false'/>"); 
-        $("#diamond" + i + "_1").html("<img id = 'diamond" + i + "_1img' src = 'assets/svg/diamond" + i +".svg' height = '100' width = '90' draggable = 'false'/>"); 
-        $("#heart" + i).html("<img id = 'heart" + i + "img' src = 'assets/svg/heart" + i + ".svg' height = '100' width = '90' draggable = 'false'/>"); 
-        $("#heart" + i +"_1").html("<img id = 'heart" + i + "_1img' src = 'assets/svg/heart" + i + ".svg' height = '100' width = '90' draggable = 'false'/>"); 
-    	$("#clover" + i).html("<img id = 'clover" + i + "img' src = 'assets/svg/clover" + i + ".svg' height = '100' width = '90' draggable = 'false'/>"); 
-        $("#clover" + i +"_1").html("<img id = 'clover" + i + "_1img' src = 'assets/svg/clover" + i + ".svg' height = '100' width = '90' draggable = 'false'/>"); 
-    } 
+        $("#spade" + i).html("<img class='bgcard' id='spade"  + i + "img' src = 'assets/svg/spade" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#diamond" + i).html("<img class='bgcard' id='diamond" + i + "img' src = 'assets/svg/diamond" + i +".svg' height = '100' width = '90' draggable = 'false'/>");     
+        $("#heart" + i).html("<img class='bgcard' id='heart" + i + "img' src = 'assets/svg/heart" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
+    	$("#clover" + i).html("<img class='bgcard' id='clover" + i + "img' src = 'assets/svg/clover" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#spade" + i + "_1").html("<img class='bgcard' id='spade" + i + "_1img' src = 'assets/svg/spade" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#diamond" + i + "_1").html("<img class='bgcard' id='diamond" + i + "_1img' src = 'assets/svg/diamond" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#heart" + i +"_1").html("<img class='bgcard' id='heart" + i + "_1img' src = 'assets/svg/heart" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#clover" + i +"_1").html("<img class='bgcard' id='clover" + i + "_1img' src = 'assets/svg/clover" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
+    }
+    
+    //setup placeholder for hand
+    for (var i=1; i<8; i++) {
+        $("#hand" + i).html("<img class='handcard' id='hand"  + i + "img' src = 'assets/svg/cardback.svg' height = '100' width = '90' draggable = 'false'/>");
+    }
 }
 
 setUpBoard();
