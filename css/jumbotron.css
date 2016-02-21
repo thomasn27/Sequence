@@ -3,3 +3,30 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
+
+table {
+    padding: 0;
+    margin: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table.area_boardgame {
+    width: 100%;
+}
+
+table.area_hand {
+    width: 0%;
+    margin: 0 auto 0 auto;
+}
+
+td td img{
+    padding: 0;
+    margin: 0;
+}
+
+img.bgcard {
+    -ms-transform: rotate(90deg);       /* IE 9 */
+    -webkit-transform: rotate(90deg);   /* Safari */
+    transform: rotate(90deg);
+}
