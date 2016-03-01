@@ -25,20 +25,22 @@
     </head>
   
     <body>
-    
     <div class="container">
+    
+    <header>
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-3 leftAlign">
-          <h1>SEQUENCE</h1>
+          <h1 id="title">SEQUENCE</h1>
         </div>
         <div class="col-md-6 centerAlign">
-          <h1>Players Turn</h1>
+          <h1 id="playersTurn" style="text-align:center">Players Turn</h1>
         </div>
         <div class="col-md-3 rightAlign">
-          <p><a class="btn btn-lg btn-success" href="#" role="button">Rules</a></p>
+          <h1 id="rules" style="text-align:right">Rules</h1>
         </div>
       </div>
+    </header>
     
     <div class="jumbotron">
       <table class="area_boardgame">
@@ -168,8 +170,8 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-2">
-          <h1>JACK 1</h1>
-          <h1>JACK 2</h1>
+          <h3>ONE-EYED JACK</h3>
+          <h3>TWO-EYED JACK</h3>
         </div>
         <div class="col-md-8">
           <table class="area_hand">
@@ -185,8 +187,8 @@
           </table>
        </div>
         <div class="col-md-2">
-          <h1>Discard Pile</h1>
-          <h1>Deck</h1>
+          <h3>Discard</h3>
+          <h3>Deck</h3>
         </div>
       </div>
     <hr>
@@ -207,26 +209,26 @@
 // temporary js
 // will be moved to the board/hand generation javascript in next sprint
 function setUpBoard() {
-    //set up for boardgame wild images
+    //set up for board game wild images
     for (var i = 1; i < 8; i++) {
         $("#wild_" + i).html("<img class='bgcard' id='wild"  + i + "img' src = 'assets/svg/wild.svg' height = '100' width = '90' draggable = 'false'/>");
     }
     
-    //set up the boardgame card images
+    //set up the board game card images
     for (var i = 1; i < 14; i++) {   
-        $("#spade" + i).html("<img class='bgcard' id='spade"  + i + "img' src = 'assets/svg/spade" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
-        $("#diamond" + i).html("<img class='bgcard' id='diamond" + i + "img' src = 'assets/svg/diamond" + i +".svg' height = '100' width = '90' draggable = 'false'/>");     
-        $("#heart" + i).html("<img class='bgcard' id='heart" + i + "img' src = 'assets/svg/heart" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-    	$("#clover" + i).html("<img class='bgcard' id='clover" + i + "img' src = 'assets/svg/clover" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-        $("#spade" + i + "_1").html("<img class='bgcard' id='spade" + i + "_1img' src = 'assets/svg/spade" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
-        $("#diamond" + i + "_1").html("<img class='bgcard' id='diamond" + i + "_1img' src = 'assets/svg/diamond" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
-        $("#heart" + i +"_1").html("<img class='bgcard' id='heart" + i + "_1img' src = 'assets/svg/heart" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-        $("#clover" + i +"_1").html("<img class='bgcard' id='clover" + i + "_1img' src = 'assets/svg/clover" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#spade" + i).html("<img class='img-responsive-reverse bgcard' id='spade"  + i + "img' src = 'assets/svg/spade" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#diamond" + i).html("<img class='img-responsive-reverse bgcard' id='diamond" + i + "img' src = 'assets/svg/diamond" + i +".svg' height = '100' width = '90' draggable = 'false'/>");     
+        $("#heart" + i).html("<img class='img-responsive-reverse bgcard' id='heart" + i + "img' src = 'assets/svg/heart" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
+    	$("#clover" + i).html("<img class='img-responsive-reverse bgcard' id='clover" + i + "img' src = 'assets/svg/clover" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#spade" + i + "_1").html("<img class='img-responsive-reverse bgcard' id='spade" + i + "_1img' src = 'assets/svg/spade" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#diamond" + i + "_1").html("<img class='img-responsive-reverse bgcard' id='diamond" + i + "_1img' src = 'assets/svg/diamond" + i +".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#heart" + i +"_1").html("<img class='img-responsive-reverse bgcard' id='heart" + i + "_1img' src = 'assets/svg/heart" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#clover" + i +"_1").html("<img class='img-responsive-reverse bgcard' id='clover" + i + "_1img' src = 'assets/svg/clover" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
     }
     
     //setup placeholder for hand
     for (var i=1; i<8; i++) {
-        $("#hand" + i).html("<img class='handcard' id='hand"  + i + "img' src = 'assets/svg/cardback.svg' height = '100' width = '90' draggable = 'false'/>");
+        $("#hand" + i).html("<img class='img-responsive handcard' id='hand"  + i + "img' src = 'assets/svg/cardback.svg' height = '100' width = '90' draggable = 'false'/>");
     }
 }
 
