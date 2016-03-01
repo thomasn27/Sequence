@@ -9,9 +9,10 @@ function Deck () {
         
         //104 cards to create 
 		for (var i = 1; i < 5; i++) 
-			for (var j = 1; j < 13; j++) {
+			for (var j = 1; j < 14; j++) {
                 //2 copies of each value
 				tempDeck[counter] = new Card(i,j);
+                counter++;
                 tempDeck[counter] = new Card(i,j);
 				counter++;
 			}
