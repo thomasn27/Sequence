@@ -202,6 +202,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/card.js"></script>
+        <script src="js/deck.js"></script>
         
     </body>
 <script>
@@ -230,18 +232,21 @@ function setUpBoard() {
     for (var i=1; i<8; i++) {
         $("#hand" + i).html("<img class='img-responsive handcard' id='hand"  + i + "img' src = 'assets/svg/cardback.svg' height = '100' width = '90' draggable = 'false'/>");
     }
+    mainDeck = new Deck();
 }
+//creates a deck for the players
+var mainDeck;
+
 
 setUpBoard();
 
 
 
 
-
-
-
-
-
+//for testing
+var testcard = mainDeck.drawCard();
+console.log(testcard.getImageSource());
+console.log(testcard.toString());
 
 </script>
 </html>
