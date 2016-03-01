@@ -233,6 +233,7 @@ function setUpBoard() {
         $("#hand" + i).html("<img class='img-responsive handcard' id='hand"  + i + "img' src = 'assets/svg/cardback.svg' height = '100' width = '90' draggable = 'false'/>");
     }
     mainDeck = new Deck();
+    mainDeck.printDeck();
 }
 
 //creates a deck for the players
