@@ -210,8 +210,8 @@
 // will be moved to the board/hand generation javascript in next sprint
 function setUpBoard() {
     //set up for board game wild images
-    for (var i = 1; i < 8; i++) {
-        $("#wild_" + i).html("<img class='bgcard' id='wild"  + i + "img' src = 'assets/svg/wild.svg' height = '100' width = '90' draggable = 'false'/>");
+    for (var i = 1; i < 5; i++) {
+        $("#wild_" + i).html("<img class='img-responsive-reverse bgcard' id='wild"  + i + "img' src = 'assets/svg/wild.svg' height = '100' width = '90' draggable = 'false'/>");
     }
     
     //set up the board game card images
@@ -233,15 +233,6 @@ function setUpBoard() {
 }
 
 setUpBoard();
-
-
-
-
-
-
-
-
-
 
 </script>
 </html>
