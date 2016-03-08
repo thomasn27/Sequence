@@ -240,11 +240,12 @@ setUpBoard();
 
 for (var i = 1; i < 8; i++) {
     var nextCard = mainDeck.drawCard();
-    $("#hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + testcard.getImageSource() + " height = '100' width = '90' draggable = 'true'/>");
+    $("#hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'true'/>");
+}
 //to draw the bot's hand
 //    var nextCard = mainDeck.drawCard();
 //    $("#hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + testcard.getImageSource() + " height = '100' width = '90' draggable = 'true'/>");
-}
+
 //for testing
 //var testcard = mainDeck.drawCard();
 //console.log(testcard.getImageSource());
