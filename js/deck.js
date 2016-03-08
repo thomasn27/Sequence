@@ -50,7 +50,7 @@ function Deck () {
 	
 	//public method: prints the deck
 	this.printDeck = function() {
-		for (var i = 0; i < size; i++)
+		for (var i = 0; i <= size; i++)
 			console.log(cardList[i].toString());
 	}
 	

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -229,9 +229,6 @@ function setUpBoard() {
     }
     
     //setup placeholder for hand
-    for (var i=1; i<8; i++) {
-        $("#hand" + i).html("<img class='img-responsive handcard' id='hand"  + i + "img' src = 'assets/svg/cardback.svg' height = '100' width = '90' draggable = 'false'/>");
-    }
     mainDeck = new Deck();
     mainDeck.printDeck();
 }
@@ -241,9 +238,13 @@ var mainDeck;
 
 setUpBoard();
 
+for (var i = 1; i < 8; i++) {
+    var testcard = mainDeck.drawCard();
+    $("#hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + testcard.getImageSource() + " height = '100' width = '90' draggable = 'true'/>");
+}
 //for testing
-var testcard = mainDeck.drawCard();
-console.log(testcard.getImageSource());
-console.log(testcard.toString());
+//var testcard = mainDeck.drawCard();
+//console.log(testcard.getImageSource());
+//console.log(testcard.toString());
 </script>
 </html>
