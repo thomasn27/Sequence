@@ -239,8 +239,11 @@ var mainDeck;
 setUpBoard();
 
 for (var i = 1; i < 8; i++) {
-    var testcard = mainDeck.drawCard();
+    var nextCard = mainDeck.drawCard();
     $("#hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + testcard.getImageSource() + " height = '100' width = '90' draggable = 'true'/>");
+//to draw the bot's hand
+//    var nextCard = mainDeck.drawCard();
+//    $("#hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + testcard.getImageSource() + " height = '100' width = '90' draggable = 'true'/>");
 }
 //for testing
 //var testcard = mainDeck.drawCard();
