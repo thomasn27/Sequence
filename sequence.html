@@ -1,6 +1,5 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -29,20 +28,27 @@
     <div class="container">
     
     <header>
-      <!-- Example row of columns -->
+      <!-- Header Row -->
       <div class="row">
+        <!-- TODO: Title -->
         <div class="col-md-3 leftAlign">
           <h1 id="title">SEQUENCE</h1>
         </div>
+        
+        <!-- TODO: Players turn area -->
         <div class="col-md-6 centerAlign">
           <h1 id="playersTurn" style="text-align:center">Players Turn</h1>
         </div>
+        
+        <!-- TODO: Rules button -->
         <div class="col-md-3 rightAlign">
           <h1 id="rules" style="text-align:right">Rules</h1>
         </div>
+        
       </div>
     </header>
     
+    <!-- board game area -->
     <div class="jumbotron">
       <table class="area_boardgame">
           <tr>
@@ -166,300 +172,84 @@
           </tr>
       </table>
     </div>
-=======
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>SEQUENCE - a CECS491 project</title>
->>>>>>> refs/remotes/origin/master
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/jumbotron.css" rel="stylesheet">
-
-    <!-- Custom styles for sequence boardgame -->
-    <link href="css/format.css" rel="stylesheet">
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-</head>
-
-<body>
-    <div class="container">
-<<<<<<< HEAD
-      <!-- Example row of columns -->
-      <div class="row">
-        <div class="col-md-2">
-          <h3>Deck</h3>
-        </div>
-        <div class="col-md-8">
-          <table class="area_hand">
-            <tr>
-              <td id="hand1"><img class="img-responsive handcard" id="hand1img" src="assets/svg/cardback.svg" height="100" width="90" draggable="false"></td>
-              <td id="hand2"><img class="img-responsive handcard" id="hand2img" src="assets/svg/cardback.svg" height="100" width="90" draggable="false"></td>
-              <td id="hand3"><img class="img-responsive handcard" id="hand3img" src="assets/svg/cardback.svg" height="100" width="90" draggable="false"></td>
-              <td id="hand4"><img class="img-responsive handcard" id="hand4img" src="assets/svg/cardback.svg" height="100" width="90" draggable="false"></td>
-              <td id="hand5"><img class="img-responsive handcard" id="hand5img" src="assets/svg/cardback.svg" height="100" width="90" draggable="false"></td>
-              <td id="hand6"><img class="img-responsive handcard" id="hand6img" src="assets/svg/cardback.svg" height="100" width="90" draggable="false"></td>
-              <td id="hand7"><img class="img-responsive handcard" id="hand7img" src="assets/svg/cardback.svg" height="100" width="90" draggable="false"></td>
-            </tr>
-          </table>
-       </div>
-        <div class="col-md-2">
-          <h3>Discard</h3>
-=======
-
-        <header>
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-3 leftAlign">
-                    <h1 id="title">SEQUENCE</h1>
-                </div>
-                <div class="col-md-6 centerAlign">
-                    <h1 id="playersTurn" style="text-align:center">Players Turn</h1>
-                </div>
-                <div class="col-md-3 rightAlign">
-                    <h1 id="rules" style="text-align:right">Rules</h1>
-                </div>
+        <!-- Bottom Row -->
+        <div class="row">
+            <!-- the left column for the discard area -->
+            <div class="col-md-2">
+                <h3>Discard</h3>
             </div>
-        </header>
-
-        <div class="jumbotron">
-            <table class="area_boardgame">
-                <tr>
-                    <td id="wild_1">wild</td>
-                    <td id="spade10">spade10</td>
-                    <td id="spade12">spadeQ</td>
-                    <td id="spade13">spadeK</td>
-                    <td id="spade1">spadeA</td>
-                    <td id="diamond2">diamond2</td>
-                    <td id="diamond3">diamond3</td>
-                    <td id="diamond4">diamond4</td>
-                    <td id="diamond5">diamond5</td>
-                    <td id="wild_2">wild</td>
-                </tr>
-                <tr>
-                    <td id="spade9">spade9</td>
-                    <td id="heart10">heart10</td>
-                    <td id="heart9">heart9</td>
-                    <td id="heart8">heart8</td>
-                    <td id="heart7">heart7</td>
-                    <td id="heart6">heart6</td>
-                    <td id="heart5">heart5</td>
-                    <td id="heart4">heart4</td>
-                    <td id="heart3">heart3</td>
-                    <td id="diamond6">diamond6</td>
-                </tr>
-                <tr>
-                    <td id="spade8">spade8</td>
-                    <td id="heart12">heartQ</td>
-                    <td id="diamond7">diamond7</td>
-                    <td id="diamond8">diamond8</td>
-                    <td id="diamond9">diamond9</td>
-                    <td id="diamond10">diamond10</td>
-                    <td id="diamond12">diamondQ</td>
-                    <td id="diamond13">diamondK</td>
-                    <td id="heart2">heart2</td>
-                    <td id="diamond7_1">diamond7</td>
-                </tr>
-                <tr>
-                    <td id="spade7">spade7</td>
-                    <td id="heart13">heartK</td>
-                    <td id="diamond6_1">diamond6</td>
-                    <td id="clover2">clover2</td>
-                    <td id="heart1">heartA</td>
-                    <td id="heart13_1">heartK</td>
-                    <td id="heart12_1">heartQ</td>
-                    <td id="diamond1">diamondA</td>
-                    <td id="spade2">spade2</td>
-                    <td id="diamond8_1">diamond8</td>
-                </tr>
-                <tr>
-                    <td id="spade6">spade6</td>
-                    <td id="heart1_1">heartA</td>
-                    <td id="diamond5_1">diamond5</td>
-                    <td id="clover3">clover3</td>
-                    <td id="heart4_1">heart4</td>
-                    <td id="heart3_1">heart3</td>
-                    <td id="heart10_1">heart10</td>
-                    <td id="clover1">cloverA</td>
-                    <td id="spade3">spade3</td>
-                    <td id="diamond9_1">diamond9</td>
-                </tr>
-                <tr>
-                    <td id="spade5">spade5</td>
-                    <td id="clover2_1">clover2</td>
-                    <td id="diamond4_1">diamond4</td>
-                    <td id="clover4">clover4</td>
-                    <td id="heart5_1">heart5</td>
-                    <td id="heart2_1">heart2</td>
-                    <td id="heart9_1">heart9</td>
-                    <td id="clover13">cloverK</td>
-                    <td id="spade4">spade4</td>
-                    <td id="diamond10_1">diamond10</td>
-                </tr>
-                <tr>
-                    <td id="spade4_1">spade4</td>
-                    <td id="clover3_1">clover3</td>
-                    <td id="diamond3_1">diamond3</td>
-                    <td id="clover5">clover5</td>
-                    <td id="heart6_1">heart6</td>
-                    <td id="heart7_1">heart7</td>
-                    <td id="heart8_1">heart8</td>
-                    <td id="clover12">cloverQ</td>
-                    <td id="spade5_1">spade5</td>
-                    <td id="diamond12_1">diamondQ</td>
-                </tr>
-                <tr>
-                    <td id="spade3_1">spade3</td>
-                    <td id="clover4_1">clover4</td>
-                    <td id="diamond2_1">diamond2</td>
-                    <td id="clover6">clover6</td>
-                    <td id="clover7">clover7</td>
-                    <td id="clover8">clover8</td>
-                    <td id="clover9">clover9</td>
-                    <td id="clover10">clover10</td>
-                    <td id="spade6_1">spade6</td>
-                    <td id="diamond13_1">dimaondK</td>
-                </tr>
-                <tr>
-                    <td id="spade2_1">spade2</td>
-                    <td id="clover5_1">clover5</td>
-                    <td id="spade1_1">spadeA</td>
-                    <td id="spade13_1">spadeK</td>
-                    <td id="spade12_1">spadeQ</td>
-                    <td id="spade10_1">spade10</td>
-                    <td id="spade9_1">spade9</td>
-                    <td id="spade8_1">spade8</td>
-                    <td id="spade7_1">spade7</td>
-                    <td id="diamond1_1">diamondA</td>
-                </tr>
-                <tr>
-                    <td id="wild_3">wild</td>
-                    <td id="clover6_1">clover6</td>
-                    <td id="clover7_1">clover7</td>
-                    <td id="clover8_1">clover8</td>
-                    <td id="clover9_1">clover9</td>
-                    <td id="clover10_1">clover10</td>
-                    <td id="clover12_1">cloverQ</td>
-                    <td id="clover13_1">cloverK</td>
-                    <td id="clover1_1">cloverA</td>
-                    <td id="wild_4">wild</td>
-                </tr>
-            </table>
->>>>>>> refs/remotes/origin/master
-        </div>
-
-        <div class="container">
-            <!-- Example row of columns -->
-            <div class="row">
-                <div class="col-md-2">
-                    <h3>ONE-EYED JACK IS REMOVE</h3>
-                    <h3>TWO-EYED JACK IS WILD</h3>
-                </div>
-                <div class="col-md-8">
-                    <h3 style="text-align:center">Your Cards</h3>
-                    <table class="area_hand">
-                        <tr>
-                            <td id="hand1">card 1</td>
-                            <td id="hand2">card 2</td>
-                            <td id="hand3">card 3</td>
-                            <td id="hand4">card 4</td>
-                            <td id="hand5">card 5</td>
-                            <td id="hand6">card 6</td>
-                            <td id="hand7">card 7 (optional)</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-8">
-                    <h3 style="text-align:center">Opponent's Cards</h3>
-                    <table class="area_hand">
-                        <tr>
-                            <td id="2hand1">card 1</td>
-                            <td id="2hand2">card 2</td>
-                            <td id="2hand3">card 3</td>
-                            <td id="2hand4">card 4</td>
-                            <td id="2hand5">card 5</td>
-                            <td id="2hand6">card 6</td>
-                            <td id="2hand7">card 7 (optional)</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-8">
-                    <h3 style="text-align:center">Opponent's Cards</h3>
-                    <table class="area_hand">
-                        <tr>
-                            <td id="3hand1">card 1</td>
-                            <td id="3hand2">card 2</td>
-                            <td id="3hand3">card 3</td>
-                            <td id="3hand4">card 4</td>
-                            <td id="3hand5">card 5</td>
-                            <td id="3hand6">card 6</td>
-                            <td id="3hand7">card 7 (optional)</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-2">
-                    <h3>Discard</h3>
-                    <h3>Deck</h3>
-                </div>
+            
+            <!-- the center column for the hand -->
+            <div class="col-md-8">
+                <h3 style="text-align:center">Your Cards</h3>
+                <table class="area_hand">
+                    <tr>
+                        <td id="hand1">card 1</td>
+                        <td id="hand2">card 2</td>
+                        <td id="hand3">card 3</td>
+                        <td id="hand4">card 4</td>
+                        <td id="hand5">card 5</td>
+                        <td id="hand6">card 6</td>
+                        <td id="hand7">card 7 (optional)</td>
+                    </tr>
+                </table>
+                <br>
+                <h3 style="text-align:center">Opponent's Cards</h3>
+                <table class="area_hand">
+                    <tr>
+                        <td id="2hand1">card 1</td>
+                        <td id="2hand2">card 2</td>
+                        <td id="2hand3">card 3</td>
+                        <td id="2hand4">card 4</td>
+                        <td id="2hand5">card 5</td>
+                        <td id="2hand6">card 6</td>
+                        <td id="2hand7">card 7 (optional)</td>
+                    </tr>
+                </table>
+                <br>
+                <h3 style="text-align:center">Opponent's Cards</h3>
+                <table class="area_hand">
+                    <tr>
+                        <td id="3hand1">card 1</td>
+                        <td id="3hand2">card 2</td>
+                        <td id="3hand3">card 3</td>
+                        <td id="3hand4">card 4</td>
+                        <td id="3hand5">card 5</td>
+                        <td id="3hand6">card 6</td>
+                        <td id="3hand7">card 7 (optional)</td>
+                    </tr>
+                </table>
             </div>
-            <footer>
-                <p><i>CSULB Senior Project by Thomas, Michael, Wilburn</i></p>
-            </footer>
+            
+            <!-- the right column for the deck -->
+            <div class="col-md-2">
+                <h3>Deck</h3>
+            </div>
+        </div>
+    
+        <footer>
+            <p><i>CSULB Senior Project by Thomas, Michael, Wilburn</i></p>
+        </footer>
 
         </div> <!-- /container -->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <!-- Javascript for stylization of our website -->
         <script src="js/bootstrap.min.js"></script>
+        <!-- Javascript for game -->
         <script src="js/card.js"></script>
         <script src="js/deck.js"></script>
     </div>
 </body>
+
 <script>
-
-<<<<<<< HEAD
-// temporary js
-// will be moved to the board/hand generation javascript
-function setUpBoard() {
-    mainDeck = new Deck();
-    mainDeck.printDeck();
-}
-=======
     // temporary js
-    // will be moved to the board/hand generation javascript in next sprint
+    // will be moved to the board/hand generation javascript
     function setUpBoard() {
-        //set up for board game wild images
-        for (var i = 1; i < 5; i++) {
-            $("#wild_" + i).html("<img class='img-responsive-reverse bgcard' id='wild" + i + "img' src = 'assets/svg/wild.svg' height = '100' width = '90' draggable = 'false'/>");
-        }
-
-        //set up the board game card images
-        for (var i = 1; i < 14; i++) {
-            $("#spade" + i).html("<img class='img-responsive-reverse bgcard' id='spade" + i + "img' src = 'assets/svg/spade" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-            $("#diamond" + i).html("<img class='img-responsive-reverse bgcard' id='diamond" + i + "img' src = 'assets/svg/diamond" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-            $("#heart" + i).html("<img class='img-responsive-reverse bgcard' id='heart" + i + "img' src = 'assets/svg/heart" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-            $("#clover" + i).html("<img class='img-responsive-reverse bgcard' id='clover" + i + "img' src = 'assets/svg/clover" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-            $("#spade" + i + "_1").html("<img class='img-responsive-reverse bgcard' id='spade" + i + "_1img' src = 'assets/svg/spade" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-            $("#diamond" + i + "_1").html("<img class='img-responsive-reverse bgcard' id='diamond" + i + "_1img' src = 'assets/svg/diamond" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-            $("#heart" + i + "_1").html("<img class='img-responsive-reverse bgcard' id='heart" + i + "_1img' src = 'assets/svg/heart" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-            $("#clover" + i + "_1").html("<img class='img-responsive-reverse bgcard' id='clover" + i + "_1img' src = 'assets/svg/clover" + i + ".svg' height = '100' width = '90' draggable = 'false'/>");
-        }
-
-        //setup placeholder for hand
         mainDeck = new Deck();
         mainDeck.printDeck();
     }
->>>>>>> refs/remotes/origin/master
 
     //creates a deck for the players
     var mainDeck;
@@ -482,4 +272,5 @@ function setUpBoard() {
     //console.log(testcard.getImageSource());
     //console.log(testcard.toString());
 </script>
+
 </html>
