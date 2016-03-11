@@ -235,6 +235,8 @@
         </div> <!-- /container -->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!--jQueryui-->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
         <!-- Javascript for stylization of our website -->
         <script src="js/bootstrap.min.js"></script>
         <!-- Javascript for game -->
@@ -248,29 +250,45 @@
     // will be moved to the board/hand generation javascript
     function setUpBoard() {
         mainDeck = new Deck();
-        mainDeck.printDeck();
+        //mainDeck.printDeck();
+        playerHand = new Array();
+        opponentOne = new Array();
+        opponentTwo = new Array();
+        
+        discardPile = new Array();
+        
+        //set up the hand for the players
+        for (var i = 1; i < 8; i++) {
+            var nextCard = mainDeck.drawCard();
+            playerHand.push(nextCard);
+            $("#hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'true'/>");
+            //to draw the bot's hand
+            nextCard = mainDeck.drawCard();
+            opponentOne.push(nextCard);
+            $("#2hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
+            nextCard = mainDeck.drawCard();
+            opponentTwo.push(nextCard);
+            $("#3hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
+                   
+         }
     }
-
+    
+    //handles the drops
+    function handleDropEvent( event, ui ) {
+        var draggable = ui.draggable;
+         alert( 'The square with ID "' + draggable.attr('id') + '" was dropped onto me!' );
+    }
+    
     //creates a deck for the players
     var mainDeck;
-    var playerDeck;
+    var playerHand;
+    var opponentOne;
+    var opponentTwo;
+    var discardPile;
+    $(setUpBoard);
+    
+    
 
-    setUpBoard();
-
-    for (var i = 1; i < 8; i++) {
-        var nextCard = mainDeck.drawCard();
-        $("#hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'true'/>");
-        //to draw the bot's hand
-        var nextCard = mainDeck.drawCard();
-        $("#2hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
-        var nextCard = mainDeck.drawCard();
-        $("#3hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
-    }
-
-    //for testing
-    //var testcard = mainDeck.drawCard();
-    //console.log(testcard.getImageSource());
-    //console.log(testcard.toString());
 </script>
 
 </html>
