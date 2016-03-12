@@ -21,6 +21,11 @@ td {
     position: relative;
 }
 
+td.hovered {
+    background: #aaa;
+}
+
+
 td img{
 }
 
