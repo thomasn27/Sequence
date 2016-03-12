@@ -178,6 +178,7 @@
             <!-- the left column for the discard area -->
             <div class="col-md-2">
                 <h3>Discard</h3>
+                <div id ="discardArea" ><img  id="discard" src="assets/svg/discard.svg" height="100px" width="90px" draggable="false"></div>
             </div>
             
             <!-- the center column for the hand -->
@@ -234,7 +235,7 @@
 
         </div> <!-- /container -->
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <!--jQueryui-->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
         <!-- Javascript for stylization of our website -->
@@ -321,77 +322,68 @@
         }
         
         //adding now for the ones
-            $("#clover01").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-            } );
-            $("#clover01_1").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-            } );
+        $("#clover01").droppable( {
+            hoverClass: 'hovered',
+            drop: handleCardDrop
+         } );
+         $("#clover01_1").droppable( {
+            hoverClass: 'hovered',
+            drop: handleCardDrop
+         } );
             
-            $("#spade01").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-            } );
-            $("#spade01_1").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-            } );
+         $("#spade01").droppable( {
+            hoverClass: 'hovered',
+            drop: handleCardDrop
+         } );
+         $("#spade01_1").droppable( {
+            hoverClass: 'hovered',
+            drop: handleCardDrop
+         } );
             
-            $("#diamond01").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-            } );
-            $("#diamond01_1").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-            } );
+         $("#diamond01").droppable( {
+            hoverClass: 'hovered',
+            drop: handleCardDrop
+         } );
+         $("#diamond01_1").droppable( {
+            hoverClass: 'hovered',
+            drop: handleCardDrop
+         } );
             
-            $("#heart01").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-            } );
-            $("#heart01_1").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-            } );   
+         $("#heart01").droppable( {
+            hoverClass: 'hovered',
+            drop: handleCardDrop
+         } );
+         $("#heart01_1").droppable( {
+            hoverClass: 'hovered',
+            drop: handleCardDrop
+         } );   
         
-        /*
-        //setting up the wild card as droppable
-        $("#wild_1").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-        } );
-        $("#wild_2").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-        } );
-        $("#wild_3").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-        } );
-        $("#wild_4").droppable( {
-                hoverClass: 'hovered',
-                drop: handleCardDrop
-        } );*/
+       
         
         //add droppable to discard pile here later
-        
+        $("#discardArea").droppable( {
+            hoverClass:'hovered',//change this later guys
+            drop: discardDrop
+        });
         
         console.log("done with init");
     }//end of setup board
    
-    function handleCardDrop( event, ui ) {
+    function handleCardDrop(event, ui) {
         //ui is the object being dropped
         //$(this) is the location that is receving
         //console.log(ui.draggable.get(0).src);
         //console.log($(this).get(0).id);
         
+        //there will be a check here to see if it is your turn, if it is go on, else skip all this
+        
         //remove the _1 if container has it
         var location = $(this).get(0).id;
         if (location.indexOf("_1") != -1)
             location = location.substring(0, location.length - 2);
+       //check if it is a jack if it is, branch off and do not do the bottom
+            //do jack magic here
+       //this is else
        //check here if the location is taken by a token -TO DO LATER
        
        //checking if the location and the card are the same kind
@@ -420,7 +412,74 @@
         
     }
     
-    
+    function discardDrop(event, ui) {
+        var cardSrc;
+        console.log(ui.draggable.get(0).src);
+         //there will be a check here to see if it is your turn, if it is go on, else skip all this
+
+        //finding the cards name
+        if (ui.draggable.get(0).src.indexOf("heart") != -1) {
+            var index = ui.draggable.get(0).src.indexOf("heart") + 5
+            cardSrc = "heart" + ui.draggable.get(0).src[index];
+            index += 1;
+            
+            if ($.isNumeric(ui.draggable.get(0).src[index]))
+                cardSrc += ui.draggable.get(0).src[index];
+        }
+        else if (ui.draggable.get(0).src.indexOf("spade") != -1) {
+            var index = ui.draggable.get(0).src.indexOf("spade") + 5
+            cardSrc = "spade" + ui.draggable.get(0).src[index];
+            index += 1;
+            
+            if ($.isNumeric(ui.draggable.get(0).src[index]))
+                cardSrc += ui.draggable.get(0).src[index];
+        }
+        else if (ui.draggable.get(0).src.indexOf("diamond") != -1) {
+            var index = ui.draggable.get(0).src.indexOf("diamond") + 7
+            cardSrc = "diamond" + ui.draggable.get(0).src[index];
+            index += 1;
+            
+            if ($.isNumeric(ui.draggable.get(0).src[index]))
+                cardSrc += ui.draggable.get(0).src[index];
+        }
+        else {
+            var index = ui.draggable.get(0).src.indexOf("clover") + 6
+            cardSrc = "clover" + ui.draggable.get(0).src[index];
+            index += 1;
+            
+            if ($.isNumeric(ui.draggable.get(0).src[index]))
+                cardSrc += ui.draggable.get(0).src[index];
+        }
+        
+        console.log(cardSrc);
+        //check here if the card still can be played on the board using cardSrc
+            //if yes then your done no need to do anything else
+        //else
+            //delete the card, push the card object into the discard pile array
+            //delete from the hand as well
+            //now draw a card push it to the players hand array
+            //draw it on the ui
+       //note you can assume that this method will be always by the player not comps 
+        
+        
+        $(document.body).get(0).style.cursor = "default";
+           
+        //removing the card from playerHand array and pushing it to the discard pile
+        var index = ui.draggable.get(0).id[4] - 1;
+        var tempArray = new Array();
+        for (var i = 0; i < playerHand.length; i++)
+            if (i != index)
+                tempArray.push(playerHand[i]);
+            else
+                discardPile.push(playerHand[i]);
+                   
+        playerHand = tempArray.slice();
+           
+        //removing it physically from the ui
+        var parent = ui.draggable.parent().get(0);
+        parent.removeChild(parent.childNodes[0]);
+       
+    }
     
     //creates a deck for the players
     var mainDeck;
