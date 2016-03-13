@@ -393,19 +393,34 @@
            $(document.body).get(0).style.cursor = "default";
            
            //removing the card from playerHand array and pushing it to the discard pile
+
            var index = ui.draggable.get(0).id[4] - 1;
            var tempArray = new Array();
            for (var i = 0; i < playerHand.length; i++)
-               if (i != index)
+               if (i != index) {
                    tempArray.push(playerHand[i]);
-                else
-                    discardPile.push(playerHand[i]);
+               }
+               else {
+                   discardPile.push(playerHand[i]);
+                   //discards the card and load the next one. doesn't check if maindeck is empty yet.
+                   nextCard = mainDeck.drawCard().getImageSource();
+                   console.log(nextCard);
+                   $("#hand" + (i + 1)).html("<img class='img-responsive handcard' id='hand" + (i + 1) + "img' src = " + nextCard + " height = '100' width = '90'/>");
+                   $("#hand" + (i+1) + "img").draggable({
+                       stack: '#hand' + (i+1),
+                       cursor: 'pointer',
+                       revert: true
+                   });
+                   //add the draggable method to the images
+               }
                    
            playerHand = tempArray.slice();
            
            //removing it physically from the ui
-           var parent = ui.draggable.parent().get(0);
-           parent.removeChild(parent.childNodes[0]);
+ //          var parent = ui.draggable.parent().get(0);
+ //          parent.removeChild(parent.childNodes[0]);
+           
+           
            console.log("finished removing");    
            
        }
