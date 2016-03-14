@@ -26,6 +26,8 @@ function Card (suit, value) {
 			imageSource += "heart";
 		else
 			imageSource += "spade";
+        if (value == 1)
+            imageSource += "0";    
 		imageSource += value.toString() + ".svg";
 		return imageSource;
 	}
