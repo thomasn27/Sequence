@@ -278,7 +278,7 @@
             nextCard = mainDeck.drawCard();
             opponentTwo.push(nextCard);
             $("#3hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");      
-         }
+        }
         
        
         
@@ -370,6 +370,7 @@
     }//end of setup board
    
     function handleCardDrop(event, ui) {
+        var location;
         //ui is the object being dropped
         //$(this) is the location that is receving
         //console.log(ui.draggable.get(0).src);
@@ -378,38 +379,44 @@
         //there will be a check here to see if it is your turn, if it is go on, else skip all this
         
         //remove the _1 if container has it
-        var location = $(this).get(0).id;
-        if (location.indexOf("_1") != -1)
-            location = location.substring(0, location.length - 2);
+        var locationID = $(this).get(0).id;
+        if (locationID.indexOf("_1") != -1)
+            location = locationID.substring(0, locationID.length - 2);
+        else
+            location = locationID;
        //check if it is a jack if it is, branch off and do not do the bottom
             //do jack magic here
        //this is else
        //check here if the location is taken by a token -TO DO LATER
        
-       //checking if the location and the card are the same kind
-       if (ui.draggable.get(0).src.indexOf(location) != -1) {
-           //they are the same
-           //reverts the mouse back to the default           
-           $(document.body).get(0).style.cursor = "default";
+        //checking if the location and the card are the same kind
+        if (ui.draggable.get(0).src.indexOf(location) != -1) {
+            //they are the same
            
-           //removing the card from playerHand array and pushing it to the discard pile
-           var index = ui.draggable.get(0).id[4] - 1;
-           var tempArray = new Array();
-           for (var i = 0; i < playerHand.length; i++)
+            //reverts the mouse back to the default           
+            $(document.body).get(0).style.cursor = "default";
+           
+            //removing the card from playerHand array and pushing it to the discard pile
+            var index = ui.draggable.get(0).id[4] - 1;
+            var tempArray = new Array();
+            for (var i = 0; i < playerHand.length; i++)
                 if (i != index)
                     tempArray.push(playerHand[i]);
                 else
                     discardPile.push(playerHand[i]);
                    
-           playerHand = tempArray.slice();
+            playerHand = tempArray.slice();
            
-           //removing it physically from the ui
-           var parent = ui.draggable.parent().get(0);
-           parent.removeChild(parent.childNodes[0]);
-           console.log("finished removing");    
+            //removing it physically from the ui
+            var parent = ui.draggable.parent().get(0);
+            parent.removeChild(parent.childNodes[0]);
+            console.log("finished removing");
            
-       }
-        
+            //reveal token -- format: "token_<id>img"
+            var token = "token_" + locationID + "img";
+            console.log(token);
+            document.getElementById(token).style.visibility = 'visible';
+        }
     }
     
     function discardDrop(event, ui) {
@@ -478,7 +485,6 @@
         //removing it physically from the ui
         var parent = ui.draggable.parent().get(0);
         parent.removeChild(parent.childNodes[0]);
-       
     }
     
     //creates a deck for the players
