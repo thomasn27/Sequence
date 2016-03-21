@@ -385,105 +385,25 @@
             location = locationID.substring(0, locationID.length - 2);
         else
             location = locationID;
-        //check if it is a jack if it is, branch off and do not do the bottom
-        //do jack magic here
-        
-        //this is else
-        //check here if the location is taken by a token -TO DO LATER
+ 
         //two eyed jack
         if (ui.draggable.get(0).src.includes("clover11") || ui.draggable.get(0).src.includes("diamond11")) {
-            var arrayID = 0;
-            var index = ui.draggable.get(0).id[4] - 1;
-            var tempArray = new Array();
-            for (var i = 0; i <= 7; i++)
-                if (i != index) {
-                    tempArray.push(playerHand[i]);
-                }
-                else {
-                    discardPile.push(playerHand[i]);
-                    arrayID = i + 1;
-                }
-
-            playerHand = tempArray.slice();
-            $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
-            $("#hand" + arrayID + "img").draggable({
-                stack: '#hand' + arrayID,
-                cursor: 'pointer',
-                revert: true
-            });
-            var token = "token_" + locationID + "img";
-            document.getElementById(token).style.visibility = 'visible';
+            placeAndDraw(ui, locationID);
         }
         //one-eyed jack
         if (ui.draggable.get(0).src.includes("heart11") || ui.draggable.get(0).src.includes("spade11")) {
-            var arrayID = 0;
-            var index = ui.draggable.get(0).id[4] - 1;
-            var tempArray = new Array();
-            for (var i = 0; i <= 7; i++)
-                if (i != index) {
-                    tempArray.push(playerHand[i]);
-                }
-                else {
-                    discardPile.push(playerHand[i]);
-                    arrayID = i + 1;
-                }
-
-            playerHand = tempArray.slice();
-            $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
-            $("#hand" + arrayID + "img").draggable({
-                stack: '#hand' + arrayID,
-                cursor: 'pointer',
-                revert: true
-            });
-            var token = "token_" + locationID + "img";
-            document.getElementById(token).style.visibility = '';
+            removeAndDraw(ui, locationID);
         }
-        //checking if the location and the card are the same kind
+
+        //checking if the location and the card are the same kind - ordinary card
         if (ui.draggable.get(0).src.indexOf(location) != -1) {
             //they are the same
-            
-
-            //reverts the mouse back to the default
-            $(document.body).get(0).style.cursor = "default";
-
-
-            //removing the card from playerHand array and pushing it to the discard pile
-
-            var arrayID = 0;
-            var index = ui.draggable.get(0).id[4] - 1;
-            var tempArray = new Array();
-            for (var i = 0; i <= 7; i++)
-                if (i != index) {
-                    tempArray.push(playerHand[i]);
-                }
-                else {
-                    discardPile.push(playerHand[i]);
-                    arrayID = i + 1;
-                }
-
-            playerHand = tempArray.slice();
-            $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
-            $("#hand" + arrayID + "img").draggable({
-                stack: '#hand' + arrayID,
-                cursor: 'pointer',
-                revert: true
-            });
-
-            //removing it physically from the ui
-            //       var parent = ui.draggable.parent().get(0);
-            //      parent.removeChild(parent.childNodes[0]);
-            // console.log("finished removing");
-
-            //reveal token -- format: "token_<id>img"
-            var token = "token_" + locationID + "img";
- //           console.log(token);
-            document.getElementById(token).style.visibility = 'visible';
+            placeAndDraw(ui, locationID);
         }
     }
 
     function discardDrop(event, ui) {
         var cardSrc;
-        console.log(ui.draggable.get(0).src);
         //there will be a check here to see if it is your turn, if it is go on, else skip all this
 
         //finding the cards name
@@ -520,7 +440,6 @@
                 cardSrc += ui.draggable.get(0).src[index];
         }
 
-        console.log(cardSrc);
         //check here if the card still can be played on the board using cardSrc
         //if yes then your done no need to do anything else
         //else
@@ -537,16 +456,16 @@
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
         var arrayID = 0;
-        for (var i = 0; i <= 7; i++)
-            if (i != index)
+        for (var i = 0; i < playerHand.length; i++)
+            if (i != index) {
                 tempArray.push(playerHand[i]);
+            }
             else {
                 discardPile.push(playerHand[i]);
-                console.log(playerHand[i]);
                 arrayID = i + 1;
             }
 
-        playerHand = tempArray.slice();
+  //      playerHand = tempArray.slice();
 
         $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
         $("#hand" + arrayID + "img").draggable({
@@ -560,6 +479,72 @@
         //       parent.removeChild(parent.childNodes[0]);
 
     }
+    function placeAndDraw(ui, locationID) {
+        $(document.body).get(0).style.cursor = "default";
+
+        //removing the card from playerHand array and pushing it to the discard pile
+        var arrayID = 0;
+        var index = ui.draggable.get(0).id[4] - 1;
+        var tempArray = new Array();
+        var token = "token_" + locationID + "img";
+        for (var i = 0; i <playerHand.length; i++)
+            if (i != index) {
+                tempArray.push(playerHand[i]);
+            }
+            else if(document.getElementById(token).style.visibility == 'visible'){
+                tempArray.push(playerHand[i]);
+            }
+            else {
+                discardPile.push(playerHand[i]);
+                arrayID = i + 1;
+            }
+
+ //       playerHand = tempArray.slice();
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+        $("#hand" + arrayID + "img").draggable({
+            stack: '#hand' + arrayID,
+            cursor: 'pointer',
+            revert: true
+        });
+
+        //removing it physically from the ui
+        //       var parent = ui.draggable.parent().get(0);
+        //      parent.removeChild(parent.childNodes[0]);
+
+        //reveal token -- format: "token_<id>img"
+ //       var token = "token_" + locationID + "img";
+        document.getElementById(token).style.visibility = 'visible';
+    }
+
+    function removeAndDraw(ui, locationID) {
+        var arrayID = 0;
+        var index = ui.draggable.get(0).id[4] - 1;
+        var tempArray = new Array();
+        var token = "token_" + locationID + "img";
+        for (var i = 0; i < playerHand.length; i++)
+            if (i != index) {
+                tempArray.push(playerHand[i]);
+            }
+            else if (document.getElementById(token).style.visibility == '') {
+                tempArray.push(playerHand[i]);
+            }
+            else {
+                discardPile.push(playerHand[i]);
+                arrayID = i + 1;
+            }
+
+ //       playerHand = tempArray.slice();
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+        $("#hand" + arrayID + "img").draggable({
+            stack: '#hand' + arrayID,
+            cursor: 'pointer',
+            revert: true
+        });
+ //       var token = "token_" + locationID + "img";
+        document.getElementById(token).style.visibility = '';
+    }
+
+
 
     //creates a deck for the players
     var mainDeck;
