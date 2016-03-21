@@ -390,7 +390,54 @@
         
         //this is else
         //check here if the location is taken by a token -TO DO LATER
+        //two eyed jack
+        if (ui.draggable.get(0).src.includes("clover11") || ui.draggable.get(0).src.includes("diamond11")) {
+            var arrayID = 0;
+            var index = ui.draggable.get(0).id[4] - 1;
+            var tempArray = new Array();
+            for (var i = 0; i <= 7; i++)
+                if (i != index) {
+                    tempArray.push(playerHand[i]);
+                }
+                else {
+                    discardPile.push(playerHand[i]);
+                    arrayID = i + 1;
+                }
 
+            playerHand = tempArray.slice();
+            $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+            $("#hand" + arrayID + "img").draggable({
+                stack: '#hand' + arrayID,
+                cursor: 'pointer',
+                revert: true
+            });
+            var token = "token_" + locationID + "img";
+            document.getElementById(token).style.visibility = 'visible';
+        }
+        //one-eyed jack
+        if (ui.draggable.get(0).src.includes("heart11") || ui.draggable.get(0).src.includes("spade11")) {
+            var arrayID = 0;
+            var index = ui.draggable.get(0).id[4] - 1;
+            var tempArray = new Array();
+            for (var i = 0; i <= 7; i++)
+                if (i != index) {
+                    tempArray.push(playerHand[i]);
+                }
+                else {
+                    discardPile.push(playerHand[i]);
+                    arrayID = i + 1;
+                }
+
+            playerHand = tempArray.slice();
+            $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+            $("#hand" + arrayID + "img").draggable({
+                stack: '#hand' + arrayID,
+                cursor: 'pointer',
+                revert: true
+            });
+            var token = "token_" + locationID + "img";
+            document.getElementById(token).style.visibility = '';
+        }
         //checking if the location and the card are the same kind
         if (ui.draggable.get(0).src.indexOf(location) != -1) {
             //they are the same
