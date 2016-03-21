@@ -95,13 +95,13 @@
                     <td id="heart01"><img class="img-responsive-reverse bgcard" id="heart1img" src="assets/svg/heart01.svg" draggable="false"><img class="token" id="token_heart01img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="heart13_1"><img class="img-responsive-reverse bgcard" id="heart13_1img" src="assets/svg/heart13.svg" draggable="false"><img class="token" id="token_heart13_1img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="heart12_1"><img class="img-responsive-reverse bgcard" id="heart12_1img" src="assets/svg/heart12.svg" draggable="false"><img class="token" id="token_heart12_1img" src="assets/svg/token.svg" draggable="false"></td>
-                    <td id="diamond01"><img class="img-responsive-reverse bgcard" id="diamond1img" src="assets/svg/diamond01.svg" draggable="false"><img class="token" id="token_diamond1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond01"><img class="img-responsive-reverse bgcard" id="diamond01img" src="assets/svg/diamond01.svg" draggable="false"><img class="token" id="token_diamond01img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="spade2"><img class="img-responsive-reverse bgcard" id="spade2img" src="assets/svg/spade2.svg" draggable="false"><img class="token" id="token_spade2img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="diamond8_1"><img class="img-responsive-reverse bgcard" id="diamond8_1img" src="assets/svg/diamond8.svg" draggable="false"><img class="token" id="token_diamond8_1img" src="assets/svg/token.svg" draggable="false"></td>
                 </tr>
                 <tr>
                     <td id="spade6"><img class="img-responsive-reverse bgcard" id="spade6img" src="assets/svg/spade6.svg" draggable="false"><img class="token" id="token_spade6img" src="assets/svg/token.svg" draggable="false"></td>
-                    <td id="heart01_1"><img class="img-responsive-reverse bgcard" id="heart1_1img" src="assets/svg/heart01.svg" draggable="false"><img class="token" id="token_heart1_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart01_1"><img class="img-responsive-reverse bgcard" id="heart01_1img" src="assets/svg/heart01.svg" draggable="false"><img class="token" id="token_heart01_1img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="diamond5_1"><img class="img-responsive-reverse bgcard" id="diamond5_1img" src="assets/svg/diamond5.svg" draggable="false"><img class="token" id="token_diamond5_1img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="clover3"><img class="img-responsive-reverse bgcard" id="clover3img" src="assets/svg/clover3.svg" draggable="false"><img class="token" id="token_clover3img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="heart4_1"><img class="img-responsive-reverse bgcard" id="heart4_1img" src="assets/svg/heart4.svg" draggable="false"><img class="token" id="token_heart4_1img" src="assets/svg/token.svg" draggable="false"></td>
@@ -130,8 +130,8 @@
                     <td id="clover5"><img class="img-responsive-reverse bgcard" id="clover5img" src="assets/svg/clover5.svg" draggable="false"><img class="token" id="token_clover5img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="heart6_1"><img class="img-responsive-reverse bgcard" id="heart6_1img" src="assets/svg/heart6.svg" draggable="false"><img class="token" id="token_heart6_1img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="heart7_1"><img class="img-responsive-reverse bgcard" id="heart7_1img" src="assets/svg/heart7.svg" draggable="false"><img class="token" id="token_heart7_1img" src="assets/svg/token.svg" draggable="false"></td>
-                    <td id="heart8_1"><img class="img-responsive-reverse bgcard" id="heart8_1img" src="assets/svg/heart8.svg" draggable="false"><img class="token" id="token_clover12img" src="assets/svg/token.svg" draggable="false"></td>
-                    <td id="clover12"><img class="img-responsive-reverse bgcard" id="clover12img" src="assets/svg/clover12.svg" draggable="false"><img class="token" id="token_" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart8_1"><img class="img-responsive-reverse bgcard" id="heart8_1img" src="assets/svg/heart8.svg" draggable="false"><img class="token" id="token_heart8_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover12"><img class="img-responsive-reverse bgcard" id="clover12img" src="assets/svg/clover12.svg" draggable="false"><img class="token" id="token_clover12img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="spade5_1"><img class="img-responsive-reverse bgcard" id="spade5_1img" src="assets/svg/spade5.svg" draggable="false"><img class="token" id="token_spade5_1img" src="assets/svg/token.svg" draggable="false"></td>
                     <td id="diamond12_1"><img class="img-responsive-reverse bgcard" id="diamond12_1img" src="assets/svg/diamond12.svg" draggable="false"><img class="token" id="token_diamond12_1img" src="assets/svg/token.svg" draggable="false"></td>
                 </tr>
@@ -387,12 +387,14 @@
             location = locationID;
         //check if it is a jack if it is, branch off and do not do the bottom
         //do jack magic here
+        
         //this is else
         //check here if the location is taken by a token -TO DO LATER
 
         //checking if the location and the card are the same kind
         if (ui.draggable.get(0).src.indexOf(location) != -1) {
             //they are the same
+            
 
             //reverts the mouse back to the default
             $(document.body).get(0).style.cursor = "default";
@@ -427,7 +429,7 @@
 
             //reveal token -- format: "token_<id>img"
             var token = "token_" + locationID + "img";
-            console.log(token);
+ //           console.log(token);
             document.getElementById(token).style.visibility = 'visible';
         }
     }
@@ -488,11 +490,12 @@
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
         var arrayID = 0;
-        for (var i = 0; i < playerHand.length; i++)
+        for (var i = 0; i <= 7; i++)
             if (i != index)
                 tempArray.push(playerHand[i]);
             else {
                 discardPile.push(playerHand[i]);
+                console.log(playerHand[i]);
                 arrayID = i + 1;
             }
 
