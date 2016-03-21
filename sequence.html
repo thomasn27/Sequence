@@ -424,13 +424,6 @@
 
             playerHand = tempArray.slice();
 
-
-            //removing it physically from the ui
-            //          var parent = ui.draggable.parent().get(0);
-            //          parent.removeChild(parent.childNodes[0]);
-
-
-            //           console.log("finished removing");
             $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
             $("#hand" + arrayID + "img").draggable({
                 stack: '#hand' + arrayID,
@@ -438,12 +431,10 @@
                 revert: true
             });
 
-
-
             //removing it physically from the ui
             //       var parent = ui.draggable.parent().get(0);
             //      parent.removeChild(parent.childNodes[0]);
-            console.log("finished removing");
+            // console.log("finished removing");
 
             //reveal token -- format: "token_<id>img"
             var token = "token_" + locationID + "img";
@@ -526,15 +517,10 @@
             cursor: 'pointer',
             revert: true
         });
-        ////removing it physically from the ui
-        //var parent = ui.draggable.parent().get(0);
-        //parent.removeChild(parent.childNodes[0]);
-
-
 
         //removing it physically from the ui
-        var parent = ui.draggable.parent().get(0);
-        parent.removeChild(parent.childNodes[0]);
+ //       var parent = ui.draggable.parent().get(0);
+ //       parent.removeChild(parent.childNodes[0]);
 
     }
 
