@@ -412,18 +412,7 @@
                     arrayID = i + 1;
                 }
 
-            //removing the card from playerHand array and pushing it to the discard pile
-            var index = ui.draggable.get(0).id[4] - 1;
-            var tempArray = new Array();
-            for (var i = 0; i < playerHand.length; i++)
-                if (i != index)
-                    tempArray.push(playerHand[i]);
-                else
-                    discardPile.push(playerHand[i]);
-
-
             playerHand = tempArray.slice();
-
             $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
             $("#hand" + arrayID + "img").draggable({
                 stack: '#hand' + arrayID,
@@ -508,8 +497,6 @@
             }
 
         playerHand = tempArray.slice();
-
-
 
         $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
         $("#hand" + arrayID + "img").draggable({
