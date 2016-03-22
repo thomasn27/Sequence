@@ -1,198 +1,199 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>SEQUENCE - a CECS491 project</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>SEQUENCE - a CECS491 project</title>
 
-        <!-- Bootstrap -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        
-        <!-- Custom styles for this template -->
-        <link href="css/jumbotron.css" rel="stylesheet">
-        
-        <!-- Custom styles for sequence boardgame -->
-        <link href="css/format.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-  
-    <body>
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron.css" rel="stylesheet">
+
+    <!-- Custom styles for sequence boardgame -->
+    <link href="css/format.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
     <div class="container">
-    
-    <header>
-      <!-- Header Row -->
-      <div class="row">
-        <!-- TODO: Title -->
-        <div class="col-md-3 leftAlign">
-          <h1 id="title">SEQUENCE</h1>
+
+        <header>
+            <!-- Header Row -->
+            <div class="row">
+                <!-- TODO: Title -->
+                <div class="col-md-3 leftAlign">
+                    <h1 id="title">SEQUENCE</h1>
+                </div>
+
+                <!-- TODO: Players turn area -->
+                <div class="col-md-6 centerAlign">
+                    <h1 id="playersTurn" style="text-align:center">Players Turn</h1>
+                </div>
+
+                <!-- TODO: Rules button -->
+                <div class="col-md-3 rightAlign">
+                    <h1 id="rules" style="text-align:right">Rules</h1>
+                </div>
+
+            </div>
+        </header>
+
+        <!-- board game area -->
+        <div class="jumbotron">
+            <table class="area_boardgame">
+                <tr>
+                    <td id="wild_1"><img class="img-responsive-reverse bgcard" id="wild1img" src="assets/svg/wild.svg" draggable="false"></td>
+                    <td id="spade10"><img class="img-responsive-reverse bgcard" id="spade10img" src="assets/svg/spade10.svg" draggable="false"><img class="token" id="token_spade10img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade12"><img class="img-responsive-reverse bgcard" id="spade12img" src="assets/svg/spade12.svg" draggable="false"><img class="token" id="token_spade12img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade13"><img class="img-responsive-reverse bgcard" id="spade13img" src="assets/svg/spade13.svg" draggable="false"><img class="token" id="token_spade13img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade01"><img class="img-responsive-reverse bgcard" id="spade01img" src="assets/svg/spade01.svg" draggable="false"><img class="token" id="token_spade01img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond2"><img class="img-responsive-reverse bgcard" id="diamond2img" src="assets/svg/diamond2.svg" draggable="false"><img class="token" id="token_diamond2img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond3"><img class="img-responsive-reverse bgcard" id="diamond3img" src="assets/svg/diamond3.svg" draggable="false"><img class="token" id="token_diamond3img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond4"><img class="img-responsive-reverse bgcard" id="diamond4img" src="assets/svg/diamond4.svg" draggable="false"><img class="token" id="token_diamond4img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond5"><img class="img-responsive-reverse bgcard" id="diamond5img" src="assets/svg/diamond5.svg" draggable="false"><img class="token" id="token_diamond5img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="wild_2"><img class="img-responsive-reverse bgcard" id="wild2img" src="assets/svg/wild.svg" draggable="false"></td>
+                </tr>
+                <tr>
+                    <td id="spade9"><img class="img-responsive-reverse bgcard" id="spade9img" src="assets/svg/spade9.svg" draggable="false"><img class="token" id="token_spade9img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart10"><img class="img-responsive-reverse bgcard" id="heart10img" src="assets/svg/heart10.svg" draggable="false"><img class="token" id="token_heart10img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart9"><img class="img-responsive-reverse bgcard" id="heart9img" src="assets/svg/heart9.svg" draggable="false"><img class="token" id="token_heart9img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart8"><img class="img-responsive-reverse bgcard" id="heart8img" src="assets/svg/heart8.svg" draggable="false"><img class="token" id="token_heart8img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart7"><img class="img-responsive-reverse bgcard" id="heart7img" src="assets/svg/heart7.svg" draggable="false"><img class="token" id="token_heart7img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart6"><img class="img-responsive-reverse bgcard" id="heart6img" src="assets/svg/heart6.svg" draggable="false"><img class="token" id="token_heart6img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart5"><img class="img-responsive-reverse bgcard" id="heart5img" src="assets/svg/heart5.svg" draggable="false"><img class="token" id="token_heart5img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart4"><img class="img-responsive-reverse bgcard" id="heart4img" src="assets/svg/heart4.svg" draggable="false"><img class="token" id="token_heart4img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart3"><img class="img-responsive-reverse bgcard" id="heart3img" src="assets/svg/heart3.svg" draggable="false"><img class="token" id="token_heart3img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond6"><img class="img-responsive-reverse bgcard" id="diamond6img" src="assets/svg/diamond6.svg" draggable="false"><img class="token" id="token_diamond6img" src="assets/svg/token.svg" draggable="false"></td>
+                </tr>
+                <tr>
+                    <td id="spade8"><img class="img-responsive-reverse bgcard" id="spade8img" src="assets/svg/spade8.svg" draggable="false"><img class="token" id="token_spade8img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart12"><img class="img-responsive-reverse bgcard" id="heart12img" src="assets/svg/heart12.svg" draggable="false"><img class="token" id="token_heart12img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond7"><img class="img-responsive-reverse bgcard" id="diamond7img" src="assets/svg/diamond7.svg" draggable="false"><img class="token" id="token_diamond7img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond8"><img class="img-responsive-reverse bgcard" id="diamond8img" src="assets/svg/diamond8.svg" draggable="false"><img class="token" id="token_diamond8img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond9"><img class="img-responsive-reverse bgcard" id="diamond9img" src="assets/svg/diamond9.svg" draggable="false"><img class="token" id="token_diamond9img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond10"><img class="img-responsive-reverse bgcard" id="diamond10img" src="assets/svg/diamond10.svg" draggable="false"><img class="token" id="token_diamond10img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond12"><img class="img-responsive-reverse bgcard" id="diamond12img" src="assets/svg/diamond12.svg" draggable="false"><img class="token" id="token_diamond12img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond13"><img class="img-responsive-reverse bgcard" id="diamond13img" src="assets/svg/diamond13.svg" draggable="false"><img class="token" id="token_diamond13img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart2"><img class="img-responsive-reverse bgcard" id="heart2img" src="assets/svg/heart2.svg" draggable="false"><img class="token" id="token_heart2img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond7_1"><img class="img-responsive-reverse bgcard" id="diamond7_1img" src="assets/svg/diamond7.svg" draggable="false"><img class="token" id="token_diamond7_1img" src="assets/svg/token.svg" draggable="false"></td>
+                </tr>
+                <tr>
+                    <td id="spade7"><img class="img-responsive-reverse bgcard" id="spade7img" src="assets/svg/spade7.svg" draggable="false"><img class="token" id="token_spade7img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart13"><img class="img-responsive-reverse bgcard" id="heart13img" src="assets/svg/heart13.svg" draggable="false"><img class="token" id="token_heart13img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond6_1"><img class="img-responsive-reverse bgcard" id="diamond6_1img" src="assets/svg/diamond6.svg" draggable="false"><img class="token" id="token_diamond6_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover2"><img class="img-responsive-reverse bgcard" id="clover2img" src="assets/svg/clover2.svg" draggable="false"><img class="token" id="token_clover2img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart01"><img class="img-responsive-reverse bgcard" id="heart1img" src="assets/svg/heart01.svg" draggable="false"><img class="token" id="token_heart01img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart13_1"><img class="img-responsive-reverse bgcard" id="heart13_1img" src="assets/svg/heart13.svg" draggable="false"><img class="token" id="token_heart13_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart12_1"><img class="img-responsive-reverse bgcard" id="heart12_1img" src="assets/svg/heart12.svg" draggable="false"><img class="token" id="token_heart12_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond01"><img class="img-responsive-reverse bgcard" id="diamond01img" src="assets/svg/diamond01.svg" draggable="false"><img class="token" id="token_diamond01img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade2"><img class="img-responsive-reverse bgcard" id="spade2img" src="assets/svg/spade2.svg" draggable="false"><img class="token" id="token_spade2img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond8_1"><img class="img-responsive-reverse bgcard" id="diamond8_1img" src="assets/svg/diamond8.svg" draggable="false"><img class="token" id="token_diamond8_1img" src="assets/svg/token.svg" draggable="false"></td>
+                </tr>
+                <tr>
+                    <td id="spade6"><img class="img-responsive-reverse bgcard" id="spade6img" src="assets/svg/spade6.svg" draggable="false"><img class="token" id="token_spade6img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart01_1"><img class="img-responsive-reverse bgcard" id="heart01_1img" src="assets/svg/heart01.svg" draggable="false"><img class="token" id="token_heart01_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond5_1"><img class="img-responsive-reverse bgcard" id="diamond5_1img" src="assets/svg/diamond5.svg" draggable="false"><img class="token" id="token_diamond5_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover3"><img class="img-responsive-reverse bgcard" id="clover3img" src="assets/svg/clover3.svg" draggable="false"><img class="token" id="token_clover3img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart4_1"><img class="img-responsive-reverse bgcard" id="heart4_1img" src="assets/svg/heart4.svg" draggable="false"><img class="token" id="token_heart4_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart3_1"><img class="img-responsive-reverse bgcard" id="heart3_1img" src="assets/svg/heart3.svg" draggable="false"><img class="token" id="token_heart3_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart10_1"><img class="img-responsive-reverse bgcard" id="heart10_1img" src="assets/svg/heart10.svg" draggable="false"><img class="token" id="token_heart10_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover01"><img class="img-responsive-reverse bgcard" id="clover1img" src="assets/svg/clover01.svg" draggable="false"><img class="token" id="token_clover01img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade3"><img class="img-responsive-reverse bgcard" id="spade3img" src="assets/svg/spade3.svg" draggable="false"><img class="token" id="token_spade3img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond9_1"><img class="img-responsive-reverse bgcard" id="diamond9_1img" src="assets/svg/diamond9.svg" draggable="false"><img class="token" id="token_diamond9_1img" src="assets/svg/token.svg" draggable="false"></td>
+                </tr>
+                <tr>
+                    <td id="spade5"><img class="img-responsive-reverse bgcard" id="spade5img" src="assets/svg/spade5.svg" draggable="false"><img class="token" id="token_spade5img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover2_1"><img class="img-responsive-reverse bgcard" id="clover2_1img" src="assets/svg/clover2.svg" draggable="false"><img class="token" id="token_clover2_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond4_1"><img class="img-responsive-reverse bgcard" id="diamond4_1img" src="assets/svg/diamond4.svg" draggable="false"><img class="token" id="token_diamond4_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover4"><img class="img-responsive-reverse bgcard" id="clover4img" src="assets/svg/clover4.svg" draggable="false"><img class="token" id="token_clover4img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart5_1"><img class="img-responsive-reverse bgcard" id="heart5_1img" src="assets/svg/heart5.svg" draggable="false"><img class="token" id="token_heart5_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart2_1"><img class="img-responsive-reverse bgcard" id="heart2_1img" src="assets/svg/heart2.svg" draggable="false"><img class="token" id="token_heart2_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart9_1"><img class="img-responsive-reverse bgcard" id="heart9_1img" src="assets/svg/heart9.svg" draggable="false"><img class="token" id="token_heart9_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover13"><img class="img-responsive-reverse bgcard" id="clover13img" src="assets/svg/clover13.svg" draggable="false"><img class="token" id="token_clover13img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade4"><img class="img-responsive-reverse bgcard" id="spade4img" src="assets/svg/spade4.svg" draggable="false"><img class="token" id="token_spade4img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond10_1"><img class="img-responsive-reverse bgcard" id="diamond10_1img" src="assets/svg/diamond10.svg" draggable="false"><img class="token" id="token_diamond10_1img" src="assets/svg/token.svg" draggable="false"></td>
+                </tr>
+                <tr>
+                    <td id="spade4_1"><img class="img-responsive-reverse bgcard" id="spade4_1img" src="assets/svg/spade4.svg" draggable="false"><img class="token" id="token_spade4_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover3_1"><img class="img-responsive-reverse bgcard" id="clover3_1img" src="assets/svg/clover3.svg" draggable="false"><img class="token" id="token_clover3_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond3_1"><img class="img-responsive-reverse bgcard" id="diamond3_1img" src="assets/svg/diamond3.svg" draggable="false"><img class="token" id="token_diamond3_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover5"><img class="img-responsive-reverse bgcard" id="clover5img" src="assets/svg/clover5.svg" draggable="false"><img class="token" id="token_clover5img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart6_1"><img class="img-responsive-reverse bgcard" id="heart6_1img" src="assets/svg/heart6.svg" draggable="false"><img class="token" id="token_heart6_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart7_1"><img class="img-responsive-reverse bgcard" id="heart7_1img" src="assets/svg/heart7.svg" draggable="false"><img class="token" id="token_heart7_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="heart8_1"><img class="img-responsive-reverse bgcard" id="heart8_1img" src="assets/svg/heart8.svg" draggable="false"><img class="token" id="token_heart8_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover12"><img class="img-responsive-reverse bgcard" id="clover12img" src="assets/svg/clover12.svg" draggable="false"><img class="token" id="token_clover12img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade5_1"><img class="img-responsive-reverse bgcard" id="spade5_1img" src="assets/svg/spade5.svg" draggable="false"><img class="token" id="token_spade5_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond12_1"><img class="img-responsive-reverse bgcard" id="diamond12_1img" src="assets/svg/diamond12.svg" draggable="false"><img class="token" id="token_diamond12_1img" src="assets/svg/token.svg" draggable="false"></td>
+                </tr>
+                <tr>
+                    <td id="spade3_1"><img class="img-responsive-reverse bgcard" id="spade3_1img" src="assets/svg/spade3.svg" draggable="false"><img class="token" id="token_spade3_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover4_1"><img class="img-responsive-reverse bgcard" id="clover4_1img" src="assets/svg/clover4.svg" draggable="false"><img class="token" id="token_clover4_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond2_1"><img class="img-responsive-reverse bgcard" id="diamond2_1img" src="assets/svg/diamond2.svg" draggable="false"><img class="token" id="token_diamond2_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover6"><img class="img-responsive-reverse bgcard" id="clover6img" src="assets/svg/clover6.svg" draggable="false"><img class="token" id="token_clover6img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover7"><img class="img-responsive-reverse bgcard" id="clover7img" src="assets/svg/clover7.svg" draggable="false"><img class="token" id="token_clover7img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover8"><img class="img-responsive-reverse bgcard" id="clover8img" src="assets/svg/clover8.svg" draggable="false"><img class="token" id="token_clover8img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover9"><img class="img-responsive-reverse bgcard" id="clover9img" src="assets/svg/clover9.svg" draggable="false"><img class="token" id="token_clover9img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover10"><img class="img-responsive-reverse bgcard" id="clover10img" src="assets/svg/clover10.svg" draggable="false"><img class="token" id="token_clover10img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade6_1"><img class="img-responsive-reverse bgcard" id="spade6_1img" src="assets/svg/spade6.svg" draggable="false"><img class="token" id="token_spade6_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond13_1"><img class="img-responsive-reverse bgcard" id="diamond13_1img" src="assets/svg/diamond13.svg" draggable="false"><img class="token" id="token_diamond13_1img" src="assets/svg/token.svg" draggable="false"></td>
+                </tr>
+                <tr>
+                    <td id="spade2_1"><img class="img-responsive-reverse bgcard" id="spade2_1img" src="assets/svg/spade2.svg" draggable="false"><img class="token" id="token_spade2_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover5_1"><img class="img-responsive-reverse bgcard" id="clover5_1img" src="assets/svg/clover5.svg" draggable="false"><img class="token" id="token_clover5_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade01_1"><img class="img-responsive-reverse bgcard" id="spade01_1img" src="assets/svg/spade01.svg" draggable="false"><img class="token" id="token_spade01_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade13_1"><img class="img-responsive-reverse bgcard" id="spade13_1img" src="assets/svg/spade13.svg" draggable="false"><img class="token" id="token_spade13_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade12_1"><img class="img-responsive-reverse bgcard" id="spade12_1img" src="assets/svg/spade12.svg" draggable="false"><img class="token" id="token_spade12_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade10_1"><img class="img-responsive-reverse bgcard" id="spade10_1img" src="assets/svg/spade10.svg" draggable="false"><img class="token" id="token_spade10_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade9_1"><img class="img-responsive-reverse bgcard" id="spade9_1img" src="assets/svg/spade9.svg" draggable="false"><img class="token" id="token_spade9_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade8_1"><img class="img-responsive-reverse bgcard" id="spade8_1img" src="assets/svg/spade8.svg" draggable="false"><img class="token" id="token_spade8_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="spade7_1"><img class="img-responsive-reverse bgcard" id="spade7_1img" src="assets/svg/spade7.svg" draggable="false"><img class="token" id="token_spade7_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="diamond01_1"><img class="img-responsive-reverse bgcard" id="diamond01_1img" src="assets/svg/diamond01.svg" draggable="false"><img class="token" id="token_diamond01_1img" src="assets/svg/token.svg" draggable="false"></td>
+                </tr>
+                <tr>
+                    <td id="wild_3"><img class="img-responsive-reverse bgcard" id="wild3img" src="assets/svg/wild.svg" draggable="false"></td>
+                    <td id="clover6_1"><img class="img-responsive-reverse bgcard" id="clover6_1img" src="assets/svg/clover6.svg" draggable="false"><img class="token" id="token_clover6_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover7_1"><img class="img-responsive-reverse bgcard" id="clover7_1img" src="assets/svg/clover7.svg" draggable="false"><img class="token" id="token_clover7_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover8_1"><img class="img-responsive-reverse bgcard" id="clover8_1img" src="assets/svg/clover8.svg" draggable="false"><img class="token" id="token_clover8_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover9_1"><img class="img-responsive-reverse bgcard" id="clover9_1img" src="assets/svg/clover9.svg" draggable="false"><img class="token" id="token_clover9_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover10_1"><img class="img-responsive-reverse bgcard" id="clover10_1img" src="assets/svg/clover10.svg" draggable="false"><img class="token" id="token_clover10_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover12_1"><img class="img-responsive-reverse bgcard" id="clover12_1img" src="assets/svg/clover12.svg" draggable="false"><img class="token" id="token_clover12_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover13_1"><img class="img-responsive-reverse bgcard" id="clover13_1img" src="assets/svg/clover13.svg" draggable="false"><img class="token" id="token_clover13_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="clover01_1"><img class="img-responsive-reverse bgcard" id="clover01_1img" src="assets/svg/clover01.svg" draggable="false"><img class="token" id="token_clover01_1img" src="assets/svg/token.svg" draggable="false"></td>
+                    <td id="wild_4"><img class="img-responsive-reverse bgcard" id="wild4img" src="assets/svg/wild.svg" draggable="false"></td>
+                </tr>
+            </table>
         </div>
-        
-        <!-- TODO: Players turn area -->
-        <div class="col-md-6 centerAlign">
-          <h1 id="playersTurn" style="text-align:center">Players Turn</h1>
-        </div>
-        
-        <!-- TODO: Rules button -->
-        <div class="col-md-3 rightAlign">
-          <h1 id="rules" style="text-align:right">Rules</h1>
-        </div>
-        
-      </div>
-    </header>
-    
-    <!-- board game area -->
-    <div class="jumbotron">
-      <table class="area_boardgame">
-          <tr>
-            <td id="wild_1"><img class="img-responsive-reverse bgcard" id="wild1img" src="assets/svg/wild.svg" draggable="false"></td>
-            <td id="spade10"><img class="img-responsive-reverse bgcard" id="spade10img" src="assets/svg/spade10.svg" draggable="false"><img class="token" id="token_spade10img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="spade12"><img class="img-responsive-reverse bgcard" id="spade12img" src="assets/svg/spade12.svg" draggable="false"><img class="token" id="token_spade12img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="spade13"><img class="img-responsive-reverse bgcard" id="spade13img" src="assets/svg/spade13.svg" draggable="false"><img class="token" id="token_spade13img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="spade01"><img class="img-responsive-reverse bgcard" id="spade01img" src="assets/svg/spade01.svg" draggable="false"><img class="token" id="token_spade01img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="diamond2"><img class="img-responsive-reverse bgcard" id="diamond2img" src="assets/svg/diamond2.svg" draggable="false"><img class="token" id="token_diamond2img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond3"><img class="img-responsive-reverse bgcard" id="diamond3img" src="assets/svg/diamond3.svg" draggable="false"><img class="token" id="token_diamond3img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond4"><img class="img-responsive-reverse bgcard" id="diamond4img" src="assets/svg/diamond4.svg" draggable="false"><img class="token" id="token_diamond4img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="diamond5"><img class="img-responsive-reverse bgcard" id="diamond5img" src="assets/svg/diamond5.svg" draggable="false"><img class="token" id="token_diamond5img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="wild_2"><img class="img-responsive-reverse bgcard" id="wild2img" src="assets/svg/wild.svg" draggable="false"></td>
-          </tr>
-          <tr>
-            <td id="spade9"><img class="img-responsive-reverse bgcard" id="spade9img" src="assets/svg/spade9.svg" draggable="false"><img class="token" id="token_spade9img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart10"><img class="img-responsive-reverse bgcard" id="heart10img" src="assets/svg/heart10.svg" draggable="false"><img class="token" id="token_heart10img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="heart9"><img class="img-responsive-reverse bgcard" id="heart9img" src="assets/svg/heart9.svg" draggable="false"><img class="token" id="token_heart9img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart8"><img class="img-responsive-reverse bgcard" id="heart8img" src="assets/svg/heart8.svg" draggable="false"><img class="token" id="token_heart8img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart7"><img class="img-responsive-reverse bgcard" id="heart7img" src="assets/svg/heart7.svg" draggable="false"><img class="token" id="token_heart7img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="heart6"><img class="img-responsive-reverse bgcard" id="heart6img" src="assets/svg/heart6.svg" draggable="false"><img class="token" id="token_heart6img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart5"><img class="img-responsive-reverse bgcard" id="heart5img" src="assets/svg/heart5.svg" draggable="false"><img class="token" id="token_heart5img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart4"><img class="img-responsive-reverse bgcard" id="heart4img" src="assets/svg/heart4.svg" draggable="false"><img class="token" id="token_heart4img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="heart3"><img class="img-responsive-reverse bgcard" id="heart3img" src="assets/svg/heart3.svg" draggable="false"><img class="token" id="token_heart3img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond6"><img class="img-responsive-reverse bgcard" id="diamond6img" src="assets/svg/diamond6.svg" draggable="false"><img class="token" id="token_diamond6img" src="assets/svg/token.svg" draggable="false"></td>
-          </tr><tr>
-            <td id="spade8"><img class="img-responsive-reverse bgcard" id="spade8img" src="assets/svg/spade8.svg" draggable="false"><img class="token" id="token_spade8img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart12"><img class="img-responsive-reverse bgcard" id="heart12img" src="assets/svg/heart12.svg" draggable="false"><img class="token" id="token_heart12img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="diamond7"><img class="img-responsive-reverse bgcard" id="diamond7img" src="assets/svg/diamond7.svg" draggable="false"><img class="token" id="token_diamond7img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond8"><img class="img-responsive-reverse bgcard" id="diamond8img" src="assets/svg/diamond8.svg" draggable="false"><img class="token" id="token_diamond8img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond9"><img class="img-responsive-reverse bgcard" id="diamond9img" src="assets/svg/diamond9.svg" draggable="false"><img class="token" id="token_diamond9img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="diamond10"><img class="img-responsive-reverse bgcard" id="diamond10img" src="assets/svg/diamond10.svg" draggable="false"><img class="token" id="token_diamond10img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond12"><img class="img-responsive-reverse bgcard" id="diamond12img" src="assets/svg/diamond12.svg" draggable="false"><img class="token" id="token_diamond12img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond13"><img class="img-responsive-reverse bgcard" id="diamond13img" src="assets/svg/diamond13.svg" draggable="false"><img class="token" id="token_diamond13img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="heart2"><img class="img-responsive-reverse bgcard" id="heart2img" src="assets/svg/heart2.svg" draggable="false"><img class="token" id="token_heart2img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond7_1"><img class="img-responsive-reverse bgcard" id="diamond7_1img" src="assets/svg/diamond7.svg" draggable="false"><img class="token" id="token_diamond7_1img" src="assets/svg/token.svg" draggable="false"></td>
-          </tr>
-          <tr>
-            <td id="spade7"><img class="img-responsive-reverse bgcard" id="spade7img" src="assets/svg/spade7.svg" draggable="false"><img class="token" id="token_spade7img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart13"><img class="img-responsive-reverse bgcard" id="heart13img" src="assets/svg/heart13.svg" draggable="false"><img class="token" id="token_heart13img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="diamond6_1"><img class="img-responsive-reverse bgcard" id="diamond6_1img" src="assets/svg/diamond6.svg" draggable="false"><img class="token" id="token_diamond6_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover2"><img class="img-responsive-reverse bgcard" id="clover2img" src="assets/svg/clover2.svg" draggable="false"><img class="token" id="token_clover2img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart01"><img class="img-responsive-reverse bgcard" id="heart1img" src="assets/svg/heart01.svg" draggable="false"><img class="token" id="token_heart01img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="heart13_1"><img class="img-responsive-reverse bgcard" id="heart13_1img" src="assets/svg/heart13.svg" draggable="false"><img class="token" id="token_heart13_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart12_1"><img class="img-responsive-reverse bgcard" id="heart12_1img" src="assets/svg/heart12.svg" draggable="false"><img class="token" id="token_heart12_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond01"><img class="img-responsive-reverse bgcard" id="diamond1img" src="assets/svg/diamond01.svg" draggable="false"><img class="token" id="token_diamond1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="spade2"><img class="img-responsive-reverse bgcard" id="spade2img" src="assets/svg/spade2.svg" draggable="false"><img class="token" id="token_spade2img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond8_1"><img class="img-responsive-reverse bgcard" id="diamond8_1img" src="assets/svg/diamond8.svg" draggable="false"><img class="token" id="token_diamond8_1img" src="assets/svg/token.svg" draggable="false"></td>
-          </tr>
-          <tr>
-            <td id="spade6"><img class="img-responsive-reverse bgcard" id="spade6img" src="assets/svg/spade6.svg" draggable="false"><img class="token" id="token_spade6img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart01_1"><img class="img-responsive-reverse bgcard" id="heart1_1img" src="assets/svg/heart01.svg" draggable="false"><img class="token" id="token_heart1_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="diamond5_1"><img class="img-responsive-reverse bgcard" id="diamond5_1img" src="assets/svg/diamond5.svg" draggable="false"><img class="token" id="token_diamond5_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover3"><img class="img-responsive-reverse bgcard" id="clover3img" src="assets/svg/clover3.svg" draggable="false"><img class="token" id="token_clover3img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart4_1"><img class="img-responsive-reverse bgcard" id="heart4_1img" src="assets/svg/heart4.svg" draggable="false"><img class="token" id="token_heart4_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="heart3_1"><img class="img-responsive-reverse bgcard" id="heart3_1img" src="assets/svg/heart3.svg" draggable="false"><img class="token" id="token_heart3_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart10_1"><img class="img-responsive-reverse bgcard" id="heart10_1img" src="assets/svg/heart10.svg" draggable="false"><img class="token" id="token_heart10_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover01"><img class="img-responsive-reverse bgcard" id="clover1img" src="assets/svg/clover01.svg" draggable="false"><img class="token" id="token_clover01img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="spade3"><img class="img-responsive-reverse bgcard" id="spade3img" src="assets/svg/spade3.svg" draggable="false"><img class="token" id="token_spade3img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond9_1"><img class="img-responsive-reverse bgcard" id="diamond9_1img" src="assets/svg/diamond9.svg" draggable="false"><img class="token" id="token_diamond9_1img" src="assets/svg/token.svg" draggable="false"></td>
-          </tr>
-          <tr>
-            <td id="spade5"><img class="img-responsive-reverse bgcard" id="spade5img" src="assets/svg/spade5.svg" draggable="false"><img class="token" id="token_spade5img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover2_1"><img class="img-responsive-reverse bgcard" id="clover2_1img" src="assets/svg/clover2.svg" draggable="false"><img class="token" id="token_clover2_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="diamond4_1"><img class="img-responsive-reverse bgcard" id="diamond4_1img" src="assets/svg/diamond4.svg" draggable="false"><img class="token" id="token_diamond4_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover4"><img class="img-responsive-reverse bgcard" id="clover4img" src="assets/svg/clover4.svg" draggable="false"><img class="token" id="token_clover4img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart5_1"><img class="img-responsive-reverse bgcard" id="heart5_1img" src="assets/svg/heart5.svg" draggable="false"><img class="token" id="token_heart5_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="heart2_1"><img class="img-responsive-reverse bgcard" id="heart2_1img" src="assets/svg/heart2.svg" draggable="false"><img class="token" id="token_heart2_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart9_1"><img class="img-responsive-reverse bgcard" id="heart9_1img" src="assets/svg/heart9.svg" draggable="false"><img class="token" id="token_heart9_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover13"><img class="img-responsive-reverse bgcard" id="clover13img" src="assets/svg/clover13.svg" draggable="false"><img class="token" id="token_clover13img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="spade4"><img class="img-responsive-reverse bgcard" id="spade4img" src="assets/svg/spade4.svg" draggable="false"><img class="token" id="token_spade4img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond10_1"><img class="img-responsive-reverse bgcard" id="diamond10_1img" src="assets/svg/diamond10.svg" draggable="false"><img class="token" id="token_diamond10_1img" src="assets/svg/token.svg" draggable="false"></td>
-          </tr>
-          <tr>
-            <td id="spade4_1"><img class="img-responsive-reverse bgcard" id="spade4_1img" src="assets/svg/spade4.svg" draggable="false"><img class="token" id="token_spade4_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover3_1"><img class="img-responsive-reverse bgcard" id="clover3_1img" src="assets/svg/clover3.svg" draggable="false"><img class="token" id="token_clover3_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="diamond3_1"><img class="img-responsive-reverse bgcard" id="diamond3_1img" src="assets/svg/diamond3.svg" draggable="false"><img class="token" id="token_diamond3_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover5"><img class="img-responsive-reverse bgcard" id="clover5img" src="assets/svg/clover5.svg" draggable="false"><img class="token" id="token_clover5img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart6_1"><img class="img-responsive-reverse bgcard" id="heart6_1img" src="assets/svg/heart6.svg" draggable="false"><img class="token" id="token_heart6_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="heart7_1"><img class="img-responsive-reverse bgcard" id="heart7_1img" src="assets/svg/heart7.svg" draggable="false"><img class="token" id="token_heart7_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="heart8_1"><img class="img-responsive-reverse bgcard" id="heart8_1img" src="assets/svg/heart8.svg" draggable="false"><img class="token" id="token_clover12img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover12"><img class="img-responsive-reverse bgcard" id="clover12img" src="assets/svg/clover12.svg" draggable="false"><img class="token" id="token_" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="spade5_1"><img class="img-responsive-reverse bgcard" id="spade5_1img" src="assets/svg/spade5.svg" draggable="false"><img class="token" id="token_spade5_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond12_1"><img class="img-responsive-reverse bgcard" id="diamond12_1img" src="assets/svg/diamond12.svg" draggable="false"><img class="token" id="token_diamond12_1img" src="assets/svg/token.svg" draggable="false"></td>
-          </tr>
-          <tr>
-            <td id="spade3_1"><img class="img-responsive-reverse bgcard" id="spade3_1img" src="assets/svg/spade3.svg" draggable="false"><img class="token" id="token_spade3_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover4_1"><img class="img-responsive-reverse bgcard" id="clover4_1img" src="assets/svg/clover4.svg" draggable="false"><img class="token" id="token_clover4_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="diamond2_1"><img class="img-responsive-reverse bgcard" id="diamond2_1img" src="assets/svg/diamond2.svg" draggable="false"><img class="token" id="token_diamond2_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover6"><img class="img-responsive-reverse bgcard" id="clover6img" src="assets/svg/clover6.svg" draggable="false"><img class="token" id="token_clover6img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover7"><img class="img-responsive-reverse bgcard" id="clover7img" src="assets/svg/clover7.svg" draggable="false"><img class="token" id="token_clover7img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="clover8"><img class="img-responsive-reverse bgcard" id="clover8img" src="assets/svg/clover8.svg" draggable="false"><img class="token" id="token_clover8img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover9"><img class="img-responsive-reverse bgcard" id="clover9img" src="assets/svg/clover9.svg" draggable="false"><img class="token" id="token_clover9img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover10"><img class="img-responsive-reverse bgcard" id="clover10img" src="assets/svg/clover10.svg" draggable="false"><img class="token" id="token_clover10img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="spade6_1"><img class="img-responsive-reverse bgcard" id="spade6_1img" src="assets/svg/spade6.svg" draggable="false"><img class="token" id="token_spade6_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond13_1"><img class="img-responsive-reverse bgcard" id="diamond13_1img" src="assets/svg/diamond13.svg" draggable="false"><img class="token" id="token_diamond13_1img" src="assets/svg/token.svg" draggable="false"></td>
-          </tr>
-          <tr>
-            <td id="spade2_1"><img class="img-responsive-reverse bgcard" id="spade2_1img" src="assets/svg/spade2.svg" draggable="false"><img class="token" id="token_spade2_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover5_1"><img class="img-responsive-reverse bgcard" id="clover5_1img" src="assets/svg/clover5.svg" draggable="false"><img class="token" id="token_clover5_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="spade01_1"><img class="img-responsive-reverse bgcard" id="spade01_1img" src="assets/svg/spade01.svg" draggable="false"><img class="token" id="token_spade01_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="spade13_1"><img class="img-responsive-reverse bgcard" id="spade13_1img" src="assets/svg/spade13.svg" draggable="false"><img class="token" id="token_spade13_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="spade12_1"><img class="img-responsive-reverse bgcard" id="spade12_1img" src="assets/svg/spade12.svg" draggable="false"><img class="token" id="token_spade12_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="spade10_1"><img class="img-responsive-reverse bgcard" id="spade10_1img" src="assets/svg/spade10.svg" draggable="false"><img class="token" id="token_spade10_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="spade9_1"><img class="img-responsive-reverse bgcard" id="spade9_1img" src="assets/svg/spade9.svg" draggable="false"><img class="token" id="token_spade9_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="spade8_1"><img class="img-responsive-reverse bgcard" id="spade8_1img" src="assets/svg/spade8.svg" draggable="false"><img class="token" id="token_spade8_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="spade7_1"><img class="img-responsive-reverse bgcard" id="spade7_1img" src="assets/svg/spade7.svg" draggable="false"><img class="token" id="token_spade7_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="diamond01_1"><img class="img-responsive-reverse bgcard" id="diamond01_1img" src="assets/svg/diamond01.svg" draggable="false"><img class="token" id="token_diamond01_1img" src="assets/svg/token.svg" draggable="false"></td>
-          </tr>
-          <tr>
-            <td id="wild_3"><img class="img-responsive-reverse bgcard" id="wild3img" src="assets/svg/wild.svg" draggable="false"></td>
-            <td id="clover6_1"><img class="img-responsive-reverse bgcard" id="clover6_1img" src="assets/svg/clover6.svg" draggable="false"><img class="token" id="token_clover6_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="clover7_1"><img class="img-responsive-reverse bgcard" id="clover7_1img" src="assets/svg/clover7.svg" draggable="false"><img class="token" id="token_clover7_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover8_1"><img class="img-responsive-reverse bgcard" id="clover8_1img" src="assets/svg/clover8.svg" draggable="false"><img class="token" id="token_clover8_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover9_1"><img class="img-responsive-reverse bgcard" id="clover9_1img" src="assets/svg/clover9.svg" draggable="false"><img class="token" id="token_clover9_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="clover10_1"><img class="img-responsive-reverse bgcard" id="clover10_1img" src="assets/svg/clover10.svg" draggable="false"><img class="token" id="token_clover10_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover12_1"><img class="img-responsive-reverse bgcard" id="clover12_1img" src="assets/svg/clover12.svg" draggable="false"><img class="token" id="token_clover12_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="clover13_1"><img class="img-responsive-reverse bgcard" id="clover13_1img" src="assets/svg/clover13.svg" draggable="false"><img class="token" id="token_clover13_1img" src="assets/svg/token.svg" draggable="false"></td>		
-            <td id="clover01_1"><img class="img-responsive-reverse bgcard" id="clover01_1img" src="assets/svg/clover01.svg" draggable="false"><img class="token" id="token_clover01_1img" src="assets/svg/token.svg" draggable="false"></td>
-            <td id="wild_4"><img class="img-responsive-reverse bgcard" id="wild4img" src="assets/svg/wild.svg" draggable="false"></td>
-          </tr>
-      </table>
-    </div>
 
         <!-- Bottom Row -->
         <div class="row">
             <!-- the left column for the discard area -->
             <div class="col-md-2">
                 <h3>Discard</h3>
-                <div id ="area_discard"><img  id="discard" src="assets/svg/discard.svg" height="100%" width="100%" draggable="false"></div>
+                <div id="area_discard"><img id="discard" src="assets/svg/discard.svg" height="100%" width="100%" draggable="false"></div>
             </div>
-            
+
             <!-- the center column for the hand -->
             <div class="col-md-8">
                 <h3 style="text-align:center">Your Cards</h3>
                 <table class="area_hand">
                     <tr>
-                        <td id="hand1" >card 1</td>
-                        <td id="hand2" >card 2</td>
-                        <td id="hand3" >card 3</td>
-                        <td id="hand4" >card 4</td>
-                        <td id="hand5" >card 5</td>
-                        <td id="hand6" >card 6</td>
-                        <td id="hand7" >card 7 (optional)</td>
+                        <td id="hand1">card 1</td>
+                        <td id="hand2">card 2</td>
+                        <td id="hand3">card 3</td>
+                        <td id="hand4">card 4</td>
+                        <td id="hand5">card 5</td>
+                        <td id="hand6">card 6</td>
+                        <td id="hand7">card 7 (optional)</td>
                     </tr>
                 </table>
                 <br>
@@ -222,27 +223,27 @@
                     </tr>
                 </table>
             </div>
-            
+
             <!-- the right column for the deck -->
             <div class="col-md-2">
                 <h3>Deck</h3>
             </div>
         </div>
-    
+
         <footer>
             <p><i>CSULB Senior Project by Thomas, Michael, Wilburn</i></p>
         </footer>
 
-        </div> <!-- /container -->
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <!--jQueryui-->
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
-        <!-- Javascript for stylization of our website -->
-        <script src="js/bootstrap.min.js"></script>
-        <!-- Javascript for game -->
-        <script src="js/card.js"></script>
-        <script src="js/deck.js"></script>
+    </div> <!-- /container -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <!--jQueryui-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <!-- Javascript for stylization of our website -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Javascript for game -->
+    <script src="js/card.js"></script>
+    <script src="js/deck.js"></script>
     </div>
 </body>
 
@@ -255,181 +256,162 @@
         opponentOne = new Array();
         opponentTwo = new Array();
         discardPile = new Array();
-       
-       
-        
-        
+
+
+
+
         //set up the hand for the players
         for (var i = 1; i < 8; i++) {
             var nextCard = mainDeck.drawCard();
             playerHand.push(nextCard);
             $("#hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90'/>");
             //add the draggable method to the images
-            $("#hand" + i + "img").draggable( {
+            $("#hand" + i + "img").draggable({
                 stack: '#hand' + i,
                 cursor: 'pointer',
                 revert: true
-            } );
-            
+            });
+
             //to draw the bot's hand
             nextCard = mainDeck.drawCard();
             opponentOne.push(nextCard);
             $("#2hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
             nextCard = mainDeck.drawCard();
             opponentTwo.push(nextCard);
-            $("#3hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");      
+            $("#3hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
         }
-        
-       
-        
+
+
+
         //add the droppable method to the board
-        for ( var i = 2; i <= 13; i++ ) {
-            $("#clover" + i).droppable( {
+        for (var i = 2; i <= 13; i++) {
+            $("#clover" + i).droppable({
                 hoverClass: 'hovered',
                 drop: handleCardDrop
-            } );
-            $("#clover" + i + "_1").droppable( {
+            });
+            $("#clover" + i + "_1").droppable({
                 hoverClass: 'hovered',
                 drop: handleCardDrop
-            } );
-            
-            $("#spade" + i).droppable( {
+            });
+
+            $("#spade" + i).droppable({
                 hoverClass: 'hovered',
                 drop: handleCardDrop
-            } );
-            $("#spade" + i + "_1").droppable( {
+            });
+            $("#spade" + i + "_1").droppable({
                 hoverClass: 'hovered',
                 drop: handleCardDrop
-            } );
-            
-            $("#diamond" + i).droppable( {
+            });
+
+            $("#diamond" + i).droppable({
                 hoverClass: 'hovered',
                 drop: handleCardDrop
-            } );
-            $("#diamond" + i + "_1").droppable( {
+            });
+            $("#diamond" + i + "_1").droppable({
                 hoverClass: 'hovered',
                 drop: handleCardDrop
-            } );
-            
-            $("#heart" + i).droppable( {
+            });
+
+            $("#heart" + i).droppable({
                 hoverClass: 'hovered',
                 drop: handleCardDrop
-            } );
-            $("#heart" + i + "_1").droppable( {
+            });
+            $("#heart" + i + "_1").droppable({
                 hoverClass: 'hovered',
                 drop: handleCardDrop
-            } );   
+            });
         }
-        
+
         //adding now for the ones
-        $("#clover01").droppable( {
+        $("#clover01").droppable({
             hoverClass: 'hovered',
             drop: handleCardDrop
-         } );
-         $("#clover01_1").droppable( {
+        });
+        $("#clover01_1").droppable({
             hoverClass: 'hovered',
             drop: handleCardDrop
-         } );
-            
-         $("#spade01").droppable( {
+        });
+
+        $("#spade01").droppable({
             hoverClass: 'hovered',
             drop: handleCardDrop
-         } );
-         $("#spade01_1").droppable( {
+        });
+        $("#spade01_1").droppable({
             hoverClass: 'hovered',
             drop: handleCardDrop
-         } );
-            
-         $("#diamond01").droppable( {
+        });
+
+        $("#diamond01").droppable({
             hoverClass: 'hovered',
             drop: handleCardDrop
-         } );
-         $("#diamond01_1").droppable( {
+        });
+        $("#diamond01_1").droppable({
             hoverClass: 'hovered',
             drop: handleCardDrop
-         } );
-            
-         $("#heart01").droppable( {
+        });
+
+        $("#heart01").droppable({
             hoverClass: 'hovered',
             drop: handleCardDrop
-         } );
-         $("#heart01_1").droppable( {
+        });
+        $("#heart01_1").droppable({
             hoverClass: 'hovered',
             drop: handleCardDrop
-         } );   
-        
-       
-        
+        });
+
+
+
         //add droppable to discard pile here later
-        $("#area_discard").droppable( {
-            hoverClass:'hovered',//change this later guys
+        $("#area_discard").droppable({
+            hoverClass: 'hovered',//change this later guys
             drop: discardDrop
         });
-        
+
         console.log("done with init");
     }//end of setup board
-   
+
     function handleCardDrop(event, ui) {
         var location;
         //ui is the object being dropped
         //$(this) is the location that is receving
         //console.log(ui.draggable.get(0).src);
         //console.log($(this).get(0).id);
-        
+
         //there will be a check here to see if it is your turn, if it is go on, else skip all this
-        
+
         //remove the _1 if container has it
         var locationID = $(this).get(0).id;
         if (locationID.indexOf("_1") != -1)
             location = locationID.substring(0, locationID.length - 2);
         else
             location = locationID;
-       //check if it is a jack if it is, branch off and do not do the bottom
-            //do jack magic here
-       //this is else
-       //check here if the location is taken by a token -TO DO LATER
-       
-        //checking if the location and the card are the same kind
+ 
+        //two eyed jack
+        if (ui.draggable.get(0).src.includes("clover11") || ui.draggable.get(0).src.includes("diamond11")) {
+            placeAndDraw(ui, locationID);
+        }
+        //one-eyed jack
+        if (ui.draggable.get(0).src.includes("heart11") || ui.draggable.get(0).src.includes("spade11")) {
+            removeAndDraw(ui, locationID);
+        }
+
+        //checking if the location and the card are the same kind - ordinary card
         if (ui.draggable.get(0).src.indexOf(location) != -1) {
             //they are the same
-           
-            //reverts the mouse back to the default           
-            $(document.body).get(0).style.cursor = "default";
-           
-            //removing the card from playerHand array and pushing it to the discard pile
-            var index = ui.draggable.get(0).id[4] - 1;
-            var tempArray = new Array();
-            for (var i = 0; i < playerHand.length; i++)
-                if (i != index)
-                    tempArray.push(playerHand[i]);
-                else
-                    discardPile.push(playerHand[i]);
-                   
-            playerHand = tempArray.slice();
-           
-            //removing it physically from the ui
-            var parent = ui.draggable.parent().get(0);
-            parent.removeChild(parent.childNodes[0]);
-            console.log("finished removing");
-           
-            //reveal token -- format: "token_<id>img"
-            var token = "token_" + locationID + "img";
-            console.log(token);
-            document.getElementById(token).style.visibility = 'visible';
+            placeAndDraw(ui, locationID);
         }
     }
-    
+
     function discardDrop(event, ui) {
         var cardSrc;
-        console.log(ui.draggable.get(0).src);
-         //there will be a check here to see if it is your turn, if it is go on, else skip all this
+        //there will be a check here to see if it is your turn, if it is go on, else skip all this
 
         //finding the cards name
         if (ui.draggable.get(0).src.indexOf("heart") != -1) {
             var index = ui.draggable.get(0).src.indexOf("heart") + 5
             cardSrc = "heart" + ui.draggable.get(0).src[index];
             index += 1;
-            
+
             if ($.isNumeric(ui.draggable.get(0).src[index]))
                 cardSrc += ui.draggable.get(0).src[index];
         }
@@ -437,7 +419,7 @@
             var index = ui.draggable.get(0).src.indexOf("spade") + 5
             cardSrc = "spade" + ui.draggable.get(0).src[index];
             index += 1;
-            
+
             if ($.isNumeric(ui.draggable.get(0).src[index]))
                 cardSrc += ui.draggable.get(0).src[index];
         }
@@ -445,7 +427,7 @@
             var index = ui.draggable.get(0).src.indexOf("diamond") + 7
             cardSrc = "diamond" + ui.draggable.get(0).src[index];
             index += 1;
-            
+
             if ($.isNumeric(ui.draggable.get(0).src[index]))
                 cardSrc += ui.draggable.get(0).src[index];
         }
@@ -453,40 +435,117 @@
             var index = ui.draggable.get(0).src.indexOf("clover") + 6
             cardSrc = "clover" + ui.draggable.get(0).src[index];
             index += 1;
-            
+
             if ($.isNumeric(ui.draggable.get(0).src[index]))
                 cardSrc += ui.draggable.get(0).src[index];
         }
-        
-        console.log(cardSrc);
+
         //check here if the card still can be played on the board using cardSrc
-            //if yes then your done no need to do anything else
+        //if yes then your done no need to do anything else
         //else
-            //delete the card, push the card object into the discard pile array
-            //delete from the hand as well
-            //now draw a card push it to the players hand array
-            //draw it on the ui
-       //note you can assume that this method will be always by the player not comps 
-        
-        
+        //delete the card, push the card object into the discard pile array
+        //delete from the hand as well
+        //now draw a card push it to the players hand array
+        //draw it on the ui
+        //note you can assume that this method will be always by the player not comps
+
+
         $(document.body).get(0).style.cursor = "default";
-           
+
         //removing the card from playerHand array and pushing it to the discard pile
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
+        var arrayID = 0;
         for (var i = 0; i < playerHand.length; i++)
-            if (i != index)
+            if (i != index) {
                 tempArray.push(playerHand[i]);
-            else
+            }
+            else {
                 discardPile.push(playerHand[i]);
-                   
-        playerHand = tempArray.slice();
-           
+                arrayID = i + 1;
+            }
+
+  //      playerHand = tempArray.slice();
+
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+        $("#hand" + arrayID + "img").draggable({
+            stack: '#hand' + arrayID,
+            cursor: 'pointer',
+            revert: true
+        });
+
         //removing it physically from the ui
-        var parent = ui.draggable.parent().get(0);
-        parent.removeChild(parent.childNodes[0]);
+        //       var parent = ui.draggable.parent().get(0);
+        //       parent.removeChild(parent.childNodes[0]);
+
     }
-    
+    function placeAndDraw(ui, locationID) {
+        $(document.body).get(0).style.cursor = "default";
+
+        //removing the card from playerHand array and pushing it to the discard pile
+        var arrayID = 0;
+        var index = ui.draggable.get(0).id[4] - 1;
+        var tempArray = new Array();
+        var token = "token_" + locationID + "img";
+        for (var i = 0; i <playerHand.length; i++)
+            if (i != index) {
+                tempArray.push(playerHand[i]);
+            }
+            else if(document.getElementById(token).style.visibility == 'visible'){
+                tempArray.push(playerHand[i]);
+            }
+            else {
+                discardPile.push(playerHand[i]);
+                arrayID = i + 1;
+            }
+
+ //       playerHand = tempArray.slice();
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+        $("#hand" + arrayID + "img").draggable({
+            stack: '#hand' + arrayID,
+            cursor: 'pointer',
+            revert: true
+        });
+
+        //removing it physically from the ui
+        //       var parent = ui.draggable.parent().get(0);
+        //      parent.removeChild(parent.childNodes[0]);
+
+        //reveal token -- format: "token_<id>img"
+ //       var token = "token_" + locationID + "img";
+        document.getElementById(token).style.visibility = 'visible';
+    }
+
+    function removeAndDraw(ui, locationID) {
+        var arrayID = 0;
+        var index = ui.draggable.get(0).id[4] - 1;
+        var tempArray = new Array();
+        var token = "token_" + locationID + "img";
+        for (var i = 0; i < playerHand.length; i++)
+            if (i != index) {
+                tempArray.push(playerHand[i]);
+            }
+            else if (document.getElementById(token).style.visibility == '') {
+                tempArray.push(playerHand[i]);
+            }
+            else {
+                discardPile.push(playerHand[i]);
+                arrayID = i + 1;
+            }
+
+ //       playerHand = tempArray.slice();
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+        $("#hand" + arrayID + "img").draggable({
+            stack: '#hand' + arrayID,
+            cursor: 'pointer',
+            revert: true
+        });
+ //       var token = "token_" + locationID + "img";
+        document.getElementById(token).style.visibility = '';
+    }
+
+
+
     //creates a deck for the players
     var mainDeck;
     var playerHand;
@@ -494,8 +553,8 @@
     var opponentTwo;
     var discardPile;
     $(init());
-    
-    
+
+
 
 </script>
 
