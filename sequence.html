@@ -945,9 +945,19 @@
                 //if the src and the cards in the players hand are the same
                 if (currentCardString.includes(playerHand[j].toString()))
                     newArray.push(playerHand[j]);
+                    break;
         }
        playerHand = newArray.slice();
+       console.log(playerHand.toString());
     }
+    
+    //function that checks if the deck has run out of cards
+    function isTie() {
+        if (mainDeck.getDeckSize() == 0)
+            return true;
+        return false;
+    }
+    
     //creates a deck for the players
     var mainDeck;
     var playerHand;
