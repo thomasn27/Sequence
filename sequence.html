@@ -290,6 +290,8 @@
 
         //add the droppable method to the board
         for (var i = 2; i <= 13; i++) {
+            if (i == 11)
+                continue;
             $("#clover" + i).droppable({
                 drop: handleCardDrop
             });
@@ -573,52 +575,111 @@
                 }
             }
             
-           for (var i = 1; i <= numberOfTokens; i++) {
+            for (var i = 1; i <= numberOfTokens; i++) {
                 token = $("#spade01_1").get(0).childNodes[i].id;
                 if ($("#" + token).css("visibility") == "hidden") {
                     $("#spade01_1").toggleClass('hovered', true);
                     break;
                 }
-           }
+            }
            
-           for (var i = 1; i <= numberOfTokens; i++) {
+            for (var i = 1; i <= numberOfTokens; i++) {
                 token = $("#diamond01").get(0).childNodes[i].id;
                 if ($("#" + token).css("visibility") == "hidden") {
                     $("#diamond01").toggleClass('hovered', true);
                     break;
                 }
-           }
+            }
            
-           for (var i = 1; i <= numberOfTokens; i++) {
+            for (var i = 1; i <= numberOfTokens; i++) {
                 token = $("#diamond01_1").get(0).childNodes[i].id;
                 if ($("#" + token).css("visibility") == "hidden") {
                     $("#diamond01_1").toggleClass('hovered', true);
                     break;
                 }     
-           }
+            }
            
-           for (var i = 1; i <= numberOfTokens; i++) {
+            for (var i = 1; i <= numberOfTokens; i++) {
                 token = $("#heart01").get(0).childNodes[i].id;
                 if ($("#" + token).css("visibility") == "hidden") {
                     $("#heart01").toggleClass('hovered', true);
                     break;
                 }
-           }
+            }
            
-           for (var i = 1; i <= numberOfTokens; i++) {
+            for (var i = 1; i <= numberOfTokens; i++) {
                 token = $("#heart01_1").get(0).childNodes[i].id;
                 if ($("#" + token).css("visibility") == "hidden") {
                     $("#heart01_1").toggleClass('hovered', true);
                     break;
                 }
-           }
-          
+            }
+            //now checking the rest of the board
+            for (var i = 2; i <= 13; i++) {
+                if (i == 11)
+                    continue;
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#clover" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") == "hidden") {
+                        $("#clover" + i).toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#clover" + i + "_1").get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") == "hidden") {
+                        $("#clover" + i + "_1").toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#spade" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") == "hidden") {
+                        $("#spade" + i).toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#spade" + i + "_1").get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") == "hidden") {
+                        $("#spade" + i + "_1").toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#diamond" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") == "hidden") {
+                        $("#diamond" + i).toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#diamond" + i + "_1").get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") == "hidden") {
+                        $("#diamond" + i + "_1").toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#heart" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") == "hidden") {
+                        $("#heart" + i).toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#heart" + i + "_1").get(0).childNodes[j].id;
+                   if ($("#" + token).css("visibility") == "hidden") {
+                        $("#heart" + i + "_1").toggleClass('hovered', true);
+                        break;
+                    }
+                }
 
+        }
        
        
-            //iterate through the whole board..
-            //then check each piece 3 times, for each token
-            //if no token light up//
+            
         }
         //if one eyed jack
         else if (cardName.includes("heart11") || cardName.includes("spade11")) {
