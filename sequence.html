@@ -449,7 +449,7 @@
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
             }
-
+        playerHand = tempArray.slice();
         var cardDrawn = mainDeck.drawCard();
         playerHand.push(cardDrawn);
         $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
@@ -459,13 +459,14 @@
             revert: true
         });
         
-        $("#hand" + arrayID).mousedown(function(){             
+        $("#hand" + arrayID + "img").mousedown(function(){             
             highLightBoard(this.src);
         });
             
-        $("#hand" + arrayID).mouseup(function(){
+        $("#hand" + arrayID + "img").mouseup(function(){
             unhighlightBoard();
         });
+        sortPlayersArray();
 
     }
     function placeAndDraw(ui, locationID) {
@@ -487,6 +488,7 @@
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
             }
+        playerHand = tempArray.slice();
         var cardDrawn = mainDeck.drawCard();
         playerHand.push(cardDrawn);
         $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
@@ -496,13 +498,14 @@
             revert: true
         });
         
-        $("#hand" + i + "img").mousedown(function(){             
+        $("#hand" + arrayID + "img").mousedown(function(){             
             highLightBoard(this.src);
         });
             
-        $("#hand" + i + "img").mouseup(function(){
+        $("#hand" + arrayID + "img").mouseup(function(){
             unhighlightBoard();
         });
+        sortPlayersArray();
 
        
 
@@ -527,29 +530,39 @@
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
             }
-
- //       playerHand = tempArray.slice();
-        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+        playerHand = tempArray.slice();
+        var cardDrawn = mainDeck.drawCard();
+        playerHand.push(cardDrawn);
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
         $("#hand" + arrayID + "img").draggable({
             stack: '#hand' + arrayID,
             cursor: 'pointer',
             revert: true
         });
+        
+        $("#hand" + arrayID + "img").mousedown(function(){             
+            highLightBoard(this.src);
+        });
+            
+        $("#hand" + arrayID + "img").mouseup(function(){
+            unhighlightBoard();
+        });
+        sortPlayersArray();
          //var token = "token_" + locationID + "img";
         document.getElementById(token).style.visibility = '';
     }
     
     //function: lights up the board based on the card dragged
     function highLightBoard(param) {
-        console.log(param);
         var numberOfTokens = 1;//update this once we have all tokens
         var cardName = "";
-            for (var i = 0; i < playerHand.length; i++)
-                if (param.indexOf(playerHand[i].toString()) != -1) {
-                    cardName = playerHand[i].toString();
-                    break;
-                }
-        console.log(cardName);
+        for (var i = 0; i < playerHand.length; i++)
+            if (param.indexOf(playerHand[i].toString()) != -1) {
+                cardName = playerHand[i].toString();
+                break;
+            }
+
+
         //if jack is a two eyed jack, place card anywhere a token isnt there
         if (cardName.includes("clover11") || cardName.includes("diamond11")) {
             //checking the one
@@ -878,7 +891,6 @@
         }//end of one eyed jack
         //non jack card
         else {
-            
             var isTaken1 = false;
             var isTaken2 = false;
             for (var i = 1; i <=numberOfTokens ; i++) {//iterates and checks if any of the tokens are visible
@@ -921,6 +933,20 @@
             $("#heart" + i + "_1").toggleClass('hovered', false);
         }        
         
+    }
+    
+    //sorts the array based on the hand ui of the player
+    function sortPlayersArray() {
+        var newArray = new Array();
+        var currentCardString = "";
+        for (var i = 1; i < 8; i++) {
+            currentCardString = $("#hand" + i).get(0).childNodes[0].src
+            for (var j = 0; j < playerHand.length; j++)
+                //if the src and the cards in the players hand are the same
+                if (currentCardString.includes(playerHand[j].toString()))
+                    newArray.push(playerHand[j]);
+        }
+       playerHand = newArray.slice();
     }
     //creates a deck for the players
     var mainDeck;
