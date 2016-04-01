@@ -52,7 +52,7 @@ function Card (suit, value) {
 		return image;
 	}
 	
-	//public method: returns a string representing the card useful for debugging
+	//public method: returns a string representing the card
 	this.toString = function() {
 		var message;
 		if (suit === 1)
@@ -63,7 +63,12 @@ function Card (suit, value) {
 			message = "heart";
 		else
 			message = "spade";
-		message += " of " + value;
+        if (value != 1)
+		    message += value;
+        else   
+            message += "0" + value;
 		return message;
 	}
+    
+    
 }
