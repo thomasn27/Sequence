@@ -22,7 +22,6 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
@@ -42,51 +41,8 @@
                 </div>
 
                 <!-- TODO: Rules button -->
-                <!--<div class="col-md-3 rightAlign">
+                <div class="col-md-3 rightAlign">
                     <h1 id="rules" style="text-align:right">Rules</h1>
-                </div>-->
-
-                <div class="container" style="text-align:center">
-                    <button type="button" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal2" id="Rules">Rules</button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal2" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <h2>OBJECTIVE OF THE GAME:</h2>
-                                    <p>Connect a series of five of the same colour chip either horizontally, vertically, or diagonally on the board.</p>
-                                    <p>NOTE: The corners of the board are wild and players can use it towards their sequence.</p>
-                                    <p>For 2 teams: Score 2 sequences before your opponents.<br>For 3 teams: Score 1 sequence before your opponents.</p>
-                                    <h2>RULES:</h2>
-                                    <h3>Set-up</h3>
-                                    <p>The board contains 2 copies of each playing card. Jacks are special cards and do not appear on the board. Click and drag a card from your hand to an available spot on the board to play it.</p>
-                                    <h3>The Jacks</h3>
-                                    <p>There are 8 Jacks in the card deck. The 4 Jacks with TWO EYES are wild, meaning place a token at any open location. The 4 jacks with ONE EYE are remove, meaning to remove any token from the board as long as it's not part of a completed sequence</p>
-                                    <h3>Dead Card</h3>
-                                    <p>If you hold a card in your hand with no available space, you may replace the card for a new one and proceed with your turn as normal.</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="endModal" role="dialog" tabindex="-1" aria-labelledby="endModal-label" style="text-align:center">
-                    <div class="modal-dialog modal-sm" role="document">
-                        <div class="modal-content">
-                            <div class="modal-title" id="endModal-label">
-                                <h1>You won!</h1>
-                            </div>
-                            <div class="modal-body">
-                                <p><a class="btn btn-lg btn-success" href="sequence.html" role="button">Replay</a></p>
-                                <p><a class="btn btn-lg btn-success" href="index.html" role="button">Home</a></p>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>
@@ -280,7 +236,7 @@
 
     </div> <!-- /container -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <!--jQueryui-->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
     <!-- Javascript for stylization of our website -->
@@ -288,35 +244,18 @@
     <!-- Javascript for game -->
     <script src="js/card.js"></script>
     <script src="js/deck.js"></script>
-
+    </div>
 </body>
 
 <script>
     // temporary js
     // will be moved to the board/hand generation javascript
-
-    //This should be what the Win Condition checker looks like. By default the modal will say 'You Won!' So just show it if won. It other conditions, change the title.
-    //if (winCondition == 1) {
-    //    $("#endModal-label").html('<h1>You lost!</h1>');
-    //    $("#endModal").modal('show');
-    //}
-    //else if (winCondition == 2) {
-    //    $("#endModal-label").html('<h1>Tie!</h1>');
-    //    $("#endModal").modal('show');
-    //}
-    //else {
-    //    $("#endModal").modal('show');
-    //}
-
     function init() {
         mainDeck = new Deck();
         playerHand = new Array();
         opponentOne = new Array();
         opponentTwo = new Array();
         discardPile = new Array();
-
-
-
         //set up the hand for the players
         for (var i = 1; i < 8; i++) {
             var nextCard = mainDeck.drawCard();
@@ -328,7 +267,14 @@
                 cursor: 'pointer',
                 revert: true
             });
-
+            
+           $("#hand" + i + "img").mousedown(function(){             
+                highLightBoard(this.src);
+            });
+            
+            $("#hand" + i + "img").mouseup(function(){
+               unhighlightBoard();
+            });
             //to draw the bot's hand
             nextCard = mainDeck.drawCard();
             opponentOne.push(nextCard);
@@ -336,113 +282,83 @@
             nextCard = mainDeck.drawCard();
             opponentTwo.push(nextCard);
             $("#3hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
+        
         }
-
-
-
         //add the droppable method to the board
         for (var i = 2; i <= 13; i++) {
+            if (i == 11)
+                continue;
             $("#clover" + i).droppable({
-                hoverClass: 'hovered',
                 drop: handleCardDrop
             });
             $("#clover" + i + "_1").droppable({
-                hoverClass: 'hovered',
                 drop: handleCardDrop
             });
-
             $("#spade" + i).droppable({
-                hoverClass: 'hovered',
                 drop: handleCardDrop
             });
             $("#spade" + i + "_1").droppable({
-                hoverClass: 'hovered',
                 drop: handleCardDrop
             });
-
             $("#diamond" + i).droppable({
-                hoverClass: 'hovered',
                 drop: handleCardDrop
             });
             $("#diamond" + i + "_1").droppable({
-                hoverClass: 'hovered',
                 drop: handleCardDrop
             });
-
             $("#heart" + i).droppable({
-                hoverClass: 'hovered',
                 drop: handleCardDrop
             });
             $("#heart" + i + "_1").droppable({
-                hoverClass: 'hovered',
                 drop: handleCardDrop
             });
         }
-
         //adding now for the ones
         $("#clover01").droppable({
-            hoverClass: 'hovered',
             drop: handleCardDrop
         });
         $("#clover01_1").droppable({
-            hoverClass: 'hovered',
             drop: handleCardDrop
         });
-
         $("#spade01").droppable({
-            hoverClass: 'hovered',
             drop: handleCardDrop
         });
         $("#spade01_1").droppable({
-            hoverClass: 'hovered',
             drop: handleCardDrop
         });
-
         $("#diamond01").droppable({
-            hoverClass: 'hovered',
             drop: handleCardDrop
         });
         $("#diamond01_1").droppable({
-            hoverClass: 'hovered',
             drop: handleCardDrop
         });
-
         $("#heart01").droppable({
-            hoverClass: 'hovered',
             drop: handleCardDrop
         });
         $("#heart01_1").droppable({
-            hoverClass: 'hovered',
             drop: handleCardDrop
         });
-
-
-
         //add droppable to discard pile here later
         $("#area_discard").droppable({
-            hoverClass: 'hovered',//change this later guys
             drop: discardDrop
         });
-
         console.log("done with init");
     }//end of setup board
-
     function handleCardDrop(event, ui) {
         var location;
+        $(unhighlightBoard());
         //ui is the object being dropped
         //$(this) is the location that is receving
         //console.log(ui.draggable.get(0).src);
         //console.log($(this).get(0).id);
-
         //there will be a check here to see if it is your turn, if it is go on, else skip all this
-
         //remove the _1 if container has it
         var locationID = $(this).get(0).id;
         if (locationID.indexOf("_1") != -1)
             location = locationID.substring(0, locationID.length - 2);
         else
             location = locationID;
-
+ 
         //two eyed jack
         if (ui.draggable.get(0).src.includes("clover11") || ui.draggable.get(0).src.includes("diamond11")) {
             placeAndDraw(ui, locationID);
@@ -451,25 +367,21 @@
         if (ui.draggable.get(0).src.includes("heart11") || ui.draggable.get(0).src.includes("spade11")) {
             removeAndDraw(ui, locationID);
         }
-
         //checking if the location and the card are the same kind - ordinary card
         if (ui.draggable.get(0).src.indexOf(location) != -1) {
             //they are the same
             placeAndDraw(ui, locationID);
         }
-
     }
-
     function discardDrop(event, ui) {
         var cardSrc;
+        $(unhighlightBoard());//unhighlight the board
         //there will be a check here to see if it is your turn, if it is go on, else skip all this
-
         //finding the cards name
         if (ui.draggable.get(0).src.indexOf("heart") != -1) {
             var index = ui.draggable.get(0).src.indexOf("heart") + 5
             cardSrc = "heart" + ui.draggable.get(0).src[index];
             index += 1;
-
             if ($.isNumeric(ui.draggable.get(0).src[index]))
                 cardSrc += ui.draggable.get(0).src[index];
         }
@@ -477,7 +389,6 @@
             var index = ui.draggable.get(0).src.indexOf("spade") + 5
             cardSrc = "spade" + ui.draggable.get(0).src[index];
             index += 1;
-
             if ($.isNumeric(ui.draggable.get(0).src[index]))
                 cardSrc += ui.draggable.get(0).src[index];
         }
@@ -485,7 +396,6 @@
             var index = ui.draggable.get(0).src.indexOf("diamond") + 7
             cardSrc = "diamond" + ui.draggable.get(0).src[index];
             index += 1;
-
             if ($.isNumeric(ui.draggable.get(0).src[index]))
                 cardSrc += ui.draggable.get(0).src[index];
         }
@@ -493,23 +403,11 @@
             var index = ui.draggable.get(0).src.indexOf("clover") + 6
             cardSrc = "clover" + ui.draggable.get(0).src[index];
             index += 1;
-
             if ($.isNumeric(ui.draggable.get(0).src[index]))
                 cardSrc += ui.draggable.get(0).src[index];
         }
-
-        //check here if the card still can be played on the board using cardSrc
-        //if yes then your done no need to do anything else
-        //else
-        //delete the card, push the card object into the discard pile array
-        //delete from the hand as well
-        //now draw a card push it to the players hand array
-        //draw it on the ui
-        //note you can assume that this method will be always by the player not comps
-
-
+        
         $(document.body).get(0).style.cursor = "default";
-
         //removing the card from playerHand array and pushing it to the discard pile
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
@@ -522,59 +420,66 @@
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
             }
-
-        //      playerHand = tempArray.slice();
-
-        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+        playerHand = tempArray.slice();
+        var cardDrawn = mainDeck.drawCard();
+        playerHand.push(cardDrawn);
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
         $("#hand" + arrayID + "img").draggable({
             stack: '#hand' + arrayID,
             cursor: 'pointer',
             revert: true
         });
-
-        //removing it physically from the ui
-        //       var parent = ui.draggable.parent().get(0);
-        //       parent.removeChild(parent.childNodes[0]);
-
+        
+        $("#hand" + arrayID + "img").mousedown(function(){             
+            highLightBoard(this.src);
+        });
+            
+        $("#hand" + arrayID + "img").mouseup(function(){
+            unhighlightBoard();
+        });
+        sortPlayersArray();
     }
     function placeAndDraw(ui, locationID) {
         $(document.body).get(0).style.cursor = "default";
-
         //removing the card from playerHand array and pushing it to the discard pile
         var arrayID = 0;
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
         var token = "token_" + locationID + "img";
-        for (var i = 0; i < playerHand.length; i++)
+        for (var i = 0; i <playerHand.length; i++)
             if (i != index) {
                 tempArray.push(playerHand[i]);
             }
-            else if (document.getElementById(token).style.visibility == 'visible') {
+            else if(document.getElementById(token).style.visibility == 'visible'){
                 tempArray.push(playerHand[i]);
             }
             else {
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
             }
-
-        //       playerHand = tempArray.slice();
-        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+        playerHand = tempArray.slice();
+        var cardDrawn = mainDeck.drawCard();
+        playerHand.push(cardDrawn);
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
         $("#hand" + arrayID + "img").draggable({
             stack: '#hand' + arrayID,
             cursor: 'pointer',
             revert: true
         });
-
-        //removing it physically from the ui
-        //       var parent = ui.draggable.parent().get(0);
-        //      parent.removeChild(parent.childNodes[0]);
-
+        
+        $("#hand" + arrayID + "img").mousedown(function(){             
+            highLightBoard(this.src);
+        });
+            
+        $("#hand" + arrayID + "img").mouseup(function(){
+            unhighlightBoard();
+        });
+        sortPlayersArray();
+       
         //reveal token -- format: "token_<id>img"
-        //       var token = "token_" + locationID + "img";
+        //var token = "token_" + locationID + "img";
         document.getElementById(token).style.visibility = 'visible';
-
     }
-
     function removeAndDraw(ui, locationID) {
         var arrayID = 0;
         var index = ui.draggable.get(0).id[4] - 1;
@@ -591,20 +496,433 @@
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
             }
-
-        //       playerHand = tempArray.slice();
-        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + mainDeck.drawCard().getImageSource() + " height = '100' width = '90'/>");
+        playerHand = tempArray.slice();
+        var cardDrawn = mainDeck.drawCard();
+        playerHand.push(cardDrawn);
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
         $("#hand" + arrayID + "img").draggable({
             stack: '#hand' + arrayID,
             cursor: 'pointer',
             revert: true
         });
-        //       var token = "token_" + locationID + "img";
+        
+        $("#hand" + arrayID + "img").mousedown(function(){             
+            highLightBoard(this.src);
+        });
+            
+        $("#hand" + arrayID + "img").mouseup(function(){
+            unhighlightBoard();
+        });
+        sortPlayersArray();
+         //var token = "token_" + locationID + "img";
         document.getElementById(token).style.visibility = '';
     }
-
-
-
+    
+    //function: lights up the board based on the card dragged
+    function highLightBoard(param) {
+        var numberOfTokens = 1;//update this once we have all tokens
+        var cardName = "";
+        for (var i = 0; i < playerHand.length; i++)
+            if (param.indexOf(playerHand[i].toString()) != -1) {
+                cardName = playerHand[i].toString();
+                break;
+            }
+        //if jack is a two eyed jack, place card anywhere a token isnt there
+        if (cardName.includes("clover11") || cardName.includes("diamond11")) {
+            //checking the one
+            var token = "";
+            var isTaken = false;
+            
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#clover01").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {//if you found a token that isnt hidden
+                    isTaken = true;//that board piece is taken
+                    break;
+                 }
+            }
+            if (!isTaken)//is the board piece is not taken light it up
+                $("#clover01").toggleClass('hovered', true);
+                
+            isTaken = false;
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#clover01_1").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    isTaken = true;
+                    break;
+                }
+            }
+            if (!isTaken)
+                $("#clover01_1").toggleClass('hovered', true);
+                
+            isTaken = false;
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#spade01").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    isTaken = true;
+                    break;
+                }
+            }
+            if (!isTaken)
+                $("#spade01").toggleClass('hovered', true);
+                
+            isTaken = false;            
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#spade01_1").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    isTaken = true;
+                    break;
+                }
+            }
+            if (!isTaken)
+                $("#spade01_1").toggleClass('hovered', true); 
+               
+            isTaken = false;           
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#diamond01").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    isTaken = true;
+                    break;
+                }
+            }
+            if (!isTaken)
+                $("#diamond01").toggleClass('hovered', true);
+                
+            isTaken = false;           
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#diamond01_1").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    isTaken = true;
+                    break;
+                }     
+            }
+            if (!isTaken)
+                $("#diamond01_1").toggleClass('hovered', true);
+            
+            isTaken = false;
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#heart01").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    isTaken = true;
+                    break;
+                }
+            }
+            if (!isTaken)
+                $("#heart01").toggleClass('hovered', true);
+            
+            isTaken = false;
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#heart01_1").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    isTaken = true;
+                    break;
+                }
+            }
+            if (!isTaken)
+                $("#heart01_1").toggleClass('hovered', true);    
+            
+            //now checking the rest of the board
+            for (var i = 2; i <= 13; i++) {
+                if (i == 11)
+                    continue;
+                isTaken = false;
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#clover" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        isTaken = true;
+                        break;
+                    }
+                }
+                if (!isTaken)
+                    $("#clover" + i).toggleClass('hovered', true);
+                
+                isTaken = false;
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#clover" + i + "_1").get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        isTaken = true;
+                        break;
+                    }
+                }
+                if (!isTaken)
+                    $("#clover" + i + "_1").toggleClass('hovered', true);
+                
+                isTaken = false;
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#spade" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        isTaken = true;
+                        break;
+                    }
+                }
+                if (!isTaken)
+                    $("#spade" + i).toggleClass('hovered', true);
+                
+                isTaken = false;
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#spade" + i + "_1").get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        isTaken = true;
+                        break;
+                    }
+                }
+                if (!isTaken)
+                    $("#spade" + i + "_1").toggleClass('hovered', true);
+                
+                isTaken = false;
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#diamond" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        isTaken = true;
+                        break;
+                    }
+                }
+                if (!isTaken)
+                    $("#diamond" + i).toggleClass('hovered', true);
+                
+                isTaken = false;
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#diamond" + i + "_1").get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        isTaken = true;
+                        break;
+                    }
+                }
+                if (!isTaken)
+                    $("#diamond" + i + "_1").toggleClass('hovered', true);
+                
+                isTaken = false;
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#heart" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        isTaken = true;
+                        break;
+                    }
+                }
+                if (!isTaken)
+                    $("#heart" + i).toggleClass('hovered', true);
+                
+                isTaken = false;
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#heart" + i + "_1").get(0).childNodes[j].id;
+                   if ($("#" + token).css("visibility") != "hidden") {
+                        isTaken = true;
+                        break;
+                    }
+                }
+                if (!isTaken)
+                    $("#heart" + i + "_1").toggleClass('hovered', true);
+                
+            }
+        }//end of two eyed jack if statement
+        //if one eyed jack, place a card where ever a board piece does have a token
+        else if (cardName.includes("heart11") || cardName.includes("spade11")) {
+            //checking the ones first
+            
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#clover01").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {//if you found a token that isnt hidden
+                    $("#clover01").toggleClass('hovered', true);//that board piece is taken so light it up
+                    break;
+                 }
+            }
+            
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#clover01_1").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    $("#clover01_1").toggleClass('hovered', true);
+                    break;
+                }
+            }
+           
+ 
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#spade01").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    $("#spade01").toggleClass('hovered', true);
+                    break;
+                }
+            }
+                
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#spade01_1").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    $("#spade01_1").toggleClass('hovered', true); 
+                    break;
+                }
+            }
+               
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#diamond01").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    $("#diamond01").toggleClass('hovered', true);
+                    break;
+                }
+            }
+                
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#diamond01_1").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    $("#diamond01_1").toggleClass('hovered', true);
+                    break;
+                }     
+            }
+            
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#heart01").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    $("#heart01").toggleClass('hovered', true);
+                    break;
+                }
+            }
+            
+            for (var i = 1; i <= numberOfTokens; i++) {
+                token = $("#heart01_1").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden") {
+                    $("#heart01_1").toggleClass('hovered', true);
+                    break;
+                }
+            }
+            
+            //now the rest of the board
+            for (var i = 2; i <= 13; i++) {
+                if (i == 11)
+                    continue;
+                    
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#clover" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        $("#clover" + i).toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#clover" + i + "_1").get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        $("#clover" + i + "_1").toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#spade" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        $("#spade" + i).toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#spade" + i + "_1").get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        $("#spade" + i + "_1").toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#diamond" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        $("#diamond" + i).toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#diamond" + i + "_1").get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        $("#diamond" + i + "_1").toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#heart" + i).get(0).childNodes[j].id;
+                    if ($("#" + token).css("visibility") != "hidden") {
+                        $("#heart" + i).toggleClass('hovered', true);
+                        break;
+                    }
+                }
+                
+                for (var j = 1; j <= numberOfTokens; j++) {
+                    token = $("#heart" + i + "_1").get(0).childNodes[j].id;
+                   if ($("#" + token).css("visibility") != "hidden") {
+                        $("#heart" + i + "_1").toggleClass('hovered', true);
+                        break;
+                    }
+                }      
+            }
+        }//end of one eyed jack
+        //non jack card
+        else {
+            var isTaken1 = false;
+            var isTaken2 = false;
+            console.log("card name is " + cardName);
+            for (var i = 1; i <=numberOfTokens ; i++) {//iterates and checks if any of the tokens are visible
+                var token = $("#" + cardName).get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden")
+                    isTaken1 = true;
+                token = $("#" + cardName + "_1").get(0).childNodes[i].id;
+                if ($("#" + token).css("visibility") != "hidden")
+                    isTaken2 = true;
+            }
+            //if they are not taken then they will light up
+            if (!isTaken1)
+                $("#" + cardName).toggleClass('hovered', true);
+            if (!isTaken2)
+                $("#" + cardName + "_1").toggleClass('hovered', true);
+            
+        }
+    }
+    //dehighlights the board
+    function unhighlightBoard() {
+        $("#clover01").toggleClass('hovered', false);
+        $("#clover01_1").toggleClass('hovered', false);
+        $("#spade01").toggleClass('hovered', false);
+        $("#spade01_1").toggleClass('hovered', false);
+        $("#diamond01").toggleClass('hovered', false);
+        $("#diamond01_1").toggleClass('hovered', false);
+        $("#heart01").toggleClass('hovered', false);
+        $("#heart01_1").toggleClass('hovered', false);
+        for (var i = 2; i <= 13; i++) {
+            if (i == 11)
+                continue;
+            $("#clover" + i).toggleClass('hovered', false);
+            $("#clover" + i + "_1").toggleClass('hovered', false);
+            $("#spade" + i).toggleClass('hovered', false);
+            $("#spade" + i + "_1").toggleClass('hovered', false);
+            $("#diamond" + i).toggleClass('hovered', false);
+            $("#diamond" + i + "_1").toggleClass('hovered', false);
+            $("#heart" + i).toggleClass('hovered', false);
+            $("#heart" + i + "_1").toggleClass('hovered', false);
+        }        
+        
+    }
+    
+    //sorts the array based on the hand ui of the player
+    function sortPlayersArray() {
+        var newArray = new Array();
+        var currentCardString = "";
+        for (var i = 1; i < 8; i++) {
+            currentCardString = $("#hand" + i).get(0).childNodes[0].src
+            for (var j = 0; j < playerHand.length; j++)
+                //if the src and the cards in the players hand are the same
+                if (currentCardString.includes(playerHand[j].toString())) {
+                    newArray.push(playerHand[j]);
+                    break;
+                }
+        }
+       playerHand = newArray.slice();
+       console.log(playerHand.toString());
+    }
+    
+    //function that checks if the deck has run out of cards
+    function isTie() {
+        if (mainDeck.getDeckSize() == 0)
+            return true;
+        return false;
+    }
+    
     //creates a deck for the players
     var mainDeck;
     var playerHand;
@@ -612,7 +930,6 @@
     var opponentTwo;
     var discardPile;
     $(init());
-
-
 </script>
+
 </html>
