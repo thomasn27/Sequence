@@ -86,7 +86,7 @@
         <!-- board game area -->
         <div class="jumbotron">
             <table class="area_boardgame">
-                <tr>
+                <tr id = "row0">
                     <td id="wild_1">
                         <img class="img-responsive-reverse bgcard" id="wild1img" src="assets/svg/wild.svg" draggable="false">
                     </td>
@@ -142,7 +142,7 @@
                         <img class="img-responsive-reverse bgcard" id="wild2img" src="assets/svg/wild.svg" draggable="false">
                     </td>
                 </tr>
-                <tr>
+                <tr id = "row1">
                     <td id="spade9">
                         <img class="img-responsive-reverse bgcard" id="spade9img" src="assets/svg/spade9.svg" draggable="false">
                         <img class="token" id="token1_spade9img" src="assets/svg/token1.svg" draggable="false">
@@ -204,7 +204,7 @@
                         <img class="token" id="token3_diamond6img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                 </tr>
-                <tr>
+                <tr id = "row2">
                     <td id="spade8">
                         <img class="img-responsive-reverse bgcard" id="spade8img" src="assets/svg/spade8.svg" draggable="false">
                         <img class="token" id="token1_spade8img" src="assets/svg/token1.svg" draggable="false">
@@ -266,7 +266,7 @@
                         <img class="token" id="token3_diamond7_1img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                 </tr>
-                <tr>
+                <tr id = "row3">
                     <td id="spade7">
                         <img class="img-responsive-reverse bgcard" id="spade7img" src="assets/svg/spade7.svg" draggable="false">
                         <img class="token" id="token1_spade7img" src="assets/svg/token1.svg" draggable="false">
@@ -328,7 +328,7 @@
                         <img class="token" id="token3_diamond8_1img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                 </tr>
-                <tr>
+                <tr id = "row4">
                     <td id="spade6">
                         <img class="img-responsive-reverse bgcard" id="spade6img" src="assets/svg/spade6.svg" draggable="false">
                         <img class="token" id="token1_spade6img" src="assets/svg/token1.svg" draggable="false">
@@ -390,7 +390,7 @@
                         <img class="token" id="token3_diamond9_1img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                 </tr>
-                <tr>
+                <tr id = "row5">
                     <td id="spade5">
                         <img class="img-responsive-reverse bgcard" id="spade5img" src="assets/svg/spade5.svg" draggable="false">
                         <img class="token" id="token1_spade5img" src="assets/svg/token1.svg" draggable="false">
@@ -452,7 +452,7 @@
                         <img class="token" id="token3_diamond10_1img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                 </tr>
-                <tr>
+                <tr id = "row6">
                     <td id="spade4_1">
                         <img class="img-responsive-reverse bgcard" id="spade4_1img" src="assets/svg/spade4.svg" draggable="false">
                         <img class="token" id="token1_spade4_1img" src="assets/svg/token1.svg" draggable="false">
@@ -514,7 +514,7 @@
                         <img class="token" id="token3_diamond12_1img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                 </tr>
-                <tr>
+                <tr id = "row7">
                     <td id="spade3_1">
                         <img class="img-responsive-reverse bgcard" id="spade3_1img" src="assets/svg/spade3.svg" draggable="false">
                         <img class="token" id="token1_spade3_1img" src="assets/svg/token1.svg" draggable="false">
@@ -576,7 +576,7 @@
                         <img class="token" id="token3_diamond13_1img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                 </tr>
-                <tr>
+                <tr id = "row8">
                     <td id="spade2_1">
                         <img class="img-responsive-reverse bgcard" id="spade2_1img" src="assets/svg/spade2.svg" draggable="false">
                         <img class="token" id="token1_spade2_1img" src="assets/svg/token1.svg" draggable="false">
@@ -638,7 +638,7 @@
                         <img class="token" id="token3_diamond01_1img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                 </tr>
-                <tr>
+                <tr id = "row9">
                     <td id="wild_3">
                         <img class="img-responsive-reverse bgcard" id="wild3img" src="assets/svg/wild.svg" draggable="false">
                     </td>
@@ -794,6 +794,7 @@
         opponentOne = new Array();
         opponentTwo = new Array();
         discardPile = new Array();
+
 
         //set up the hand for the players
         for (var i = 1; i < 8; i++) {
@@ -985,8 +986,8 @@
         var arrayID = 0;
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
-        var player = Math.floor((Math.random()*3)+1)
-        var token = "token" + player + "_" + locationID + "img";  // var token = "token<player>_<locationID>img";
+        var player = Math.floor((Math.random()*3)+1) // for random test
+        var token = "token1_" + locationID + "img";  // var token = "token<player>_<locationID>img";
         for (var i = 0; i <playerHand.length; i++)
             if (i != index) {
                 tempArray.push(playerHand[i]);
@@ -999,6 +1000,11 @@
                 arrayID = i + 1;
             }
         playerHand = tempArray.slice();
+        
+        // console.log("++" + locationID);
+        <!-- test something -->
+        checkCondition(locationID,1);
+        
         var cardDrawn = mainDeck.drawCard();
         playerHand.push(cardDrawn);
         $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
@@ -1016,9 +1022,7 @@
             unhighlightBoard();
         });
         sortPlayersArray();
-       
-        //reveal token -- format: "token<player>_<id>img"
-        //var token = "token_" + locationID + "img";
+
         document.getElementById(token).style.visibility = 'visible';
     }
     
@@ -1026,8 +1030,7 @@
         var arrayID = 0;
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
-        var player = Math.floor((Math.random()*3)+1)
-        var token = "token" + player + "_" + locationID + "img";  // var token = "token<player>_<locationID>img";
+        var token = "token1_" + locationID + "img";  // var token = "token1_<locationID>img";
         for (var i = 0; i < playerHand.length; i++)
             if (i != index) {
                 tempArray.push(playerHand[i]);
@@ -1063,7 +1066,7 @@
     
     //function: lights up the board based on the card dragged
     function highLightBoard(param) {
-        var numberOfTokens = 1;//update this once we have all tokens
+        var numberOfTokens = 3;//update this once we have all tokens
         var cardName = "";
         for (var i = 0; i < playerHand.length; i++)
             if (param.indexOf(playerHand[i].toString()) != -1) {
@@ -1077,7 +1080,8 @@
             var isTaken = false;
             
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#clover01").get(0).childNodes[i].id;
+                token = $("#clover01").children()[i].id;
+                console.log(token);
                 if ($("#" + token).css("visibility") != "hidden") {//if you found a token that isnt hidden
                     isTaken = true;//that board piece is taken
                     break;
@@ -1088,7 +1092,7 @@
                 
             isTaken = false;
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#clover01_1").get(0).childNodes[i].id;
+                token = $("#clover01_1").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     isTaken = true;
                     break;
@@ -1099,7 +1103,7 @@
                 
             isTaken = false;
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#spade01").get(0).childNodes[i].id;
+                token = $("#spade01").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     isTaken = true;
                     break;
@@ -1110,7 +1114,7 @@
                 
             isTaken = false;            
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#spade01_1").get(0).childNodes[i].id;
+                token = $("#spade01_1").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     isTaken = true;
                     break;
@@ -1121,7 +1125,7 @@
                
             isTaken = false;           
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#diamond01").get(0).childNodes[i].id;
+                token = $("#diamond01").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     isTaken = true;
                     break;
@@ -1132,7 +1136,7 @@
                 
             isTaken = false;           
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#diamond01_1").get(0).childNodes[i].id;
+                token = $("#diamond01_1").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     isTaken = true;
                     break;
@@ -1143,7 +1147,7 @@
             
             isTaken = false;
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#heart01").get(0).childNodes[i].id;
+                token = $("#heart01").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     isTaken = true;
                     break;
@@ -1154,7 +1158,7 @@
             
             isTaken = false;
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#heart01_1").get(0).childNodes[i].id;
+                token = $("#heart01_1").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     isTaken = true;
                     break;
@@ -1169,7 +1173,7 @@
                     continue;
                 isTaken = false;
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#clover" + i).get(0).childNodes[j].id;
+                    token = $("#clover" + i).children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         isTaken = true;
                         break;
@@ -1180,7 +1184,7 @@
                 
                 isTaken = false;
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#clover" + i + "_1").get(0).childNodes[j].id;
+                    token = $("#clover" + i + "_1").children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         isTaken = true;
                         break;
@@ -1191,7 +1195,7 @@
                 
                 isTaken = false;
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#spade" + i).get(0).childNodes[j].id;
+                    token = $("#spade" + i).children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         isTaken = true;
                         break;
@@ -1202,7 +1206,7 @@
                 
                 isTaken = false;
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#spade" + i + "_1").get(0).childNodes[j].id;
+                    token = $("#spade" + i + "_1").children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         isTaken = true;
                         break;
@@ -1213,7 +1217,7 @@
                 
                 isTaken = false;
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#diamond" + i).get(0).childNodes[j].id;
+                    token = $("#diamond" + i).children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         isTaken = true;
                         break;
@@ -1224,7 +1228,7 @@
                 
                 isTaken = false;
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#diamond" + i + "_1").get(0).childNodes[j].id;
+                    token = $("#diamond" + i + "_1").children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         isTaken = true;
                         break;
@@ -1235,7 +1239,7 @@
                 
                 isTaken = false;
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#heart" + i).get(0).childNodes[j].id;
+                    token = $("#heart" + i).children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         isTaken = true;
                         break;
@@ -1246,7 +1250,7 @@
                 
                 isTaken = false;
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#heart" + i + "_1").get(0).childNodes[j].id;
+                    token = $("#heart" + i + "_1").children()[j].id;
                    if ($("#" + token).css("visibility") != "hidden") {
                         isTaken = true;
                         break;
@@ -1262,7 +1266,7 @@
             //checking the ones first
             
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#clover01").get(0).childNodes[i].id;
+                token = $("#clover01").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {//if you found a token that isnt hidden
                     $("#clover01").toggleClass('hovered', true);//that board piece is taken so light it up
                     break;
@@ -1270,7 +1274,7 @@
             }
             
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#clover01_1").get(0).childNodes[i].id;
+                token = $("#clover01_1").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     $("#clover01_1").toggleClass('hovered', true);
                     break;
@@ -1279,7 +1283,7 @@
            
  
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#spade01").get(0).childNodes[i].id;
+                token = $("#spade01").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     $("#spade01").toggleClass('hovered', true);
                     break;
@@ -1287,7 +1291,7 @@
             }
                 
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#spade01_1").get(0).childNodes[i].id;
+                token = $("#spade01_1").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     $("#spade01_1").toggleClass('hovered', true); 
                     break;
@@ -1295,7 +1299,7 @@
             }
                
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#diamond01").get(0).childNodes[i].id;
+                token = $("#diamond01").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     $("#diamond01").toggleClass('hovered', true);
                     break;
@@ -1303,7 +1307,7 @@
             }
                 
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#diamond01_1").get(0).childNodes[i].id;
+                token = $("#diamond01_1").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     $("#diamond01_1").toggleClass('hovered', true);
                     break;
@@ -1311,7 +1315,7 @@
             }
             
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#heart01").get(0).childNodes[i].id;
+                token = $("#heart01").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     $("#heart01").toggleClass('hovered', true);
                     break;
@@ -1319,7 +1323,7 @@
             }
             
             for (var i = 1; i <= numberOfTokens; i++) {
-                token = $("#heart01_1").get(0).childNodes[i].id;
+                token = $("#heart01_1").children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden") {
                     $("#heart01_1").toggleClass('hovered', true);
                     break;
@@ -1332,7 +1336,7 @@
                     continue;
                     
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#clover" + i).get(0).childNodes[j].id;
+                    token = $("#clover" + i).children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         $("#clover" + i).toggleClass('hovered', true);
                         break;
@@ -1340,7 +1344,7 @@
                 }
                 
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#clover" + i + "_1").get(0).childNodes[j].id;
+                    token = $("#clover" + i + "_1").children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         $("#clover" + i + "_1").toggleClass('hovered', true);
                         break;
@@ -1348,7 +1352,7 @@
                 }
                 
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#spade" + i).get(0).childNodes[j].id;
+                    token = $("#spade" + i).children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         $("#spade" + i).toggleClass('hovered', true);
                         break;
@@ -1356,7 +1360,7 @@
                 }
                 
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#spade" + i + "_1").get(0).childNodes[j].id;
+                    token = $("#spade" + i + "_1").children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         $("#spade" + i + "_1").toggleClass('hovered', true);
                         break;
@@ -1364,7 +1368,7 @@
                 }
                 
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#diamond" + i).get(0).childNodes[j].id;
+                    token = $("#diamond" + i).children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         $("#diamond" + i).toggleClass('hovered', true);
                         break;
@@ -1372,7 +1376,7 @@
                 }
                 
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#diamond" + i + "_1").get(0).childNodes[j].id;
+                    token = $("#diamond" + i + "_1").children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         $("#diamond" + i + "_1").toggleClass('hovered', true);
                         break;
@@ -1380,7 +1384,7 @@
                 }
                 
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#heart" + i).get(0).childNodes[j].id;
+                    token = $("#heart" + i).children()[j].id;
                     if ($("#" + token).css("visibility") != "hidden") {
                         $("#heart" + i).toggleClass('hovered', true);
                         break;
@@ -1388,7 +1392,7 @@
                 }
                 
                 for (var j = 1; j <= numberOfTokens; j++) {
-                    token = $("#heart" + i + "_1").get(0).childNodes[j].id;
+                    token = $("#heart" + i + "_1").children()[j].id;
                    if ($("#" + token).css("visibility") != "hidden") {
                         $("#heart" + i + "_1").toggleClass('hovered', true);
                         break;
@@ -1402,10 +1406,10 @@
             var isTaken2 = false;
             console.log("card name is " + cardName);
             for (var i = 1; i <=numberOfTokens ; i++) {//iterates and checks if any of the tokens are visible
-                var token = $("#" + cardName).get(0).childNodes[i].id;
+                var token = $("#" + cardName).children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden")
                     isTaken1 = true;
-                token = $("#" + cardName + "_1").get(0).childNodes[i].id;
+                token = $("#" + cardName + "_1").children()[i].id;//this is for the second spot
                 if ($("#" + token).css("visibility") != "hidden")
                     isTaken2 = true;
             }
@@ -1417,6 +1421,8 @@
             
         }
     }
+ 
+    
     //dehighlights the board
     function unhighlightBoard() {
         $("#clover01").toggleClass('hovered', false);
