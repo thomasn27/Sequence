@@ -56,9 +56,8 @@ function checkCondition(card, player) {
         for(j = 0; j < 10; j++)
             if(checkArray[i][j].getCard() == card){
                 x = i;
-                console.log(x);
                 y = j;
-                console.log(y);
+                console.log("Location X: " + x + "    Location Y: " + y);
             }
     
     checkArray[x][y].setValue(player);
@@ -244,7 +243,7 @@ function checkCondition(card, player) {
         if(player1_complete = 1)
             ;// TODO: call tom's win condition
     }
-    console.log("wilb checking: " + checkArray[x][y].getValue());
+    console.log("Value Inserted into Array " + checkArray[x][y].getCard() + ": " + checkArray[x][y].getValue());
 }
 
 function deleteToken(x,y) {
