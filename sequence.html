@@ -772,6 +772,7 @@
     <script src="js/card.js"></script>
     <script src="js/deck.js"></script>
     <script src="js/conditions.js"></script>
+    <script src="js/computer.js"></script>
     
     </div>
 </body>
@@ -795,10 +796,8 @@
     function init() {
         mainDeck = new Deck();
         playerHand = new Array();
-        opponentOne = new Array();
-        opponentTwo = new Array();
         discardPile = new Array();
-
+        comp = new Computer();
 
         //set up the hand for the players
         for (var i = 1; i < 8; i++) {
@@ -819,14 +818,9 @@
             $("#hand" + i + "img").mouseup(function(){
                unhighlightBoard();
             });
-            //to draw the bot's hand
-            nextCard = mainDeck.drawCard();
-            opponentOne.push(nextCard);
-            $("#2hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
-            nextCard = mainDeck.drawCard();
-            opponentTwo.push(nextCard);
-            $("#3hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
-        
+            
+            //drawing for the comptuer
+            comp.addCard(mainDeck.drawCard());
         }
         //add the droppable method to the board
         for (var i = 2; i <= 13; i++) {
@@ -888,6 +882,7 @@
         });
         console.log("done with init");
     }//end of setup board
+    
     function handleCardDrop(event, ui) {
         var location;
         $(unhighlightBoard());
@@ -1479,9 +1474,8 @@
     //creates a deck for the players
     var mainDeck;
     var playerHand;
-    var opponentOne;
-    var opponentTwo;
     var discardPile;
+    var comp;
     $(init());
 </script>
 
