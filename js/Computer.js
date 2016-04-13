@@ -23,7 +23,7 @@ function Computer(num) {
             else {
                 indexOfCard = Math.floor(Math.random() * handArray.length);
                 var topOrBottom = Math.floor(Math.random() * 2);
-                /*
+                
                 //checks to see if there are tokens on the places
                 var isFree = true;
                 var isFree2 = true;
@@ -47,7 +47,7 @@ function Computer(num) {
                 }
                 else {//can assume now that none are available
                     
-                }*/
+                }
                 cantPlayCard = false;
             }
         } while (cantPlayCard);
