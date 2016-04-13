@@ -47,8 +47,8 @@ function Computer(num) {
                 }
                 else {//can assume now that none are available
                     
-                }
-                cantPlayCard = false;*/
+                }*/
+                cantPlayCard = false;
             }
         } while (cantPlayCard);
         
