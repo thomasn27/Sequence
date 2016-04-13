@@ -51,20 +51,20 @@ function computer(num) {
                         token = $("#" + availableCards[indexOfCard].toString()).children()[playerNum].id;                 
                     else
                         token = $("#" + availableCards[indexOfCard].toString() + "_1").children()[playerNum].id;
-                    $("#" + token).css("visibility") = 'visible';//set the token to visible
+                    $("#" + token).css("visibility",'visible');//set the token to visible
                     var temp = new Array();
                     handArray = removeACardFromArray(handArray, indexOfCard);
                     return true;
                 }
                 else if (isFree) {//the first location is available
                     var token = $("#" + availableCards[indexOfCard].toString()).children()[playerNum].id;
-                    $("#" + token).css("visibility") = 'visible';//set the token to visible
+                    $("#" + token).css("visibility",'visible');//set the token to visible
                     handArray = removeACardFromArray(handArray, indexOfCard);
                     return true;
                 }
                 else if (isFree2) {//the second location is available
                     var token = $("#" + availableCards[indexOfCard].toString() + "_1").children()[playerNum].id;
-                    $("#" + token).css("visibility") = 'visible';//set the token to visible
+                    $("#" + token).css("visibility",'visible');//set the token to visible
                     handArray = removeACardFromArray(handArray, indexOfCard);                    
                     return true;
                 }
