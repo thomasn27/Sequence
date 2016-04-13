@@ -10,7 +10,6 @@ function Computer(num) {
     
     this.playCard = function() {
         //row array will later be used to check for valid plays on the board by an array param
-        var cantPlayCard = true;
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the card
         do {
@@ -18,12 +17,14 @@ function Computer(num) {
             if (availableCards.length == 0) {//if no more cards 
                 indexOfCard = -1;
                 cantPlayCard = false;
-                console.log("shit");
+                return false;
             }
             else {
                 indexOfCard = Math.floor(Math.random() * handArray.length);
                 var topOrBottom = Math.floor(Math.random() * 2);
                 /*
+                //check here if card is one of the jacks =(
+                    
                 //checks to see if there are tokens on the places
                 var isFree = true;
                 var isFree2 = true;
@@ -37,20 +38,22 @@ function Computer(num) {
                 }
                 
                 if (isFree && isFree2) {//both locations are available
-                    
+                    cantPlayCard = false;
                 }
-                else if (isFree) {//check here the first one
-                    
+                else if (isFree) {//the first location is available
+                    var token = $("#" + availableCards[indexOfCard].toString()).children()[playerNum].id;
+                    $("#" + token).css("visibility") = 'visible';
+                    return true;
                 }
-                else if (isFree2) {//check the second one
-                    
+                else if (isFree2) {//the second location is available
+                    return true;s
                 }
                 else {//can assume now that none are available
                     
                 }*/
-                cantPlayCard = false;
+                
             }
-        } while (cantPlayCard);
+        } while (true);
         
         
         //playerHand.splice(0,1);
