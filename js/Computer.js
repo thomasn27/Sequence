@@ -22,6 +22,7 @@ function Computer(num) {
             else {
                 indexOfCard = Math.floor(Math.random() * handArray.length);
                 var topOrBottom = Math.floor(Math.random() * 2);
+                return true;
                 /*
                 //check here if card is one of the jacks =(
                     
