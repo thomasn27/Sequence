@@ -797,8 +797,8 @@
         mainDeck = new Deck();
         playerHand = new Array();
         discardPile = new Array();
-        comp = new Computer();
-
+        comp = new Computer(1);//will change later;
+        
         //set up the hand for the players
         for (var i = 1; i < 8; i++) {
             var nextCard = mainDeck.drawCard();
@@ -822,6 +822,7 @@
             //drawing for the comptuer
             comp.addCard(mainDeck.drawCard());
         }
+        comp.playCard();
         //add the droppable method to the board
         for (var i = 2; i <= 13; i++) {
             if (i == 11)
@@ -1403,7 +1404,6 @@
         else {
             var isTaken1 = false;
             var isTaken2 = false;
-            console.log("card name is " + cardName);
             for (var i = 1; i <=numberOfTokens ; i++) {//iterates and checks if any of the tokens are visible
                 var token = $("#" + cardName).children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden")
