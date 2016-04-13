@@ -1,5 +1,5 @@
 //comp class
-function Computer(num) {
+function computer(num) {
     var handArray = new Array();
     var discardIndex;
     var playerNum = num;
