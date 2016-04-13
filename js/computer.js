@@ -19,8 +19,7 @@ function computer(num) {
     }
     
     //returns true or false, indicating if it was able to play a card 
-    this.playCard = function() {
-        //row array will later be used to check for valid plays on the board by an array param
+    this.playCard = function(boardArray) {
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the card
         do {
@@ -29,9 +28,14 @@ function computer(num) {
                 return false;
             else {
                 indexOfCard = Math.floor(Math.random() * availableCards.length);
-                
-                //check here if card is one of the jacks =(
-                    
+                console.log(availableCards[indexOfCard].toString());
+                //if two eye jacks, wild
+                    //choose a random number from 0 to 96, and check if you can drop a card there
+                    //MUST NEED THE BOARD!
+                //if one eye jack, removal
+                    //iterate the board, saving the locations of where there is an enemy token
+                    //choose one randomly 
+                    //done
                 //checks to see if there are tokens on the places
                 var isFree = true;
                 var isFree2 = true;

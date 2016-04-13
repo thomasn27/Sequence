@@ -771,8 +771,7 @@
         mainDeck = new Deck();
         playerHand = new Array();
         discardPile = new Array();
-        var testValue = 2;
-        comp = new computer(testValue);//will change later;
+        comp = new computer(2);//will change later;
         
         //set up the hand for the players
         for (var i = 1; i < 8; i++) {
@@ -797,7 +796,6 @@
             //drawing for the comptuer
             comp.addCard(mainDeck.drawCard());
         }
-        comp.playCard();
         //add the droppable method to the board
         for (var i = 2; i <= 13; i++) {
             if (i == 11)
@@ -856,6 +854,7 @@
         $("#area_discard").droppable({
             drop: discardDrop
         });
+        computerTurn();
         console.log("done with init");
     }//end of setup board
     
@@ -1446,12 +1445,20 @@
         return false;
     }
     
+    function computerTurn() {
+        var boardArray = new Array();//array of jQuery objects
+        for (var i = 0; i < 10; i++)
+            boardArray.push($("#row" +i));
+             
+        comp.playCard(boardArray);
+    }
+    
     //creates a deck for the players
     var mainDeck;
     var playerHand;
     var discardPile;
     var comp;
-    $(init());
+    init();
 </script>
 
 </html>
