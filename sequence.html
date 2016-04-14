@@ -855,7 +855,6 @@
             drop: discardDrop
         });
         
-        computerTurn();
         console.log("done with init");
     }//end of setup board
     
@@ -1446,9 +1445,27 @@
         return false;
     }
     
-    function computerTurn() {
+    function computerTurn(computerObject) {
+        var compPlayedACard = false;
+        var tries = 0;
+        do {
+            compPlayedACard = computerObject.playCard();
+            if (compPlayedACard)
+                break;
+            //comp couldnt play a card
+            //discard a card
+            var discardOkay = computerObject.discardCard();
+            if (!discardOkay)
+                Console.log("discarding problem occured");
+            computerObject.addCard(mainDeck.drawCard());//draw a card
+            tries++;
+        } while (tries < 2);
+        
+        if (compPlayedACard)//card played and discard that card now it draws
+            computerObject.addCard(mainDeck.drawCard());
             
-        comp.playCard();
+        if (tries == 2)
+            console.log("problems occured");
     }
     
     //creates a deck for the players
