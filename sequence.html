@@ -854,6 +854,7 @@
         $("#area_discard").droppable({
             drop: discardDrop
         });
+        
         computerTurn();
         console.log("done with init");
     }//end of setup board
@@ -1446,11 +1447,8 @@
     }
     
     function computerTurn() {
-        var boardArray = new Array();//array of jQuery objects
-        for (var i = 0; i < 10; i++)
-            boardArray.push($("#row" +i));
-             
-        comp.playCard(boardArray);
+            
+        comp.playCard();
     }
     
     //creates a deck for the players

@@ -18,8 +18,16 @@ function computer(num) {
         return temp.slice();
     }
     
+    //returns the index of the card inside the array;
+    var indexOf = function(arr, cardObject) {
+        for (var i = 0; i < arr.length; i++)
+            if (cardObject.toString() === arr[i].toString())
+                return i;
+        return -1;
+    }
+    
     //returns true or false, indicating if it was able to play a card 
-    this.playCard = function(boardArray) {
+    this.playCard = function() {
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the card
         do {
@@ -103,24 +111,62 @@ function computer(num) {
                             $("#" + token).css("visibility",'visible');//set the token to visible
                             //remove joker from handArray
                             console.log("played a two eyed joker at " + cardId);
-                            handArray = removeACardFromArray(handArray, indexOfCard);
+                            indexOfCard = indexOf(handArray, availableCards[indexOfCard]);
+                            if (indexOfCard == -1) {
+                                console.log("INDEX OF RETURNED -1 GHOST CARD");
+                                console.log("THIS IS IN TWO EYE JACK");
+                                return false;   
+                            }
+                            handArray = removeACardFromArray(handArray, indexOfCard);//removes the card from the hand
                             return true;
                         }
                         
                         attemps++;
                     } while (attemps < 200)
-                    
-                    console.log("couldnt get a random location..");
-                    return false;
+                    continue;//try again at playing another card from hand
                 }//one eye jack found (removal)
                 else if (availableCards[indexOfCard].toString().includes("heart11") || availableCards[indexOfCard].toString().includes("spade11")) {
                     console.log("one eyed jack found");
+                    var enemyLocations = new Array();
+                    for (var i = 0; i <= 9; i++)//rows
+                        for (var j = 0; j <=9; j++) {//individual cards
+                            if (i == 0 || i == 9)
+                                if (j == 0 || j == 9)
+                                    continue;//those are the wild cards on the board
+                            
+                            var cardId = $("#row" + i).children()[j].id;
+                            var isFree = true;
+                            for (var x = 1; x <=3; x++)
+                                if (x != playerNum) {
+                                    var token = $("#" + cardId).children()[x].id;
+                                        if ($("#" + token).css("visibility") != "hidden")//if the game board has a token present
+                                            isFree = false;
+                                }
+                            if (!isFree)//the board place has an enemy piece on it
+                               enemyLocations.push(cardId);//save the card name
+                        }
+                    if (enemyLocations.length == 0) {//there are no enemies to remove with this card, its dead
+                        return false;    
+                    }
+                    var indexOfCardToRemove = Math.floor(Math.random() * enemyLocations.length);
+                    var cardId = enemyLocations[indexOfCardToRemove];
+                    console.log("card removed is " + cardId);
+                    for (var x = 1; x <= 3; x++) {
+                        var token = $("#" + cardId).children()[x].id;
+                        $("#" + token).css("visibility", "hidden");
+                    }
+                    indexOfCard = indexOf(handArray, availableCards[indexOfCard]);
+                    if (indexOfCard == -1) {
+                        console.log("INDEX OF RETURNED -1 GHOST CARD");
+                        console.log("THIS IS IN ONE EYE JACK");
+                        return false;   
+                    }
+                    handArray = removeACardFromArray(handArray, indexOfCard);//remove the card from the hand
+
                     return true;
-                    //iterate the board, saving the locations of where there is an enemy token
-                    //choose one randomly 
-                    //done
                 }
                 else {
+                    console.log("attempting a non jack card");
                     var isFree = true;
                     var isFree2 = true;
                     for (var i = 1; i <= 3; i++) {
@@ -140,19 +186,36 @@ function computer(num) {
                         else
                             token = $("#" + availableCards[indexOfCard].toString() + "_1").children()[playerNum].id;
                         $("#" + token).css("visibility",'visible');//set the token to visible
-                        var temp = new Array();
+                        indexOfCard = indexOf(handArray, availableCards[indexOfCard]);
+                        if (indexOfCard == -1) {
+                            console.log("INDEX OF RETURNED -1 GHOST CARD");
+                            console.log("THIS IS REGULAR CARD");
+                            return false;   
+                        }
                         handArray = removeACardFromArray(handArray, indexOfCard);
                         return true;
                     }
                     else if (isFree) {//the first location is available
                         var token = $("#" + availableCards[indexOfCard].toString()).children()[playerNum].id;
                         $("#" + token).css("visibility",'visible');//set the token to visible
+                        indexOfCard = indexOf(handArray, availableCards[indexOfCard]);
+                        if (indexOfCard == -1) {
+                            console.log("INDEX OF RETURNED -1 GHOST CARD");
+                            console.log("THIS IS IN REGULAR CARD");
+                            return false;   
+                        }
                         handArray = removeACardFromArray(handArray, indexOfCard);
                         return true;
                     }
                     else if (isFree2) {//the second location is available
                         var token = $("#" + availableCards[indexOfCard].toString() + "_1").children()[playerNum].id;
                         $("#" + token).css("visibility",'visible');//set the token to visible
+                        indexOfCard = indexOf(handArray, availableCards[indexOfCard]);
+                        if (indexOfCard == -1) {
+                            console.log("INDEX OF RETURNED -1 GHOST CARD");
+                            console.log("THIS IS IN REGULAR CARD");
+                            return false;   
+                        }
                         handArray = removeACardFromArray(handArray, indexOfCard);                    
                         return true;
                     }
@@ -161,5 +224,15 @@ function computer(num) {
                    }            
             }
         } while (true);
+    }
+    
+    //Returns true or false, signifying if it was able to discard a card
+    this.discardCard = function() {
+        if (handArray.length == 0)
+            return 0;
+        var indexOfCard = Math.floor(Math.random() * handArray.length);
+        console.log("Removed:" + handArray[indexOfCard].toString());
+        handArray = removeACardFromArray(handArray, indexOfCard);
+        return true;
     }
 }
