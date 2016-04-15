@@ -771,8 +771,10 @@
         mainDeck = new Deck();
         playerHand = new Array();
         discardPile = new Array();
-        comp = new computer(2);//will change later;
-        
+        whosTurn = Math.floor(Math.random() * 3) + 1; 
+        comp1 = new computer(2);
+        comp2 = new computer(3);
+        console.log("it is " + whosTurn);
         //set up the hand for the players
         for (var i = 1; i < 8; i++) {
             var nextCard = mainDeck.drawCard();
@@ -794,7 +796,8 @@
             });
             
             //drawing for the comptuer
-            comp.addCard(mainDeck.drawCard());
+            comp1.addCard(mainDeck.drawCard());
+            comp2.addCard(mainDeck.drawCard());
         }
         //add the droppable method to the board
         for (var i = 2; i <= 13; i++) {
@@ -855,18 +858,23 @@
             drop: discardDrop
         });
         
+        /*
+        if (whosTurn != 1)//if its not the players turn call whosTurn
+            nextTurn();
+        */
         console.log("done with init");
     }//end of setup board
     
     function handleCardDrop(event, ui) {
+        if (whosTurn != 1)
+            return;//this function can not continue if its not the players turn;
         var location;
+        
         $(unhighlightBoard());
         //ui is the object being dropped
         //$(this) is the location that is receving
         //console.log(ui.draggable.get(0).src);
         //console.log($(this).get(0).id);
-        //there will be a check here to see if it is your turn, if it is go on, else skip all this
-        //remove the _1 if container has it
         var locationID = $(this).get(0).id;
         if (locationID.indexOf("_1") != -1)
             location = locationID.substring(0, locationID.length - 2);
@@ -888,6 +896,8 @@
         }
     }
     function discardDrop(event, ui) {
+        if (whosTurn != 1)
+            return;//this function can not continue if its not the players turn;
         var cardSrc;
         $(unhighlightBoard());//unhighlight the board
         //there will be a check here to see if it is your turn, if it is go on, else skip all this
@@ -1040,6 +1050,8 @@
     
     //function: lights up the board based on the card dragged
     function highLightBoard(param) {
+        if (whosTurn != 1)
+            return;//this function can not continue if its not the players turn;
         var numberOfTokens = 3;//update this once we have all tokens
         var cardName = "";
         for (var i = 0; i < playerHand.length; i++)
@@ -1468,11 +1480,36 @@
             console.log("problems occured");
     }
     
+    function nextTurnNumber(num) {
+        if (num == 3)
+            return 1;
+        return num++;
+    }
+    /*
+    //called when the user is done with their turn
+    function nextTurn() {
+        if (whosTurn == 2) {
+            //computer 1s turn, we can maby display something on the board to show this
+            computerTurn(comp1);
+            whosTurn++;
+            //computers2 turn
+            computerTurn(comp2);
+        }
+        else if (whosTurn == 3)
+            computerTurn(comp2);//computers 2 turn
+
+        whosTurn = 1;//now its the users turn;
+    }
+    
+    */
+    
     //creates a deck for the players
     var mainDeck;
     var playerHand;
     var discardPile;
-    var comp;
+    var comp1;
+    var comp2;
+    var whosTurn;//player is 1, comp1 is 2, comp2 is 3
     init();
 </script>
 
