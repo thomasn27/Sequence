@@ -723,32 +723,6 @@
                         <td id="hand7">card 7 (optional)</td>
                     </tr>
                 </table>
-                <br>
-                <h3 style="text-align:center">Opponent's Cards</h3>
-                <table class="area_hand">
-                    <tr>
-                        <td id="2hand1">card 1</td>
-                        <td id="2hand2">card 2</td>
-                        <td id="2hand3">card 3</td>
-                        <td id="2hand4">card 4</td>
-                        <td id="2hand5">card 5</td>
-                        <td id="2hand6">card 6</td>
-                        <td id="2hand7">card 7 (optional)</td>
-                    </tr>
-                </table>
-                <br>
-                <h3 style="text-align:center">Opponent's Cards</h3>
-                <table class="area_hand">
-                    <tr>
-                        <td id="3hand1">card 1</td>
-                        <td id="3hand2">card 2</td>
-                        <td id="3hand3">card 3</td>
-                        <td id="3hand4">card 4</td>
-                        <td id="3hand5">card 5</td>
-                        <td id="3hand6">card 6</td>
-                        <td id="3hand7">card 7 (optional)</td>
-                    </tr>
-                </table>
             </div>
 
             <!-- the right column for the deck -->
@@ -772,6 +746,7 @@
     <script src="js/card.js"></script>
     <script src="js/deck.js"></script>
     <script src="js/conditions.js"></script>
+    <script src="js/computer.js"></script>
     
     </div>
 </body>
@@ -795,11 +770,9 @@
     function init() {
         mainDeck = new Deck();
         playerHand = new Array();
-        opponentOne = new Array();
-        opponentTwo = new Array();
         discardPile = new Array();
-
-
+        comp = new computer(2);//will change later;
+        
         //set up the hand for the players
         for (var i = 1; i < 8; i++) {
             var nextCard = mainDeck.drawCard();
@@ -819,14 +792,9 @@
             $("#hand" + i + "img").mouseup(function(){
                unhighlightBoard();
             });
-            //to draw the bot's hand
-            nextCard = mainDeck.drawCard();
-            opponentOne.push(nextCard);
-            $("#2hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
-            nextCard = mainDeck.drawCard();
-            opponentTwo.push(nextCard);
-            $("#3hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
-        
+            
+            //drawing for the comptuer
+            comp.addCard(mainDeck.drawCard());
         }
         //add the droppable method to the board
         for (var i = 2; i <= 13; i++) {
@@ -886,8 +854,10 @@
         $("#area_discard").droppable({
             drop: discardDrop
         });
+        
         console.log("done with init");
     }//end of setup board
+    
     function handleCardDrop(event, ui) {
         var location;
         $(unhighlightBoard());
@@ -1408,7 +1378,6 @@
         else {
             var isTaken1 = false;
             var isTaken2 = false;
-            console.log("card name is " + cardName);
             for (var i = 1; i <=numberOfTokens ; i++) {//iterates and checks if any of the tokens are visible
                 var token = $("#" + cardName).children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden")
@@ -1476,13 +1445,35 @@
         return false;
     }
     
+    function computerTurn(computerObject) {
+        var compPlayedACard = false;
+        var tries = 0;
+        do {
+            compPlayedACard = computerObject.playCard();
+            if (compPlayedACard)
+                break;
+            //comp couldnt play a card
+            //discard a card
+            var discardOkay = computerObject.discardCard();
+            if (!discardOkay)
+                Console.log("discarding problem occured");
+            computerObject.addCard(mainDeck.drawCard());//draw a card
+            tries++;
+        } while (tries < 2);
+        
+        if (compPlayedACard)//card played and discard that card now it draws
+            computerObject.addCard(mainDeck.drawCard());
+            
+        if (tries == 2)
+            console.log("problems occured");
+    }
+    
     //creates a deck for the players
     var mainDeck;
     var playerHand;
-    var opponentOne;
-    var opponentTwo;
     var discardPile;
-    $(init());
+    var comp;
+    init();
 </script>
 
 </html>
