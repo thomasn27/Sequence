@@ -723,32 +723,6 @@
                         <td id="hand7">card 7 (optional)</td>
                     </tr>
                 </table>
-                <br>
-                <h3 style="text-align:center">Opponent's Cards</h3>
-                <table class="area_hand">
-                    <tr>
-                        <td id="2hand1">card 1</td>
-                        <td id="2hand2">card 2</td>
-                        <td id="2hand3">card 3</td>
-                        <td id="2hand4">card 4</td>
-                        <td id="2hand5">card 5</td>
-                        <td id="2hand6">card 6</td>
-                        <td id="2hand7">card 7 (optional)</td>
-                    </tr>
-                </table>
-                <br>
-                <h3 style="text-align:center">Opponent's Cards</h3>
-                <table class="area_hand">
-                    <tr>
-                        <td id="3hand1">card 1</td>
-                        <td id="3hand2">card 2</td>
-                        <td id="3hand3">card 3</td>
-                        <td id="3hand4">card 4</td>
-                        <td id="3hand5">card 5</td>
-                        <td id="3hand6">card 6</td>
-                        <td id="3hand7">card 7 (optional)</td>
-                    </tr>
-                </table>
             </div>
 
             <!-- the right column for the deck -->
@@ -772,6 +746,7 @@
     <script src="js/card.js"></script>
     <script src="js/deck.js"></script>
     <script src="js/conditions.js"></script>
+    <script src="js/computer.js"></script>
     
     </div>
 </body>
@@ -795,11 +770,11 @@
     function init() {
         mainDeck = new Deck();
         playerHand = new Array();
-        opponentOne = new Array();
-        opponentTwo = new Array();
         discardPile = new Array();
-
-
+        whosTurn = Math.floor(Math.random() * 3) + 1; 
+        comp1 = new computer(2);
+        comp2 = new computer(3);
+        console.log("it is " + whosTurn);
         //set up the hand for the players
         for (var i = 1; i < 8; i++) {
             var nextCard = mainDeck.drawCard();
@@ -819,14 +794,10 @@
             $("#hand" + i + "img").mouseup(function(){
                unhighlightBoard();
             });
-            //to draw the bot's hand
-            nextCard = mainDeck.drawCard();
-            opponentOne.push(nextCard);
-            $("#2hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
-            nextCard = mainDeck.drawCard();
-            opponentTwo.push(nextCard);
-            $("#3hand" + i).html("<img class='img-responsive handcard' id='hand" + i + "img' src = " + nextCard.getImageSource() + " height = '100' width = '90' draggable = 'false'/>");
-        
+            
+            //drawing for the comptuer
+            comp1.addCard(mainDeck.drawCard());
+            comp2.addCard(mainDeck.drawCard());
         }
         //add the droppable method to the board
         for (var i = 2; i <= 13; i++) {
@@ -886,17 +857,24 @@
         $("#area_discard").droppable({
             drop: discardDrop
         });
+        
+        /*
+        if (whosTurn != 1)//if its not the players turn call whosTurn
+            nextTurn();
+        */
         console.log("done with init");
     }//end of setup board
+    
     function handleCardDrop(event, ui) {
+        if (whosTurn != 1)
+            return;//this function can not continue if its not the players turn;
         var location;
+        
         $(unhighlightBoard());
         //ui is the object being dropped
         //$(this) is the location that is receving
         //console.log(ui.draggable.get(0).src);
         //console.log($(this).get(0).id);
-        //there will be a check here to see if it is your turn, if it is go on, else skip all this
-        //remove the _1 if container has it
         var locationID = $(this).get(0).id;
         if (locationID.indexOf("_1") != -1)
             location = locationID.substring(0, locationID.length - 2);
@@ -918,6 +896,8 @@
         }
     }
     function discardDrop(event, ui) {
+        if (whosTurn != 1)
+            return;//this function can not continue if its not the players turn;
         var cardSrc;
         $(unhighlightBoard());//unhighlight the board
         //there will be a check here to see if it is your turn, if it is go on, else skip all this
@@ -1070,6 +1050,8 @@
     
     //function: lights up the board based on the card dragged
     function highLightBoard(param) {
+        if (whosTurn != 1)
+            return;//this function can not continue if its not the players turn;
         var numberOfTokens = 3;//update this once we have all tokens
         var cardName = "";
         for (var i = 0; i < playerHand.length; i++)
@@ -1408,7 +1390,6 @@
         else {
             var isTaken1 = false;
             var isTaken2 = false;
-            console.log("card name is " + cardName);
             for (var i = 1; i <=numberOfTokens ; i++) {//iterates and checks if any of the tokens are visible
                 var token = $("#" + cardName).children()[i].id;
                 if ($("#" + token).css("visibility") != "hidden")
@@ -1466,7 +1447,7 @@
                 }
         }
        playerHand = newArray.slice();
-       console.log(playerHand.toString());
+//       console.log(playerHand.toString());
     }
     
     //function that checks if the deck has run out of cards
@@ -1476,13 +1457,60 @@
         return false;
     }
     
+    function computerTurn(computerObject) {
+        var compPlayedACard = false;
+        var tries = 0;
+        do {
+            compPlayedACard = computerObject.playCard();
+            if (compPlayedACard)
+                break;
+            //comp couldnt play a card
+            //discard a card
+            var discardOkay = computerObject.discardCard();
+            if (!discardOkay)
+                Console.log("discarding problem occured");
+            computerObject.addCard(mainDeck.drawCard());//draw a card
+            tries++;
+        } while (tries < 2);
+        
+        if (compPlayedACard)//card played and discard that card now it draws
+            computerObject.addCard(mainDeck.drawCard());
+            
+        if (tries == 2)
+            console.log("problems occured");
+    }
+    
+    function nextTurnNumber(num) {
+        if (num == 3)
+            return 1;
+        return num++;
+    }
+    /*
+    //called when the user is done with their turn
+    function nextTurn() {
+        if (whosTurn == 2) {
+            //computer 1s turn, we can maby display something on the board to show this
+            computerTurn(comp1);
+            whosTurn++;
+            //computers2 turn
+            computerTurn(comp2);
+        }
+        else if (whosTurn == 3)
+            computerTurn(comp2);//computers 2 turn
+
+        whosTurn = 1;//now its the users turn;
+    }
+    
+    */
+    
     //creates a deck for the players
     var mainDeck;
     var playerHand;
-    var opponentOne;
-    var opponentTwo;
     var discardPile;
-    $(init());
+    var comp1;
+    var comp2;
+    var whosTurn;//player is 1, comp1 is 2, comp2 is 3
+    init();
 </script>
 
 </html>
