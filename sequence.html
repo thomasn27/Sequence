@@ -771,7 +771,8 @@
         mainDeck = new Deck();
         playerHand = new Array();
         discardPile = new Array();
-        whosTurn = Math.floor(Math.random() * 3) + 1; 
+        // whosTurn = Math.floor(Math.random() * 3) + 1; 
+        whosTurn = 1;
         comp1 = new computer(2);
         comp2 = new computer(3);
         console.log("it is " + whosTurn);
@@ -986,7 +987,6 @@
         playerHand = tempArray.slice();
         
         // console.log("++" + locationID);
-        <!-- test something -->
         checkCondition(locationID,1);
         
         var cardDrawn = mainDeck.drawCard();
@@ -1008,23 +1008,30 @@
         sortPlayersArray();
 
         document.getElementById(token).style.visibility = 'visible';
+        computerTurn(comp1);
+        computerTurn(comp2);
     }
     
     function removeAndDraw(ui, locationID) {
         var arrayID = 0;
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
-        var token = "token1_" + locationID + "img";  // var token = "token1_<locationID>img";
+        var token = "token1_"+ locationID + "img";  // var token = "token1_<locationID>img";
+        var token2 = "token2_"+ locationID + "img";
+        var token3 = "token3_"+ locationID + "img";
         for (var i = 0; i < playerHand.length; i++)
             if (i != index) {
                 tempArray.push(playerHand[i]);
             }
-            else if (document.getElementById(token).style.visibility == '') {
+            else if (document.getElementById(token).style.visibility == '' && document.getElementById(token2).style.visibility == '' && document.getElementById(token3).style.visibility == '') {
                 tempArray.push(playerHand[i]);
             }
             else {
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
+                console.log("Removed my own");
+                computerTurn(comp1);
+                computerTurn(comp2);
             }
         playerHand = tempArray.slice();
         var cardDrawn = mainDeck.drawCard();
@@ -1046,6 +1053,8 @@
         sortPlayersArray();
         
         document.getElementById(token).style.visibility = '';
+        document.getElementById(token2).style.visibility = '';
+        document.getElementById(token3).style.visibility = '';
     }
     
     //function: lights up the board based on the card dragged
