@@ -1031,8 +1031,11 @@
         sortPlayersArray();
 
         document.getElementById(token).style.visibility = 'visible';
+        document.getElementById("playersTurn").innerText = "Computer 1's Turn";
         computerTurn(comp1);
+        document.getElementById("playersTurn").innerText = "Computer 2's Turn";
         computerTurn(comp2);
+        document.getElementById("playersTurn").innerText = "Your Turn";
     }
     
     function removeAndDraw(ui, locationID) {
@@ -1052,9 +1055,11 @@
             else {
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
-                console.log("Removed my own");
+                document.getElementById("playersTurn").innerText = "Computer 1's Turn";
                 computerTurn(comp1);
+                document.getElementById("playersTurn").innerText = "Computer 2's Turn";
                 computerTurn(comp2);
+                document.getElementById("playersTurn").innerText = "Your Turn";
             }
         playerHand = tempArray.slice();
         var cardDrawn = mainDeck.drawCard();
