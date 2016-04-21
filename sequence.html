@@ -937,14 +937,34 @@
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
         var arrayID = 0;
-        for (var i = 0; i < playerHand.length; i++)
+        token = "token1_" + cardSrc + "_1img";
+        token1 = "token1_" + cardSrc + "img";
+
+        token2 = "token2_" + cardSrc + "_1img";
+        token3 = "token2_" + cardSrc + "img";
+
+        token4 = "token3_" + cardSrc + "_1img";
+        token5 = "token3_" + cardSrc + "img";
+        for (var i = 0; i < playerHand.length; i++) {
             if (i != index) {
                 tempArray.push(playerHand[i]);
             }
-            else {
+            else if ((document.getElementById(token).style.visibility == 'visible' && document.getElementById(token1).style.visibility == 'visible') ||
+                (document.getElementById(token).style.visibility == 'visible' && document.getElementById(token3).style.visibility == 'visible') ||
+                (document.getElementById(token).style.visibility == 'visible' && document.getElementById(token5).style.visibility == 'visible') ||
+                (document.getElementById(token2).style.visibility == 'visible' && document.getElementById(token1).style.visibility == 'visible') ||
+                (document.getElementById(token2).style.visibility == 'visible' && document.getElementById(token3).style.visibility == 'visible') ||
+                (document.getElementById(token2).style.visibility == 'visible' && document.getElementById(token5).style.visibility == 'visible') ||
+                (document.getElementById(token4).style.visibility == 'visible' && document.getElementById(token1).style.visibility == 'visible') ||
+                (document.getElementById(token4).style.visibility == 'visible' && document.getElementById(token3).style.visibility == 'visible') ||
+                (document.getElementById(token4).style.visibility == 'visible' && document.getElementById(token5).style.visibility == 'visible')) {
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
             }
+            else
+                tempArray.push(playerHand[i]);
+        }
+
         playerHand = tempArray.slice();
         var cardDrawn = mainDeck.drawCard();
         playerHand.push(cardDrawn);
