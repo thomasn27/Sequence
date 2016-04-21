@@ -949,6 +949,9 @@
             if (i != index) {
                 tempArray.push(playerHand[i]);
             }
+            else if (cardSrc.includes("11")) {
+                tempArray.push(playerHand[i]);
+            }
             else if ((document.getElementById(token).style.visibility == 'visible' && document.getElementById(token1).style.visibility == 'visible') ||
                 (document.getElementById(token).style.visibility == 'visible' && document.getElementById(token3).style.visibility == 'visible') ||
                 (document.getElementById(token).style.visibility == 'visible' && document.getElementById(token5).style.visibility == 'visible') ||
