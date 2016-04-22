@@ -12,11 +12,22 @@ header {
     position: fixed;
     background-color: white;
     height: 75px;
+    width: 1140px;
     z-index: 10;
+}
+
+footer {
+    position: fixed;
+    background-color: white;
+    height: 200px;
+    width: 1140px;
+    z-index: 10;
+    bottom: 0;
 }
 
 table.area_boardgame {
     margin-top: 50px;
+    margin-bottom: 150px;
     width: 100%;
 }
 
