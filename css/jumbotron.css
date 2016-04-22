@@ -8,7 +8,26 @@ table {
     border-spacing: 0;
 }
 
+header {
+    position: fixed;
+    background-color: white;
+    height: 75px;
+    width: 1140px;
+    z-index: 10;
+}
+
+footer {
+    position: fixed;
+    background-color: white;
+    height: 200px;
+    width: 1140px;
+    z-index: 10;
+    bottom: 0;
+}
+
 table.area_boardgame {
+    margin-top: 50px;
+    margin-bottom: 150px;
     width: 100%;
 }
 
@@ -19,12 +38,16 @@ table.area_hand {
 
 td {
     position: relative;
+    overflow: visible;
 }
 
 td.hovered {
     background: #ffff00;
 }
 
+.modal-dialog {
+    z-index: 10;
+}
 
 td img{
 }
@@ -39,7 +62,7 @@ img.bgcard {
 
 img.token {
     position: absolute;
-    z-index: 1000;
+    z-index: 3;
     top: 25%;
     left: 20%;
     height: 50px;

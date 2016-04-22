@@ -4,7 +4,7 @@ var player1_complete;   // fleet
 var player2_complete;   // fleet
 var player3_complete;   // fleet
 var numberOfPlayers;    // TODP: used for modulus division
-var player = 1; // TODO: needs to grab the player turn
+var player = 1;         // TODO: needs to grab the player turn
 
 // objects for array
 function arrayCard(cardID) {
