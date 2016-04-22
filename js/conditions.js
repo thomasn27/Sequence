@@ -95,10 +95,18 @@ function checkDirection(x, y, i, j) {
     return sequence;
 }
 
-function deleteToken(x, y) {
-    if (checkArray[x][y].getValue() < 4) {
+function deleteToken(card) {
+    var x;
+    var y;
+    for (i = 0; i < 10; i++) {
+        for (j = 0; j < 10; j++) {
+            if (checkArray[i][j].getCard() == card) {
+                y = i;
+                x = j;
+            }
+        }
+    }
+    
+    if (checkArray[x][y].getValue() < 4)
         checkArray[x][y].setValue(0);
-        return true;
-    } else
-        return false;
 }

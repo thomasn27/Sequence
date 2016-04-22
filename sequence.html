@@ -1080,6 +1080,9 @@
         });
         sortPlayersArray();
         
+        deleteToken(locationID);    // sets to 0 on the hidden array
+        
+        // removes the visibility of the token on gameboard
         document.getElementById(token).style.visibility = '';
         document.getElementById(token2).style.visibility = '';
         document.getElementById(token3).style.visibility = '';
