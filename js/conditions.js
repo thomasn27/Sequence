@@ -4,7 +4,7 @@ var player1_complete;   // fleet
 var player2_complete;   // fleet
 var player3_complete;   // fleet
 var numberOfPlayers;    // TODP: used for modulus division
-var player = 1; // TODO: needs to grab the player turn
+var player = 1;         // TODO: needs to grab the player turn
 
 // objects for array
 function arrayCard(cardID) {
@@ -59,15 +59,12 @@ function checkCondition(card, player) {
             }
         }
     }
-    console.log(x + " " + y);
     checkArray[x][y].setValue(player);
 
     var verticalSequence = checkDirection(x, y, 0, 1) + checkDirection(x, y, 0, -1);
     var horizontalSequence = checkDirection(x, y, 1, 0) + checkDirection(x, y, -1, 0);
     var UpLeftDownRight = checkDirection(x, y, -1, -1) + checkDirection(x, y, 1, 1);
     var UpRightDownLeft = checkDirection(x, y, 1, -1) + checkDirection(x, y, -1, 1);
-
-    console.log("sequences:" + verticalSequence + " " + horizontalSequence + " " + UpLeftDownRight + " " + UpRightDownLeft);
 
     if (verticalSequence >= 4 || horizontalSequence >= 4 || UpLeftDownRight >= 4 || UpRightDownLeft >= 4) {
         if (player == 1) {
@@ -85,7 +82,6 @@ function checkDirection(x, y, i, j) {
     for (q = 1; q < 5; q++) {
         if ((x + i > -1 && x + i < 10) && (y + j > -1 && y + j < 10)) {
             var value = checkArray[x + i][y + j].getValue();
-            console.log(value);
             if (value == 4 || value == player || value == (player + 4)) {
                 sequence++;
                 x = x + i;
@@ -99,10 +95,18 @@ function checkDirection(x, y, i, j) {
     return sequence;
 }
 
-function deleteToken(x, y) {
-    if (checkArray[x][y].getValue() < 4) {
+function deleteToken(card) {
+    var x;
+    var y;
+    for (i = 0; i < 10; i++) {
+        for (j = 0; j < 10; j++) {
+            if (checkArray[i][j].getCard() == card) {
+                y = i;
+                x = j;
+            }
+        }
+    }
+    
+    if (checkArray[x][y].getValue() < 4)
         checkArray[x][y].setValue(0);
-        return true;
-    } else
-        return false;
 }

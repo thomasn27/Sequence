@@ -23,7 +23,46 @@
 
 <body>
     <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal2" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h2>OBJECTIVE OF THE GAME:</h2>
+                        <p>Connect a series of five of the same colour chip either horizontally, vertically, or diagonally on the board.</p>
+                        <p>NOTE: The corners of the board are wild and players can use it towards their sequence.</p>
+                        <p>For 2 teams: Score 2 sequences before your opponents.<br>For 3 teams: Score 1 sequence before your opponents.</p>
+                        <h2>RULES:</h2>
+                        <h3>Set-up</h3>
+                        <p>The board contains 2 copies of each playing card. Jacks are special cards and do not appear on the board. Click and drag a card from your hand to an available spot on the board to play it.</p>
+                        <h3>The Jacks</h3>
+                        <p>There are 8 Jacks in the card deck. The 4 Jacks with TWO EYES are wild, meaning place a token at any open location. The 4 jacks with ONE EYE are remove, meaning to remove any token from the board as long as it's not part of a completed sequence</p>
+                        <h3>Dead Card</h3>
+                        <p>If you hold a card in your hand with no available space, you may replace the card for a new one and proceed with your turn as normal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <div class="modal fade" id="endModal" role="dialog" tabindex="-1" aria-labelledby="endModal-label" style="text-align:center">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-title" id="endModal-label">
+                        <h1>You won!</h1>
+                    </div>
+                    <div class="modal-body">
+                        <p><a class="btn btn-lg btn-success" href="sequence.html" role="button">Replay</a></p>
+                        <p><a class="btn btn-lg btn-success" href="index.html" role="button">Home</a></p>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    
         <header>
             <!-- Header Row -->
             <div class="row">
@@ -41,47 +80,8 @@
                     <h1 id="playersTurn" style="text-align:center">Players Turn</h1>
                 </div>
 
-                <div class="container" style="text-align:center; padding:20px">
+                <div class="popup" style="text-align:center; padding:20px">
                     <button type="button" vspace ="20" style="float:right" class="btn btn-lg btn-success" data-toggle="modal" data-target="#myModal2" id="Rules">Rules</button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="myModal2" role="dialog" tabindex="-1" aria-labelledby="myModalLabel">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <h2>OBJECTIVE OF THE GAME:</h2>
-                                    <p>Connect a series of five of the same colour chip either horizontally, vertically, or diagonally on the board.</p>
-                                    <p>NOTE: The corners of the board are wild and players can use it towards their sequence.</p>
-                                    <p>For 2 teams: Score 2 sequences before your opponents.<br>For 3 teams: Score 1 sequence before your opponents.</p>
-                                    <h2>RULES:</h2>
-                                    <h3>Set-up</h3>
-                                    <p>The board contains 2 copies of each playing card. Jacks are special cards and do not appear on the board. Click and drag a card from your hand to an available spot on the board to play it.</p>
-                                    <h3>The Jacks</h3>
-                                    <p>There are 8 Jacks in the card deck. The 4 Jacks with TWO EYES are wild, meaning place a token at any open location. The 4 jacks with ONE EYE are remove, meaning to remove any token from the board as long as it's not part of a completed sequence</p>
-                                    <h3>Dead Card</h3>
-                                    <p>If you hold a card in your hand with no available space, you may replace the card for a new one and proceed with your turn as normal.</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="endModal" role="dialog" tabindex="-1" aria-labelledby="endModal-label" style="text-align:center">
-                    <div class="modal-dialog modal-sm" role="document">
-                        <div class="modal-content">
-                            <div class="modal-title" id="endModal-label">
-                                <h1>You won!</h1>
-                            </div>
-                            <div class="modal-body">
-                                <p><a class="btn btn-lg btn-success" href="sequence.html" role="button">Replay</a></p>
-                                <p><a class="btn btn-lg btn-success" href="index.html" role="button">Home</a></p>
-                            </div>
-                            <div class="modal-footer">
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>
@@ -701,37 +701,37 @@
             </table>
         </div>
 
-        <!-- Bottom Row -->
-        <div class="row">
-            <!-- the left column for the discard area -->
-            <div class="col-md-2">
-                <h3>Discard</h3>
-                <div id="area_discard"><img id="discard" src="assets/svg/discard.svg" height="100%" width="100%" draggable="false"></div>
-            </div>
-
-            <!-- the center column for the hand -->
-            <div class="col-md-8">
-                <h3 style="text-align:center">Your Cards</h3>
-                <table class="area_hand">
-                    <tr>
-                        <td id="hand1">card 1</td>
-                        <td id="hand2">card 2</td>
-                        <td id="hand3">card 3</td>
-                        <td id="hand4">card 4</td>
-                        <td id="hand5">card 5</td>
-                        <td id="hand6">card 6</td>
-                        <td id="hand7">card 7 (optional)</td>
-                    </tr>
-                </table>
-            </div>
-
-            <!-- the right column for the deck -->
-            <div class="col-md-2">
-                <h3>Deck</h3>
-            </div>
-        </div>
-
         <footer>
+            <!-- Bottom Row -->
+            <div class="row">
+                <!-- the left column for the discard area -->
+                <div class="col-md-2 leftAlign">
+                    <h3>Discard</h3>
+                    <div id="area_discard"><img id="discard" src="assets/svg/discard.svg" height="100%" width="100%" draggable="false"></div>
+                </div>
+
+                <!-- the center column for the hand -->
+                <div class="col-md-8 centerAlign">
+                    <h3 style="text-align:center">Your Cards</h3>
+                    <table class="area_hand">
+                        <tr>
+                            <td id="hand1">card 1</td>
+                            <td id="hand2">card 2</td>
+                            <td id="hand3">card 3</td>
+                            <td id="hand4">card 4</td>
+                            <td id="hand5">card 5</td>
+                            <td id="hand6">card 6</td>
+                            <td id="hand7">card 7 (optional)</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- the right column for the deck -->
+                <div class="col-md-2 rightAlign">
+                    <h3>Deck</h3>
+                </div>
+            </div>
+        
             <p><i>CSULB Senior Project by Thomas, Michael, Wilburn</i></p>
         </footer>
 
@@ -771,7 +771,8 @@
         mainDeck = new Deck();
         playerHand = new Array();
         discardPile = new Array();
-        whosTurn = Math.floor(Math.random() * 3) + 1; 
+        // whosTurn = Math.floor(Math.random() * 3) + 1; 
+        whosTurn = 1;
         comp1 = new computer(2);
         comp2 = new computer(3);
         console.log("it is " + whosTurn);
@@ -936,14 +937,37 @@
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
         var arrayID = 0;
-        for (var i = 0; i < playerHand.length; i++)
+        token = "token1_" + cardSrc + "_1img";
+        token1 = "token1_" + cardSrc + "img";
+
+        token2 = "token2_" + cardSrc + "_1img";
+        token3 = "token2_" + cardSrc + "img";
+
+        token4 = "token3_" + cardSrc + "_1img";
+        token5 = "token3_" + cardSrc + "img";
+        for (var i = 0; i < playerHand.length; i++) {
             if (i != index) {
                 tempArray.push(playerHand[i]);
             }
-            else {
+            else if (cardSrc.includes("11")) {
+                tempArray.push(playerHand[i]);
+            }
+            else if ((document.getElementById(token).style.visibility == 'visible' && document.getElementById(token1).style.visibility == 'visible') ||
+                (document.getElementById(token).style.visibility == 'visible' && document.getElementById(token3).style.visibility == 'visible') ||
+                (document.getElementById(token).style.visibility == 'visible' && document.getElementById(token5).style.visibility == 'visible') ||
+                (document.getElementById(token2).style.visibility == 'visible' && document.getElementById(token1).style.visibility == 'visible') ||
+                (document.getElementById(token2).style.visibility == 'visible' && document.getElementById(token3).style.visibility == 'visible') ||
+                (document.getElementById(token2).style.visibility == 'visible' && document.getElementById(token5).style.visibility == 'visible') ||
+                (document.getElementById(token4).style.visibility == 'visible' && document.getElementById(token1).style.visibility == 'visible') ||
+                (document.getElementById(token4).style.visibility == 'visible' && document.getElementById(token3).style.visibility == 'visible') ||
+                (document.getElementById(token4).style.visibility == 'visible' && document.getElementById(token5).style.visibility == 'visible')) {
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
             }
+            else
+                tempArray.push(playerHand[i]);
+        }
+
         playerHand = tempArray.slice();
         var cardDrawn = mainDeck.drawCard();
         playerHand.push(cardDrawn);
@@ -986,7 +1010,6 @@
         playerHand = tempArray.slice();
         
         // console.log("++" + locationID);
-        <!-- test something -->
         checkCondition(locationID,1);
         
         var cardDrawn = mainDeck.drawCard();
@@ -1008,23 +1031,35 @@
         sortPlayersArray();
 
         document.getElementById(token).style.visibility = 'visible';
+        document.getElementById("playersTurn").innerText = "Computer 1's Turn";
+        computerTurn(comp1);
+        document.getElementById("playersTurn").innerText = "Computer 2's Turn";
+        computerTurn(comp2);
+        document.getElementById("playersTurn").innerText = "Your Turn";
     }
     
     function removeAndDraw(ui, locationID) {
         var arrayID = 0;
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
-        var token = "token1_" + locationID + "img";  // var token = "token1_<locationID>img";
+        var token = "token1_"+ locationID + "img";  // var token = "token1_<locationID>img";
+        var token2 = "token2_"+ locationID + "img";
+        var token3 = "token3_"+ locationID + "img";
         for (var i = 0; i < playerHand.length; i++)
             if (i != index) {
                 tempArray.push(playerHand[i]);
             }
-            else if (document.getElementById(token).style.visibility == '') {
+            else if (document.getElementById(token).style.visibility == '' && document.getElementById(token2).style.visibility == '' && document.getElementById(token3).style.visibility == '') {
                 tempArray.push(playerHand[i]);
             }
             else {
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
+                document.getElementById("playersTurn").innerText = "Computer 1's Turn";
+                computerTurn(comp1);
+                document.getElementById("playersTurn").innerText = "Computer 2's Turn";
+                computerTurn(comp2);
+                document.getElementById("playersTurn").innerText = "Your Turn";
             }
         playerHand = tempArray.slice();
         var cardDrawn = mainDeck.drawCard();
@@ -1045,7 +1080,12 @@
         });
         sortPlayersArray();
         
+        deleteToken(locationID);    // sets to 0 on the hidden array
+        
+        // removes the visibility of the token on gameboard
         document.getElementById(token).style.visibility = '';
+        document.getElementById(token2).style.visibility = '';
+        document.getElementById(token3).style.visibility = '';
     }
     
     //function: lights up the board based on the card dragged
