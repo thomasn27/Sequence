@@ -115,8 +115,8 @@
                     <td id="spade01">
                         <img class="img-responsive-reverse bgcard" id="spade01img" src="assets/svg/spade01.svg" draggable="false">
                         <img class="token" id="token1_spade01img" src="assets/svg/token1.svg" draggable="false">
-                        <img class="token" id="token2_spade13img" src="assets/svg/token2.svg" draggable="false">
-                        <img class="token" id="token3_spade13img" src="assets/svg/token3.svg" draggable="false">
+                        <img class="token" id="token2_spade01img" src="assets/svg/token2.svg" draggable="false">
+                        <img class="token" id="token3_spade01img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                     <td id="diamond2">
                         <img class="img-responsive-reverse bgcard" id="diamond2img" src="assets/svg/diamond2.svg" draggable="false">
@@ -254,8 +254,8 @@
                     <td id="diamond13">
                         <img class="img-responsive-reverse bgcard" id="diamond13img" src="assets/svg/diamond13.svg" draggable="false">
                         <img class="token" id="token1_diamond13img" src="assets/svg/token1.svg" draggable="false">
-                        <img class="token" id="token2_" src="assets/svg/token2.svg" draggable="false">
-                        <img class="token" id="token3_" src="assets/svg/token3.svg" draggable="false">
+                        <img class="token" id="token2_diamond13img" src="assets/svg/token2.svg" draggable="false">
+                        <img class="token" id="token3_diamond13img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                     <td id="heart2">
                         <img class="img-responsive-reverse bgcard" id="heart2img" src="assets/svg/heart2.svg" draggable="false">
@@ -752,21 +752,6 @@
 </body>
 
 <script>
-    // temporary js
-    // will be moved to the board/hand generation javascript
-
-    //This should be what the Win Condition checker looks like. By default the modal will say 'You Won!' So just show it if won. It other conditions, change the title.
-    //if (winCondition == 1) {
-    //    $("#endModal-label").html('<h1>You lost!</h1>');
-    //    $("#endModal").modal('show');
-    //}
-    //else if (winCondition == 2) {
-    //    $("#endModal-label").html('<h1>Tie!</h1>');
-    //    $("#endModal").modal('show');
-    //}
-    //else {
-    //    $("#endModal").modal('show');
-    //}
     function init() {
         mainDeck = new Deck();
         playerHand = new Array();
