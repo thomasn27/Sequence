@@ -981,22 +981,30 @@
         var tempArray = new Array();
         var player = Math.floor((Math.random()*3)+1) // for random test
         var token = "token1_" + locationID + "img";  // var token = "token<player>_<locationID>img";
+        var token2 = "token2_" + locationID + "img";
+        var token3 = "token3_" + locationID + "img";
         for (var i = 0; i <playerHand.length; i++)
             if (i != index) {
                 tempArray.push(playerHand[i]);
             }
-            else if(document.getElementById(token).style.visibility == 'visible'){
+            else if (document.getElementById(token).style.visibility == 'visible' ||
+                document.getElementById(token2).style.visibility == 'visible' ||
+                document.getElementById(token3).style.visibility == 'visible') {
                 tempArray.push(playerHand[i]);
             }
             else {
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
+                checkCondition(locationID, 1);
+                document.getElementById(token).style.visibility = 'visible';
+                document.getElementById("playersTurn").innerText = "Computer 1's Turn";
+                computerTurn(comp1);
+                document.getElementById("playersTurn").innerText = "Computer 2's Turn";
+                computerTurn(comp2);
+                document.getElementById("playersTurn").innerText = "Your Turn";
             }
         playerHand = tempArray.slice();
-        
-        // console.log("++" + locationID);
-        checkCondition(locationID,1);
-        
+
         var cardDrawn = mainDeck.drawCard();
         playerHand.push(cardDrawn);
         $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
@@ -1014,13 +1022,6 @@
             unhighlightBoard();
         });
         sortPlayersArray();
-
-        document.getElementById(token).style.visibility = 'visible';
-        document.getElementById("playersTurn").innerText = "Computer 1's Turn";
-        computerTurn(comp1);
-        document.getElementById("playersTurn").innerText = "Computer 2's Turn";
-        computerTurn(comp2);
-        document.getElementById("playersTurn").innerText = "Your Turn";
     }
     
     function removeAndDraw(ui, locationID) {
