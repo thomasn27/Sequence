@@ -376,10 +376,10 @@
                         <img class="token" id="token3_heart10_1img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                     <td id="clover01">
-                        <img class="img-responsive-reverse bgcard" id="clover1img" src="assets/svg/clover01.svg" draggable="false">
+                        <img class="img-responsive-reverse bgcard" id="clover01img" src="assets/svg/clover01.svg" draggable="false">
                         <img class="token" id="token1_clover01img" src="assets/svg/token1.svg" draggable="false">
-                        <img class="token" id="token2_clover1img" src="assets/svg/token2.svg" draggable="false">
-                        <img class="token" id="token3_clover1img" src="assets/svg/token3.svg" draggable="false">
+                        <img class="token" id="token2_clover01img" src="assets/svg/token2.svg" draggable="false">
+                        <img class="token" id="token3_clover01img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                     <td id="spade3">
                         <img class="img-responsive-reverse bgcard" id="spade3img" src="assets/svg/spade3.svg" draggable="false">
@@ -856,16 +856,13 @@
     function showDiscardCard() {
         if(discardPile.length == 1) {
             var image = document.getElementById('discard01');
-            var discard = discardPile[discardPile.length-1];
-            image.src = "assets/svg/" + discard + ".svg";
+            image.src = "assets/svg/" + discardPile[0] + ".svg";
         }
-        else if(discardPile.length >=2 ) {
+        else if(discardPile.length >= 2) {
             var image1 = document.getElementById('discard01');
             var image2 = document.getElementById('discard02');
-            var discard1 = discardPile[discardPile.length-1];
-            var discard2 = discardPile[discardPile.length-2];
-            image1.src = "assets/svg/" + discard1 + ".svg";
-            image2.src = "assets/svg/" + discard2 + ".svg";
+            image1.src = "assets/svg/" + discardPile[discardPile.length-2] + ".svg";
+            image2.src = "assets/svg/" + discardPile[discardPile.length-1] + ".svg";
         }
     }
     
