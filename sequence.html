@@ -982,13 +982,21 @@
         var token = "token1_" + locationID + "img";  // var token = "token<player>_<locationID>img";
         var token2 = "token2_" + locationID + "img";
         var token3 = "token3_" + locationID + "img";
+        console.log("Tokens looked at are:");
+        console.log(token);
+        console.log(token2);
+        console.log(token3);
+        console.log("ended of tokens");
         for (var i = 0; i <playerHand.length; i++)
             if (i != index) {
                 tempArray.push(playerHand[i]);
             }
-            else if (document.getElementById(token).style.visibility == 'visible' ||
-                document.getElementById(token2).style.visibility == 'visible' ||
-                document.getElementById(token3).style.visibility == 'visible') {
+            else if ($("#" + token).css("visibility") == 'visible'
+                    || $("#" + token2).css("visibility") == 'visible'
+                    || $("#" + token3).css("visibility") == 'visible') {
+                //document.getElementById(token).style.visibility == 'visible' ||
+                //document.getElementById(token2).style.visibility == 'visible' ||
+                //document.getElementById(token3).style.visibility == 'visible') {
                 tempArray.push(playerHand[i]);
             }
             else {
@@ -1068,9 +1076,12 @@
         deleteToken(locationID);    // sets to 0 on the hidden array
         
         // removes the visibility of the token on gameboard
-        document.getElementById(token).style.visibility = '';
-        document.getElementById(token2).style.visibility = '';
-        document.getElementById(token3).style.visibility = '';
+        $("#" + token).css("visibility",'hidden');//hides the token
+        $("#" + token2).css("visibility",'hidden');
+        $("#" + token3).css("visibility",'hidden');
+        //document.getElementById(token).style.visibility = "";
+        //document.getElementById(token2).style.visibility = '';
+        //document.getElementById(token3).style.visibility = '';
     }
     
     //function: lights up the board based on the card dragged
@@ -1503,12 +1514,6 @@
             
         if (tries == 2)
             console.log("problems occured");
-    }
-    
-    function nextTurnNumber(num) {
-        if (num == 3)
-            return 1;
-        return num++;
     }
     
     //called when the user is done with their turn
