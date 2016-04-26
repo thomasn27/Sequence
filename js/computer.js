@@ -12,9 +12,12 @@ function computer(num) {
     //returns an array with the card at index removed
     var removeACardFromArray = function(arr, index) {
         var temp = new Array();
+        discardPile.push(arr[index]);
+        showDiscardCard();
         for (var i = 0; i < arr.length; i++)
-            if (i != index)
+            if (i != index) {
                 temp.push(arr[i]);
+            }
         return temp.slice();
     }
     
@@ -161,6 +164,7 @@ function computer(num) {
                         console.log("THIS IS IN ONE EYE JACK");
                         return false;   
                     }
+                    
                     handArray = removeACardFromArray(handArray, indexOfCard);//remove the card from the hand
 
                     return true;
