@@ -376,10 +376,10 @@
                         <img class="token" id="token3_heart10_1img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                     <td id="clover01">
-                        <img class="img-responsive-reverse bgcard" id="clover1img" src="assets/svg/clover01.svg" draggable="false">
+                        <img class="img-responsive-reverse bgcard" id="clover01img" src="assets/svg/clover01.svg" draggable="false">
                         <img class="token" id="token1_clover01img" src="assets/svg/token1.svg" draggable="false">
-                        <img class="token" id="token2_clover1img" src="assets/svg/token2.svg" draggable="false">
-                        <img class="token" id="token3_clover1img" src="assets/svg/token3.svg" draggable="false">
+                        <img class="token" id="token2_clover01img" src="assets/svg/token2.svg" draggable="false">
+                        <img class="token" id="token3_clover01img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                     <td id="spade3">
                         <img class="img-responsive-reverse bgcard" id="spade3img" src="assets/svg/spade3.svg" draggable="false">
@@ -707,7 +707,10 @@
                 <!-- the left column for the discard area -->
                 <div class="col-md-2 leftAlign">
                     <h3>Discard</h3>
-                    <div id="area_discard"><img id="discard" src="assets/svg/discard.svg" height="100%" width="100%" draggable="false"></div>
+                    <div id="area_discard">
+                        <img id="discard01" src="assets/svg/cardback.svg" width="40%" draggable="false">
+                        <img id="discard02" src="assets/svg/cardback.svg" width="40%" draggable="false">
+                    </div>
                 </div>
 
                 <!-- the center column for the hand -->
@@ -850,6 +853,19 @@
         console.log("done with init");
     }//end of setup board
     
+    function showDiscardCard() {
+        if(discardPile.length == 1) {
+            var image = document.getElementById('discard01');
+            image.src = "assets/svg/" + discardPile[0] + ".svg";
+        }
+        else if(discardPile.length >= 2) {
+            var image1 = document.getElementById('discard01');
+            var image2 = document.getElementById('discard02');
+            image1.src = "assets/svg/" + discardPile[discardPile.length-2] + ".svg";
+            image2.src = "assets/svg/" + discardPile[discardPile.length-1] + ".svg";
+        }
+    }
+    
     function handleCardDrop(event, ui) {
         if (whosTurn != 1)
             return;//this function can not continue if its not the players turn;
@@ -880,6 +896,7 @@
             placeAndDraw(ui, locationID);
         }
     }
+    
     function discardDrop(event, ui) {
         if (whosTurn != 1)
             return;//this function can not continue if its not the players turn;
@@ -946,6 +963,9 @@
                 (document.getElementById(token4).style.visibility == 'visible' && document.getElementById(token3).style.visibility == 'visible') ||
                 (document.getElementById(token4).style.visibility == 'visible' && document.getElementById(token5).style.visibility == 'visible')) {
                 discardPile.push(playerHand[i]);
+                console.log("   Discard Pile: " + discardPile[discardPile.length-1]);
+                showDiscardCard();
+                showDiscardCard();
                 arrayID = i + 1;
             }
             else
@@ -993,6 +1013,8 @@
             }
             else {
                 discardPile.push(playerHand[i]);
+                console.log("   Discard Pile: " + discardPile[discardPile.length-1]);
+                showDiscardCard();
                 arrayID = i + 1;
                 checkCondition(locationID, 1);
                 document.getElementById(token).style.visibility = 'visible';
@@ -1039,6 +1061,8 @@
             }
             else {
                 discardPile.push(playerHand[i]);
+                console.log("   Discard Pile: " + discardPile[discardPile.length-1]);
+                showDiscardCard();
                 arrayID = i + 1;
                 document.getElementById("playersTurn").innerText = "Computer 1's Turn";
                 computerTurn(comp1);
@@ -1525,7 +1549,6 @@
 
         whosTurn = 1;//now its the users turn;
     }
-
     
     //creates a deck for the players
     var mainDeck;
