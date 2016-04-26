@@ -115,8 +115,8 @@
                     <td id="spade01">
                         <img class="img-responsive-reverse bgcard" id="spade01img" src="assets/svg/spade01.svg" draggable="false">
                         <img class="token" id="token1_spade01img" src="assets/svg/token1.svg" draggable="false">
-                        <img class="token" id="token2_spade13img" src="assets/svg/token2.svg" draggable="false">
-                        <img class="token" id="token3_spade13img" src="assets/svg/token3.svg" draggable="false">
+                        <img class="token" id="token2_spade01img" src="assets/svg/token2.svg" draggable="false">
+                        <img class="token" id="token3_spade01img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                     <td id="diamond2">
                         <img class="img-responsive-reverse bgcard" id="diamond2img" src="assets/svg/diamond2.svg" draggable="false">
@@ -254,8 +254,8 @@
                     <td id="diamond13">
                         <img class="img-responsive-reverse bgcard" id="diamond13img" src="assets/svg/diamond13.svg" draggable="false">
                         <img class="token" id="token1_diamond13img" src="assets/svg/token1.svg" draggable="false">
-                        <img class="token" id="token2_" src="assets/svg/token2.svg" draggable="false">
-                        <img class="token" id="token3_" src="assets/svg/token3.svg" draggable="false">
+                        <img class="token" id="token2_diamond13img" src="assets/svg/token2.svg" draggable="false">
+                        <img class="token" id="token3_diamond13img" src="assets/svg/token3.svg" draggable="false">
                     </td>
                     <td id="heart2">
                         <img class="img-responsive-reverse bgcard" id="heart2img" src="assets/svg/heart2.svg" draggable="false">
@@ -752,27 +752,11 @@
 </body>
 
 <script>
-    // temporary js
-    // will be moved to the board/hand generation javascript
-
-    //This should be what the Win Condition checker looks like. By default the modal will say 'You Won!' So just show it if won. It other conditions, change the title.
-    //if (winCondition == 1) {
-    //    $("#endModal-label").html('<h1>You lost!</h1>');
-    //    $("#endModal").modal('show');
-    //}
-    //else if (winCondition == 2) {
-    //    $("#endModal-label").html('<h1>Tie!</h1>');
-    //    $("#endModal").modal('show');
-    //}
-    //else {
-    //    $("#endModal").modal('show');
-    //}
     function init() {
         mainDeck = new Deck();
         playerHand = new Array();
         discardPile = new Array();
-        // whosTurn = Math.floor(Math.random() * 3) + 1; 
-        whosTurn = 1;
+        whosTurn = Math.floor(Math.random() * 3) + 1; 
         comp1 = new computer(2);
         comp2 = new computer(3);
         console.log("it is " + whosTurn);
@@ -859,10 +843,10 @@
             drop: discardDrop
         });
         
-        /*
+        
         if (whosTurn != 1)//if its not the players turn call whosTurn
             nextTurn();
-        */
+        
         console.log("done with init");
     }//end of setup board
     
@@ -996,22 +980,30 @@
         var tempArray = new Array();
         var player = Math.floor((Math.random()*3)+1) // for random test
         var token = "token1_" + locationID + "img";  // var token = "token<player>_<locationID>img";
+        var token2 = "token2_" + locationID + "img";
+        var token3 = "token3_" + locationID + "img";
         for (var i = 0; i <playerHand.length; i++)
             if (i != index) {
                 tempArray.push(playerHand[i]);
             }
-            else if(document.getElementById(token).style.visibility == 'visible'){
+            else if (document.getElementById(token).style.visibility == 'visible' ||
+                document.getElementById(token2).style.visibility == 'visible' ||
+                document.getElementById(token3).style.visibility == 'visible') {
                 tempArray.push(playerHand[i]);
             }
             else {
                 discardPile.push(playerHand[i]);
                 arrayID = i + 1;
+                checkCondition(locationID, 1);
+                document.getElementById(token).style.visibility = 'visible';
+                document.getElementById("playersTurn").innerText = "Computer 1's Turn";
+                computerTurn(comp1);
+                document.getElementById("playersTurn").innerText = "Computer 2's Turn";
+                computerTurn(comp2);
+                document.getElementById("playersTurn").innerText = "Your Turn";
             }
         playerHand = tempArray.slice();
-        
-        // console.log("++" + locationID);
-        checkCondition(locationID,1);
-        
+
         var cardDrawn = mainDeck.drawCard();
         playerHand.push(cardDrawn);
         $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
@@ -1029,13 +1021,6 @@
             unhighlightBoard();
         });
         sortPlayersArray();
-
-        document.getElementById(token).style.visibility = 'visible';
-        document.getElementById("playersTurn").innerText = "Computer 1's Turn";
-        computerTurn(comp1);
-        document.getElementById("playersTurn").innerText = "Computer 2's Turn";
-        computerTurn(comp2);
-        document.getElementById("playersTurn").innerText = "Your Turn";
     }
     
     function removeAndDraw(ui, locationID) {
@@ -1525,7 +1510,7 @@
             return 1;
         return num++;
     }
-    /*
+    
     //called when the user is done with their turn
     function nextTurn() {
         if (whosTurn == 2) {
@@ -1540,8 +1525,7 @@
 
         whosTurn = 1;//now its the users turn;
     }
-    
-    */
+
     
     //creates a deck for the players
     var mainDeck;
