@@ -126,7 +126,7 @@ function computer(num) {
                         
                         attemps++;
                     } while (attemps < 200)
-                    continue;//try again at playing another card from hand
+                    availableCards = removeACardFromArray(availableCards, indexOfCard);//remove card from array
                 }//one eye jack found (removal)
                 else if (availableCards[indexOfCard].toString().includes("heart11") || availableCards[indexOfCard].toString().includes("spade11")) {
                     console.log("one eyed jack found");
@@ -149,7 +149,8 @@ function computer(num) {
                                enemyLocations.push(cardId);//save the card name
                         }
                     if (enemyLocations.length == 0) {//there are no enemies to remove with this card, its dead
-                        return false;    
+                        availableCards = removeACardFromArray(availableCards, indexOfCard);//remove card from array
+                        continue;
                     }
                     var indexOfCardToRemove = Math.floor(Math.random() * enemyLocations.length);
                     var cardId = enemyLocations[indexOfCardToRemove];
@@ -164,9 +165,7 @@ function computer(num) {
                         console.log("THIS IS IN ONE EYE JACK");
                         return false;   
                     }
-                    
                     handArray = removeACardFromArray(handArray, indexOfCard);//remove the card from the hand
-
                     return true;
                 }
                 else {
@@ -228,6 +227,92 @@ function computer(num) {
                    }            
             }
         } while (true);
+    }
+    
+    //Agressive
+    this.playAgroCard = function() {
+        
+        var indexOfCard = -1;
+        var indexOfCardPlayed = -1;
+        var availableCards = handArray.slice();//copy the hand arrray
+        for (var i = 0; i < handArray.length; i++)
+            if (availableCards[i].toString().includes("clover11") || availableCards[i].toString().includes("diamond11")) {
+                indexOfCard = i;
+                break;
+            }
+         
+        //wild card found
+        var maxSequence = -1;
+        var maxLocationComponentRow = -1;
+        var maxLocationComponentCol = -1;
+        
+        if (indexOfCard != -1) {
+            for (var row = 0; row <= 9; row++)//for all the boards row
+                for (var col = 0; col <= 9; col++) {//for all the boards col
+                    if ((row == 0 && col == 0) || (row == 0 && col == 9) || (row == 9 && col == 0) || (row == 9 && col == 9))
+                        continue;//there are wild card locations
+                    var cardId = $("#row" + row).children()[location].id;
+                    var counter = 0;
+                    var skip = false;
+                    var token = $("#" + cardId).children()[playerNum].id;
+                    if ($("#" + token).css("visibility") != "hidden") {//if the game board has a friend present
+                        counter++;
+                        //start walking looking for more tokens
+                        for (var i = -1; i <= 1; i ++) {
+                            if (skip)
+                                break;
+                            for (var j = -1; j <= 1; j++) {
+                                var nextRow = row + i;
+                                var nextCol = col + j;
+                                
+                                var getOut = false;//used for when you dont find your friend token
+                                while (!getOut) {
+                                    if ((nextRow == 0 && nextCol == 0) || (nextRow == 0 && nextCol == 9) || (nextRow == 9 && nextCol == 0) || (nextRow == 9 && nextCol == 9)) {
+                                        skip = true;//there are wild card locations you are done looking
+                                        break;
+                                    }
+                                    if (nextRow > 9 || nextRow < 0 || nextCol > 9 || nextCol < 0) {
+                                        skip = true;
+                                        break;//if out of bounds you are done looking
+                                    }
+                                    //now to see if we have a friend token there
+                                    var nextCardId = $("row" + nextRow).children()[nextCol].id;
+                                    var nextCardToken = $('#' + nextCardId).children()[playerNum].id;
+                                    if ($("#" + nextCardToken).css("visibility" == "hidden"))//friend piece is missing
+                                        break;
+                                    counter++;
+                                    nextRow += i;//update the direction
+                                    nextCol += j;//update the direction
+                                } 
+                                
+                                
+                                
+                            }
+                        }//end of walking with for
+                        
+                        
+                           
+                    }//end of if statement
+
+                }//end of col for
+        }//end of row for
+        else {
+            //remove all jacks from the availableCards pool
+        }
+                
+        /*
+        Select removal,
+            remove from player that has a sequence of 3 or more
+            else remove from player that has the the most tokens
+
+        Can a non jack card win the game?
+            see how they would alter the board, select the one that has the highest sequence
+            if the answer is 0, they are new spawn points,
+            select a random one
+
+        Select a wild card
+            put it near one of your old cards
+        */   
     }
     
     //Returns true or false, signifying if it was able to discard a card
