@@ -269,9 +269,9 @@ function computer(num) {
                                         break;//if out of bounds you are done looking
                                     }
                                     //now to see if we have a friend token there
-                                    var nextCardId = $("row" + nextRow).children()[nextCol].id;
+                                    var nextCardId = $("#row" + nextRow).children()[nextCol].id;
                                     var nextCardToken = $('#' + nextCardId).children()[playerNum].id;
-                                    if ($("#" + nextCardToken).css("visibility" == "hidden"))//friend piece is missing
+                                    if ($("#" + nextCardToken).css("visibility") == "hidden")//friend piece is missing
                                         break;
                                     counter++;
                                     nextRow += i;//update the direction
@@ -280,7 +280,7 @@ function computer(num) {
                                 if (counter > 1) {//at least 2 tokens where found 
                                     if (!hitEdge) {
                                         //test if the spot is empty
-                                        var testCardLocation = $("row" + nextRow).children()[nextCol].id;
+                                        var testCardLocation = $("#row" + nextRow).children()[nextCol].id;
                                         var isTaken = false;
                                         for (var loc = 1; loc <=3; loc++) {
                                             var testToken = $("#" + testCardLocation).children()[loc].id;
@@ -302,10 +302,10 @@ function computer(num) {
                                             var inBounds = true;
                                             if ((otherDirectionRow == 0 && otherDirectionCol == 0) || (otherDirectionRow == 0 && otherDirectionCol == 9) || (otherDirectionRow == 9 && otherDirectionCol == 0) || (otherDirectionRow == 9 && otherDirectionCol == 9))
                                                 inBounds = false;
-                                            if (nextRow > 9 || nextRow < 0 || nextCol > 9 || nextCol < 0) 
+                                            if (otherDirectionRow > 9 || otherDirectionRow < 0 || otherDirectionCol > 9 || otherDirectionCol < 0) 
                                                 inBounds = false;
                                             if (inBounds) {
-                                                testCardLocation = $("row" + otherDirectionRow).children()[otherDirectionCol].id;
+                                                testCardLocation = $("#row" + otherDirectionRow).children()[otherDirectionCol].id;
                                                 isTaken = false;
                                                 for (var loc = 1; loc <= 3; loc++) {
                                                     testToken = $("#" + testCardLocation).children()[loc].id;
@@ -331,23 +331,24 @@ function computer(num) {
                     }//end of if statement for when a friend token was found
                 }//end of col for
             
-            if (locationArray.length >= 2) {
+            if (locationArray.length > 0) {
                 var maxCounter = -1;
                 var location = -1;
                 for (var i = 0; i < locationArray.length; i++)
                     if (locationArray[i][0] > maxCounter)
                         location = i;   
                 if (location != -1) {//play the card!
-                    var cardId = $("#row" + locationArray[location][1]).children()[locationArray[Location][2]].id;
+                    var cardId = $("#row" + locationArray[location][1]).children()[locationArray[location][2]].id;
                     var token = $("#" + cardId).children()[playerNum].id;
                     $("#" + token).css("visibility",'visible');//set the token to visible
                     handArray = removeACardFromArray(handArray, indexOf(handArray, availableCards[indexOfCard]));//remove the jack from the hand
+                    console.log("comp " + playerNum + " played wild card");
                     return true;
                 }
             }
             for (var i = 0; i < availableCards.length; i++) {//remove all wild cards
                  if (availableCards[i].toString().includes("clover11") || availableCards[i].toString().includes("diamond11")) {
-                    availableCards = removeACardFromArray(availableCards, indexOf(availableCards, availableCard[i]));
+                    availableCards = removeACardFromArray(availableCards, indexOf(availableCards, availableCards[i]));
                     i--;
                 }
             }      
@@ -397,6 +398,7 @@ function computer(num) {
                         return false;   
                     }
                     handArray = removeACardFromArray(handArray, indexOfCard);//remove the card from the hand
+                    console.log("comp " + playerNum + " played remove card");
                     return true;
                 }
         }
@@ -455,15 +457,15 @@ function computer(num) {
                             if (nextRow > 9 || nextRow < 0 || nextCol > 9 || nextCol < 0)
                                 break;//if out of bounds you are done looking
                              //now to see if we have a friend token there
-                             var nextCardId = $("row" + nextRow).children()[nextCol].id;
+                             var nextCardId = $("#row" + nextRow).children()[nextCol].id;
                              var nextCardToken = $('#' + nextCardId).children()[playerNum].id;
-                             if ($("#" + nextCardToken).css("visibility" == "hidden"))//friend piece is missing
+                             if ($("#" + nextCardToken).css("visibility") == "hidden")//friend piece is missing
                                 break;
                              counter++;
                              nextRow += i;//update the direction
                              nextCol += j;//update the direction
                         }
-                        if (counter > 2) {
+                        if (counter > 1) {
                             var bundle = new Array();
                             bundle.push(counter);
                             bundle.push(row);
@@ -487,12 +489,13 @@ function computer(num) {
                console.log("eror in non jack cards picking max sequence");
                return false;
            }
-            var cardId = $("row" + locationArray[maxLocation][1]).children()[locationArray[maxLocation][2]].id;
+            var cardId = $("#row" + locationArray[maxLocation][1]).children()[locationArray[maxLocation][2]].id;
             var cardToken = $('#' + nextCardId).children()[playerNum].id;
             $("#" + cardToken).css("visibility",'visible');//set the token to visible
             handArray = removeACardFromArray(handArray, indexOf(handArray, availableCards[locationArray[maxLocation][3]]));
+            console.log("comp " + playerNum + " played a non jack the smart way");
+
             return true;
-           /************************************ */
         }
         //playing a random card this time
         
@@ -524,6 +527,7 @@ function computer(num) {
                     return false;   
                 }
                 handArray = removeACardFromArray(handArray, location);
+                console.log("comp " + playerNum + " played a random non jack");
                 return true;
             }
             else if (isFree) {//the first location is available
@@ -536,6 +540,7 @@ function computer(num) {
                     return false;   
                 }
                 handArray = removeACardFromArray(handArray, location);
+                console.log("comp " + playerNum + " played a random non jack");
                 return true;
             }
             else if (isFree2) {//the second location is available
@@ -547,7 +552,8 @@ function computer(num) {
                     console.log("THIS IS IN REGULAR CARD");
                     return false;   
                 }
-                handArray = removeACardFromArray(handArray, location);                    
+                handArray = removeACardFromArray(handArray, location);  
+                console.log("comp " + playerNum + " played a random non jack");                  
                 return true;
            }
            else//can assume now that none of the spots are available
