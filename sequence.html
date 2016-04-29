@@ -1507,7 +1507,7 @@
                 }
         }
        playerHand = newArray.slice();
-//       console.log(playerHand.toString());
+       //console.log(playerHand.toString());
     }
     
     //function that checks if the deck has run out of cards
@@ -1521,7 +1521,7 @@
         var compPlayedACard = false;
         var tries = 0;
         do {
-            compPlayedACard = computerObject.playCard();
+            compPlayedACard = computerObject.playAgroCard();
             if (compPlayedACard)
                 break;
             //comp couldnt play a card
