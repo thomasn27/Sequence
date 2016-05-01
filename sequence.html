@@ -846,7 +846,6 @@
             drop: discardDrop
         });
         
-        
         if (whosTurn != 1)//if its not the players turn call whosTurn
             nextTurn();
         
@@ -974,6 +973,9 @@
 
         playerHand = tempArray.slice();
         var cardDrawn = mainDeck.drawCard();
+        if (cardDrawn == null) {
+            console.log("CAUGHT NULL DO SOMETHING");
+        }   
         playerHand.push(cardDrawn);
         $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
         $("#hand" + arrayID + "img").draggable({
@@ -1035,6 +1037,9 @@
         playerHand = tempArray.slice();
 
         var cardDrawn = mainDeck.drawCard();
+        if (cardDrawn == null) {
+            console.log("CAUGHT NULL DO SOMETHING");
+        }  
         playerHand.push(cardDrawn);
         $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
         $("#hand" + arrayID + "img").draggable({
@@ -1080,6 +1085,9 @@
             }
         playerHand = tempArray.slice();
         var cardDrawn = mainDeck.drawCard();
+        if (cardDrawn == null) {
+            console.log("CAUGHT NULL DO SOMETHING");
+        }  
         playerHand.push(cardDrawn);
         $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
         $("#hand" + arrayID + "img").draggable({
@@ -1529,12 +1537,22 @@
             var discardOkay = computerObject.discardCard();
             if (!discardOkay)
                 Console.log("discarding problem occured");
-            computerObject.addCard(mainDeck.drawCard());//draw a card
+            var cardDrawn = mainDeck.drawCard();
+            if (cardDrawn == null) {
+                console.log("CAUGHT NULL DO SOMETHING");
+            }  
+            computerObject.addCard(cardDrawn);//draw a card
             tries++;
         } while (tries < 2);
         
-        if (compPlayedACard)//card played and discard that card now it draws
+        if (compPlayedACard) {
+            var cardDrawn = mainDeck.drawCard();
+            if (cardDrawn == null) {
+                console.log("CAUGHT NULL DO SOMETHING");
+            }
             computerObject.addCard(mainDeck.drawCard());
+        }   //card played and discard that card now it draws
+            
             
         if (tries == 2)
             console.log("problems occured");
