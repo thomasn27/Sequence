@@ -846,7 +846,6 @@
             drop: discardDrop
         });
         
-        
         if (whosTurn != 1)//if its not the players turn call whosTurn
             nextTurn();
         
@@ -973,6 +972,7 @@
                 tempArray.push(playerHand[i]);
         }
 
+<<<<<<< HEAD
         //playerHand = tempArray.slice();
         //var cardDrawn = mainDeck.drawCard();
         //if (cardDrawn == null) {
@@ -988,6 +988,20 @@
         //        revert: true
         //    });
         //}
+=======
+        playerHand = tempArray.slice();
+        var cardDrawn = mainDeck.drawCard();
+        if (cardDrawn == null) {
+            console.log("CAUGHT NULL DO SOMETHING");
+        }   
+        playerHand.push(cardDrawn);
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
+        $("#hand" + arrayID + "img").draggable({
+            stack: '#hand' + arrayID,
+            cursor: 'pointer',
+            revert: true
+        });
+>>>>>>> refs/remotes/origin/michael
         
         //$("#hand" + arrayID + "img").mousedown(function(){             
         //    highLightBoard(this.src);
@@ -1035,6 +1049,7 @@
                 document.getElementById("playersTurn").innerText = "Your Turn";
                 drawCard(arrayID, ui);
             }
+<<<<<<< HEAD
         //playerHand = tempArray.slice();
         //var cardDrawn = mainDeck.drawCard();
         //if (cardDrawn == null) {
@@ -1051,6 +1066,30 @@
         //    });
         //}
         //drawCard(arrayID, ui);
+=======
+        playerHand = tempArray.slice();
+
+        var cardDrawn = mainDeck.drawCard();
+        if (cardDrawn == null) {
+            console.log("CAUGHT NULL DO SOMETHING");
+        }  
+        playerHand.push(cardDrawn);
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
+        $("#hand" + arrayID + "img").draggable({
+            stack: '#hand' + arrayID,
+            cursor: 'pointer',
+            revert: true
+        });
+        
+        $("#hand" + arrayID + "img").mousedown(function(){             
+            highLightBoard(this.src);
+        });
+            
+        $("#hand" + arrayID + "img").mouseup(function(){
+            unhighlightBoard();
+        });
+        sortPlayersArray();
+>>>>>>> refs/remotes/origin/michael
     }
     
     function removeAndDraw(ui, locationID) {
@@ -1079,6 +1118,7 @@
                 computerTurn(comp2);
                 document.getElementById("playersTurn").innerText = "Your Turn";
             }
+<<<<<<< HEAD
         //playerHand = tempArray.slice();
         //var cardDrawn = mainDeck.drawCard();
         //if (cardDrawn == null) {
@@ -1097,6 +1137,24 @@
         //$("#hand" + arrayID + "img").mousedown(function(){             
         //    highLightBoard(this.src);
         //});
+=======
+        playerHand = tempArray.slice();
+        var cardDrawn = mainDeck.drawCard();
+        if (cardDrawn == null) {
+            console.log("CAUGHT NULL DO SOMETHING");
+        }  
+        playerHand.push(cardDrawn);
+        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
+        $("#hand" + arrayID + "img").draggable({
+            stack: '#hand' + arrayID,
+            cursor: 'pointer',
+            revert: true
+        });
+        
+        $("#hand" + arrayID + "img").mousedown(function(){             
+            highLightBoard(this.src);
+        });
+>>>>>>> refs/remotes/origin/michael
             
         //$("#hand" + arrayID + "img").mouseup(function(){
         //    unhighlightBoard();
@@ -1588,6 +1646,7 @@
             var discardOkay = computerObject.discardCard();
             if (!discardOkay)
                 Console.log("discarding problem occured");
+<<<<<<< HEAD
             tries++;
         } while (tries < 2);
 
@@ -1601,6 +1660,25 @@
         }   //card played and discard that card now it draws
 
 
+=======
+            var cardDrawn = mainDeck.drawCard();
+            if (cardDrawn == null) {
+                console.log("CAUGHT NULL DO SOMETHING");
+            }  
+            computerObject.addCard(cardDrawn);//draw a card
+            tries++;
+        } while (tries < 2);
+        
+        if (compPlayedACard) {
+            var cardDrawn = mainDeck.drawCard();
+            if (cardDrawn == null) {
+                console.log("CAUGHT NULL DO SOMETHING");
+            }
+            computerObject.addCard(mainDeck.drawCard());
+        }   //card played and discard that card now it draws
+            
+            
+>>>>>>> refs/remotes/origin/michael
         if (tries == 2)
             console.log("problems occured");
     }
