@@ -967,46 +967,48 @@
                 showDiscardCard();
                 showDiscardCard();
                 arrayID = i + 1;
+                drawCard(arayID, ui);
             }
             else
                 tempArray.push(playerHand[i]);
         }
 
-        playerHand = tempArray.slice();
-        var cardDrawn = mainDeck.drawCard();
-        playerHand.push(cardDrawn);
-        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
-        $("#hand" + arrayID + "img").draggable({
-            stack: '#hand' + arrayID,
-            cursor: 'pointer',
-            revert: true
-        });
+        //playerHand = tempArray.slice();
+        //var cardDrawn = mainDeck.drawCard();
+        //if (cardDrawn == null) {
+        //    var parent = ui.draggable.parent().get(0);
+        //    parent.removeChild(parent.childNodes[0]);
+        //}
+        //else {
+        //    playerHand.push(cardDrawn);
+        //    $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
+        //    $("#hand" + arrayID + "img").draggable({
+        //        stack: '#hand' + arrayID,
+        //        cursor: 'pointer',
+        //        revert: true
+        //    });
+        //}
         
-        $("#hand" + arrayID + "img").mousedown(function(){             
-            highLightBoard(this.src);
-        });
+        //$("#hand" + arrayID + "img").mousedown(function(){             
+        //    highLightBoard(this.src);
+        //});
             
-        $("#hand" + arrayID + "img").mouseup(function(){
-            unhighlightBoard();
-        });
-        sortPlayersArray();
+        //$("#hand" + arrayID + "img").mouseup(function(){
+        //    unhighlightBoard();
+        //});
+        //sortPlayersArray();
     }
     
     function placeAndDraw(ui, locationID) {
+        console.log(mainDeck.getDeckSize());
         $(document.body).get(0).style.cursor = "default";
         //removing the card from playerHand array and pushing it to the discard pile
         var arrayID = 0;
         var index = ui.draggable.get(0).id[4] - 1;
         var tempArray = new Array();
-        var player = Math.floor((Math.random()*3)+1) // for random test
         var token = "token1_" + locationID + "img";  // var token = "token<player>_<locationID>img";
         var token2 = "token2_" + locationID + "img";
         var token3 = "token3_" + locationID + "img";
-        console.log("Tokens looked at are:");
-        console.log(token);
-        console.log(token2);
-        console.log(token3);
-        console.log("ended of tokens");
         for (var i = 0; i <playerHand.length; i++)
             if (i != index) {
                 tempArray.push(playerHand[i]);
@@ -1031,26 +1033,24 @@
                 document.getElementById("playersTurn").innerText = "Computer 2's Turn";
                 computerTurn(comp2);
                 document.getElementById("playersTurn").innerText = "Your Turn";
+                drawCard(arrayID, ui);
             }
-        playerHand = tempArray.slice();
-
-        var cardDrawn = mainDeck.drawCard();
-        playerHand.push(cardDrawn);
-        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
-        $("#hand" + arrayID + "img").draggable({
-            stack: '#hand' + arrayID,
-            cursor: 'pointer',
-            revert: true
-        });
-        
-        $("#hand" + arrayID + "img").mousedown(function(){             
-            highLightBoard(this.src);
-        });
-            
-        $("#hand" + arrayID + "img").mouseup(function(){
-            unhighlightBoard();
-        });
-        sortPlayersArray();
+        //playerHand = tempArray.slice();
+        //var cardDrawn = mainDeck.drawCard();
+        //if (cardDrawn == null) {
+        //    $("#endModal-label").html('<h1>Tie!</h1>');
+        //    $("#endModal").modal('show');
+        //}
+        //else {
+        //    playerHand.push(cardDrawn);
+        //    $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
+        //    $("#hand" + arrayID + "img").draggable({
+        //        stack: '#hand' + arrayID,
+        //        cursor: 'pointer',
+        //        revert: true
+        //    });
+        //}
+        //drawCard(arrayID, ui);
     }
     
     function removeAndDraw(ui, locationID) {
@@ -1072,30 +1072,36 @@
                 console.log("   Discard Pile: " + discardPile[discardPile.length-1]);
                 showDiscardCard();
                 arrayID = i + 1;
+                drawCard(arrayID, ui);
                 document.getElementById("playersTurn").innerText = "Computer 1's Turn";
                 computerTurn(comp1);
                 document.getElementById("playersTurn").innerText = "Computer 2's Turn";
                 computerTurn(comp2);
                 document.getElementById("playersTurn").innerText = "Your Turn";
             }
-        playerHand = tempArray.slice();
-        var cardDrawn = mainDeck.drawCard();
-        playerHand.push(cardDrawn);
-        $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
-        $("#hand" + arrayID + "img").draggable({
-            stack: '#hand' + arrayID,
-            cursor: 'pointer',
-            revert: true
-        });
-        
-        $("#hand" + arrayID + "img").mousedown(function(){             
-            highLightBoard(this.src);
-        });
+        //playerHand = tempArray.slice();
+        //var cardDrawn = mainDeck.drawCard();
+        //if (cardDrawn == null) {
+        //    $("#endModal-label").html('<h1>Tie!</h1>');
+        //    $("#endModal").modal('show');
+        //}
+        //else {
+        //    playerHand.push(cardDrawn);
+        //    $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
+        //    $("#hand" + arrayID + "img").draggable({
+        //        stack: '#hand' + arrayID,
+        //        cursor: 'pointer',
+        //        revert: true
+        //    });
+        //}
+        //$("#hand" + arrayID + "img").mousedown(function(){             
+        //    highLightBoard(this.src);
+        //});
             
-        $("#hand" + arrayID + "img").mouseup(function(){
-            unhighlightBoard();
-        });
-        sortPlayersArray();
+        //$("#hand" + arrayID + "img").mouseup(function(){
+        //    unhighlightBoard();
+        //});
+        //sortPlayersArray();
         
         deleteToken(locationID);    // sets to 0 on the hidden array
         
@@ -1106,6 +1112,31 @@
         //document.getElementById(token).style.visibility = "";
         //document.getElementById(token2).style.visibility = '';
         //document.getElementById(token3).style.visibility = '';
+    }
+
+    function drawCard(arrayID, ui) {
+        var cardDrawn = mainDeck.drawCard();
+        if (cardDrawn == null) {
+            var parent = ui.draggable.parent().get(0);
+            parent.removeChild(parent.childNodes[0]);
+        }
+        else {
+            playerHand.push(cardDrawn);
+            $("#hand" + arrayID).html("<img class='img-responsive handcard' id='hand" + arrayID + "img' src = " + cardDrawn.getImageSource() + " height = '100' width = '90'/>");
+            $("#hand" + arrayID + "img").draggable({
+                stack: '#hand' + arrayID,
+                cursor: 'pointer',
+                revert: true
+            });
+            $("#hand" + arrayID + "img").mousedown(function () {
+                highLightBoard(this.src);
+            });
+
+            $("#hand" + arrayID + "img").mouseup(function () {
+                unhighlightBoard();
+            });
+            sortPlayersArray();
+        }
     }
     
     //function: lights up the board based on the card dragged
@@ -1495,19 +1526,22 @@
     
     //sorts the array based on the hand ui of the player
     function sortPlayersArray() {
+        console.log(playerHand.length);
         var newArray = new Array();
         var currentCardString = "";
         for (var i = 1; i < 8; i++) {
-            currentCardString = $("#hand" + i).get(0).childNodes[0].src
-            for (var j = 0; j < playerHand.length; j++)
+            currentCardString = $("#hand" + i).get(0).childNodes[0].src;
+            for (var j = 0; j < playerHand.length; j++) {
                 //if the src and the cards in the players hand are the same
                 if (currentCardString.includes(playerHand[j].toString())) {
                     newArray.push(playerHand[j]);
                     break;
                 }
+
+            }
         }
        playerHand = newArray.slice();
-       //console.log(playerHand.toString());
+       console.log(playerHand.toString());
     }
     
     //function that checks if the deck has run out of cards
@@ -1517,8 +1551,33 @@
         return false;
     }
     
+    //function computerTurn(computerObject) {
+    //    var compPlayedACard = false;
+    //    var cardDrawn = mainDeck.drawCard();
+    //    console.log("Comp supposed to draw " + cardDrawn);
+    //    var tries = 0;
+    //    do {
+    //        compPlayedACard = computerObject.playAgroCard();
+    //        if (compPlayedACard)
+    //            break;
+    //        //comp couldnt play a card
+    //        //discard a card
+    //        var discardOkay = computerObject.discardCard();
+    //        if (!discardOkay)
+    //            console.log("discarding problem occured");
+    //        if (compPlayedACard && cardDrawn != null) {
+    //            computerObject.addCard(cardDrawn);
+    //        }//draw a card
+    //        tries++;
+    //    } while (tries < 2);
+    //    if (tries == 2)
+    //        console.log("problems occured");
+    //}
+    
     function computerTurn(computerObject) {
         var compPlayedACard = false;
+        var cardDrawn = mainDeck.drawCard();
+        console.log("Computer supposed to draw " + cardDrawn);
         var tries = 0;
         do {
             compPlayedACard = computerObject.playAgroCard();
@@ -1529,17 +1588,23 @@
             var discardOkay = computerObject.discardCard();
             if (!discardOkay)
                 Console.log("discarding problem occured");
-            computerObject.addCard(mainDeck.drawCard());//draw a card
             tries++;
         } while (tries < 2);
-        
-        if (compPlayedACard)//card played and discard that card now it draws
-            computerObject.addCard(mainDeck.drawCard());
-            
+
+        if (compPlayedACard) {
+            if (cardDrawn == null) {
+                console.log("CAUGHT NULL DO SOMETHING");
+            }
+            else {
+                computerObject.addCard(cardDrawn);
+            }
+        }   //card played and discard that card now it draws
+
+
         if (tries == 2)
             console.log("problems occured");
     }
-    
+
     //called when the user is done with their turn
     function nextTurn() {
         if (whosTurn == 2) {
