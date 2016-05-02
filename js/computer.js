@@ -231,7 +231,7 @@ function computer(num) {
     
     //Agressive
     this.playAgroCard = function() {
-        
+        console.log("Computer " + playerNum+ " hand: " + handArray);
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the hand arrray
         for (var i = 0; i < availableCards.length; i++)
@@ -527,7 +527,7 @@ function computer(num) {
                     return false;   
                 }
                 handArray = removeACardFromArray(handArray, location);
-                console.log("comp " + playerNum + " played a random non jack");
+               // console.log("comp " + playerNum + " played a random non jack");
                 return true;
             }
             else if (isFree) {//the first location is available
@@ -553,7 +553,7 @@ function computer(num) {
                     return false;   
                 }
                 handArray = removeACardFromArray(handArray, location);  
-                console.log("comp " + playerNum + " played a random non jack");                  
+  //              console.log("comp " + playerNum + " played a random non jack");                  
                 return true;
            }
            else//can assume now that none of the spots are available
