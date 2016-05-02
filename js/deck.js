@@ -30,7 +30,7 @@ function Deck () {
 	
 	//private member variables
 	var cardList = setUpDeck();
-	var size = 103;
+    var size = 103;
 	
 	//public method: returns a card if there are any available, if not returns null
 	this.drawCard = function() {
