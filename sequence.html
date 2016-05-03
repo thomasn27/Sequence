@@ -755,6 +755,31 @@
 </body>
 
 <script>
+    // terrible sleep function (not good)
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds){
+                break;
+            }
+        }
+    }
+    
+    function computerStart() {
+        document.getElementById("playersTurn").innerText = "Computer 1's Turn";
+        computerTurn(comp1);
+        setTimeout(computerNext,1000);
+    }
+    
+    function computerNext() {
+        document.getElementById("playersTurn").innerText = "Computer 2's Turn";
+        computerTurn(comp2);
+        setTimeout(playerNext,1000);
+    }
+    function playerNext() {
+        document.getElementById("playersTurn").innerText = "Your Turn";
+    }
+
     function init() {
         mainDeck = new Deck();
         playerHand = new Array();
@@ -763,6 +788,7 @@
         comp1 = new computer(2);
         comp2 = new computer(3);
         console.log("it is " + whosTurn);
+        
         //set up the hand for the players
         for (var i = 1; i < 8; i++) {
             var nextCard = mainDeck.drawCard();
@@ -846,8 +872,9 @@
             drop: discardDrop
         });
 
-        if (whosTurn != 1)//if its not the players turn call whosTurn
-            nextTurn();
+        if (whosTurn != 1) {//if its not the players turn call whosTurn
+            setTimeout(nextTurn(),10000);
+        }
 
         console.log("done with init");
     }//end of setup board
@@ -1020,11 +1047,12 @@
                 arrayID = i + 1;
                 checkCondition(locationID, 1);
                 document.getElementById(token).style.visibility = 'visible';
-                document.getElementById("playersTurn").innerText = "Computer 1's Turn";
-                computerTurn(comp1);
-                document.getElementById("playersTurn").innerText = "Computer 2's Turn";
-                computerTurn(comp2);
-                document.getElementById("playersTurn").innerText = "Your Turn";
+                setTimeout(computerStart,1000);
+                //document.getElementById("playersTurn").innerText = "Computer 1's Turn";
+                //computerTurn(comp1);
+                //document.getElementById("playersTurn").innerText = "Computer 2's Turn";
+                //computerTurn(comp2);
+                //document.getElementById("playersTurn").innerText = "Your Turn";
                 drawCard(arrayID, ui);
             }
         //playerHand = tempArray.slice();
@@ -1070,11 +1098,12 @@
                 showDiscardCard();
                 arrayID = i + 1;
                 drawCard(arrayID, ui);
-                document.getElementById("playersTurn").innerText = "Computer 1's Turn";
-                computerTurn(comp1);
-                document.getElementById("playersTurn").innerText = "Computer 2's Turn";
-                computerTurn(comp2);
-                document.getElementById("playersTurn").innerText = "Your Turn";
+                setTimeout(computerStart,1000);
+                //document.getElementById("playersTurn").innerText = "Computer 1's Turn";
+                //computerTurn(comp1);
+                //document.getElementById("playersTurn").innerText = "Computer 2's Turn";
+                //computerTurn(comp2);
+                //document.getElementById("playersTurn").innerText = "Your Turn";
             }
         //playerHand = tempArray.slice();
         //var cardDrawn = mainDeck.drawCard();
@@ -1568,7 +1597,7 @@
                 computerObject.addCard(cardDrawn);
             }
         }   //card played and discard that card now it draws
-
+         
 
         if (tries == 2)
             console.log("problems occured");
