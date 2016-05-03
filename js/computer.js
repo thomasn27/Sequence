@@ -14,6 +14,7 @@ function computer(num) {
         var temp = new Array();
         discardPile.push(arr[index]);
         showDiscardCard();
+        console.log("  Com" + num + " Played: " + arr[index])
         for (var i = 0; i < arr.length; i++)
             if (i != index) {
                 temp.push(arr[i]);
@@ -33,8 +34,8 @@ function computer(num) {
     this.playCard = function() {
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the card
+        
         do {
-            
             if (availableCards.length == 0)//if no more cards 
                 return false;
             else {
@@ -46,6 +47,7 @@ function computer(num) {
                     console.log("two eyed jack found");
                     //choose a random number from [0,95] and check if you can drop a card there
                     var attemps = 0;
+                    
                     do {
                         var location = Math.floor(Math.random() * 96);
                         var row;
@@ -229,11 +231,12 @@ function computer(num) {
         } while (true);
     }
     
-    //Agressive
+    //Aggressive
     this.playAgroCard = function() {
         console.log("Computer " + playerNum+ " hand: " + handArray);
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the hand arrray
+        
         for (var i = 0; i < availableCards.length; i++)
             if (availableCards[i].toString().includes("clover11") || availableCards[i].toString().includes("diamond11")) {
                 indexOfCard = i;
