@@ -767,17 +767,20 @@
     
     function computerStart() {
         document.getElementById("playersTurn").innerText = "Computer 1's Turn";
+        whosTurn = 2;
         computerTurn(comp1);
         setTimeout(computerNext,1000);
     }
     
     function computerNext() {
         document.getElementById("playersTurn").innerText = "Computer 2's Turn";
+        whosTurn = 3;
         computerTurn(comp2);
         setTimeout(playerNext,1000);
     }
     function playerNext() {
         document.getElementById("playersTurn").innerText = "Your Turn";
+        whosTurn = 1;
     }
 
     function init() {
