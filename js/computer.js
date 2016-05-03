@@ -237,9 +237,6 @@ function computer(num) {
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the hand arrray
         
-        // console.log("sleep 3");
-        // sleep(3000);
-        
         for (var i = 0; i < availableCards.length; i++)
             if (availableCards[i].toString().includes("clover11") || availableCards[i].toString().includes("diamond11")) {
                 indexOfCard = i;
