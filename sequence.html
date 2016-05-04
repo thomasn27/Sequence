@@ -1577,8 +1577,6 @@
 
     function computerTurn(computerObject) {
         var compPlayedACard = false;
-        var cardDrawn = mainDeck.drawCard();
-        console.log("Computer supposed to draw " + cardDrawn);
         var tries = 0;
         do {
             compPlayedACard = computerObject.playAgroCard();
@@ -1593,6 +1591,8 @@
         } while (tries < 2);
 
         if (compPlayedACard) {
+            var cardDrawn = mainDeck.drawCard();
+            console.log("Computer supposed to draw " + cardDrawn);
             if (cardDrawn == null) {
                 console.log("CAUGHT NULL DO SOMETHING");
             }
