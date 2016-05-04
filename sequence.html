@@ -767,17 +767,20 @@
     
     function computerStart() {
         document.getElementById("playersTurn").innerText = "Computer 1's Turn";
+        whosTurn = 2;
         computerTurn(comp1);
         setTimeout(computerNext,1000);
     }
     
     function computerNext() {
         document.getElementById("playersTurn").innerText = "Computer 2's Turn";
+        whosTurn = 3;
         computerTurn(comp2);
         setTimeout(playerNext,1000);
     }
     function playerNext() {
         document.getElementById("playersTurn").innerText = "Your Turn";
+        whosTurn = 1;
     }
 
     function init() {
@@ -991,7 +994,7 @@
                 showDiscardCard();
                 showDiscardCard();
                 arrayID = i + 1;
-                drawCard(arayID, ui);
+                drawCard(arrayID, ui);
             }
             else
                 tempArray.push(playerHand[i]);
@@ -1574,8 +1577,6 @@
 
     function computerTurn(computerObject) {
         var compPlayedACard = false;
-        var cardDrawn = mainDeck.drawCard();
-        console.log("Computer supposed to draw " + cardDrawn);
         var tries = 0;
         do {
             compPlayedACard = computerObject.playAgroCard();
@@ -1585,11 +1586,13 @@
             //discard a card
             var discardOkay = computerObject.discardCard();
             if (!discardOkay)
-                Console.log("discarding problem occured");
+                console.log("discarding problem occured");
             tries++;
         } while (tries < 2);
 
         if (compPlayedACard) {
+            var cardDrawn = mainDeck.drawCard();
+            console.log("Computer supposed to draw " + cardDrawn);
             if (cardDrawn == null) {
                 console.log("CAUGHT NULL DO SOMETHING");
             }
