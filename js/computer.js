@@ -30,7 +30,7 @@ function computer(num) {
         return -1;
     }
     
-    //returns true or false, indicating if it was able to play a card 
+    /* returns true or false, indicating if it was able to play a card 
     this.playCard = function() {
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the card
@@ -107,6 +107,7 @@ function computer(num) {
                         var isFree = true;
                         for (var i = 1; i <=3; i++) {
                             var token = $("#" + cardId).children()[i].id;
+                            
                             if ($("#" + token).css("visibility") != "hidden")//if the game board has a token present
                                 isFree = false;
                         }
@@ -123,12 +124,15 @@ function computer(num) {
                                 return false;   
                             }
                             handArray = removeACardFromArray(handArray, indexOfCard);//removes the card from the hand
+                            checkCondition(cardId, playerNum);
                             return true;
                         }
                         
                         attemps++;
                     } while (attemps < 200)
+                        
                     availableCards = removeACardFromArray(availableCards, indexOfCard);//remove card from array
+                    
                 }//one eye jack found (removal)
                 else if (availableCards[indexOfCard].toString().includes("heart11") || availableCards[indexOfCard].toString().includes("spade11")) {
                     console.log("one eyed jack found");
@@ -168,6 +172,8 @@ function computer(num) {
                         return false;   
                     }
                     handArray = removeACardFromArray(handArray, indexOfCard);//remove the card from the hand
+                    console.log("TODO Comp plays this cardID: " + cardId);
+                    checkCondition(cardId, playerNum);
                     return true;
                 }
                 else {
@@ -186,10 +192,15 @@ function computer(num) {
                     if (isFree && isFree2) {//both locations are available, choose one randomly
                         var topOrBottom = Math.floor(Math.random() * 2);
                         var token;
-                        if (topOrBottom == 0)
-                            token = $("#" + availableCards[indexOfCard].toString()).children()[playerNum].id;                 
-                        else
+                        var index;
+                        if (topOrBottom == 0){
+                            token = $("#" + availableCards[indexOfCard].toString()).children()[playerNum].id;
+                            index = availableCard[indexOfCard].toString();
+                        }
+                        else {
                             token = $("#" + availableCards[indexOfCard].toString() + "_1").children()[playerNum].id;
+                            index = availableCard[indexOfCard].toString() + "_1";
+                        }
                         $("#" + token).css("visibility",'visible');//set the token to visible
                         indexOfCard = indexOf(handArray, availableCards[indexOfCard]);
                         if (indexOfCard == -1) {
@@ -198,10 +209,13 @@ function computer(num) {
                             return false;   
                         }
                         handArray = removeACardFromArray(handArray, indexOfCard);
+                        console.log("Last TODO Comp plays this token: " + token);
+
                         return true;
                     }
                     else if (isFree) {//the first location is available
                         var token = $("#" + availableCards[indexOfCard].toString()).children()[playerNum].id;
+                        var index = availableCards[indexOfCard].toString();
                         $("#" + token).css("visibility",'visible');//set the token to visible
                         indexOfCard = indexOf(handArray, availableCards[indexOfCard]);
                         if (indexOfCard == -1) {
@@ -210,10 +224,13 @@ function computer(num) {
                             return false;   
                         }
                         handArray = removeACardFromArray(handArray, indexOfCard);
+                        console.log("TODO Comp plays this token: " + token + " " + indexOfCard);
+                        checkCondition(index, playerNum);
                         return true;
                     }
                     else if (isFree2) {//the second location is available
                         var token = $("#" + availableCards[indexOfCard].toString() + "_1").children()[playerNum].id;
+                        var index = availableCards[indexOfCard].toString() + "_1";
                         $("#" + token).css("visibility",'visible');//set the token to visible
                         indexOfCard = indexOf(handArray, availableCards[indexOfCard]);
                         if (indexOfCard == -1) {
@@ -221,7 +238,9 @@ function computer(num) {
                             console.log("THIS IS IN REGULAR CARD");
                             return false;   
                         }
-                        handArray = removeACardFromArray(handArray, indexOfCard);                    
+                        handArray = removeACardFromArray(handArray, indexOfCard);
+                        console.log("TODO Comp plays this token: " + token + " " + indexOfCard);
+                        checkCondition(index, playerNum);
                         return true;
                     }
                     else//can assume now that none of the spots are available
@@ -229,7 +248,7 @@ function computer(num) {
                    }            
             }
         } while (true);
-    }
+    } */
     
     //Aggressive
     this.playAgroCard = function() {
@@ -349,12 +368,13 @@ function computer(num) {
                         console.log("Error!");
                     handArray = removeACardFromArray(handArray, indexofRemoval);//remove the jack from the hand
                     console.log("comp " + playerNum + " played wild card");
+                    checkCondition(cardId, playerNum);
                     return true;
                 }
             }
             for (var i = 0; i < availableCards.length; i++) {//remove all wild cards
                  if (availableCards[i].toString().includes("clover11") || availableCards[i].toString().includes("diamond11")) {
-                    availableCards = removeACardFromArray(availableCards, indexOf(availableCards, availableCards[i]));
+                    // availableCards = removeACardFromArray(availableCards, indexOf(availableCards, availableCards[i]));
                     i--;
                 }
             }      
@@ -404,7 +424,8 @@ function computer(num) {
                         return false;   
                     }
                     handArray = removeACardFromArray(handArray, indexOfCard);//remove the card from the hand
-                    console.log("comp " + playerNum + " played remove card");
+                    console.log("comp " + playerNum + " played remove card at " + cardId);
+                    deleteToken(cardId);
                     return true;
                 }
         }
@@ -496,11 +517,12 @@ function computer(num) {
                return false;
            }
             var cardId = $("#row" + locationArray[maxLocation][1]).children()[locationArray[maxLocation][2]].id;
-            var cardToken = $('#' + nextCardId).children()[playerNum].id;
+            var cardToken = $('#' + cardId).children()[playerNum].id;
             $("#" + cardToken).css("visibility",'visible');//set the token to visible
             handArray = removeACardFromArray(handArray, indexOf(handArray, availableCards[locationArray[maxLocation][3]]));
-            console.log("comp " + playerNum + " played a non jack the smart way");
-
+  //          console.log("comp " + playerNum + " played a non jack the smart way");
+            console.log("TODO Comp played this weird spot: " + cardToken + " " + cardId);
+            checkCondition(cardId, playerNum);
             return true;
         }
         //playing a random card this time
@@ -521,10 +543,15 @@ function computer(num) {
             if (isFree && isFree2) {//both locations are available, choose one randomly
                 var topOrBottom = Math.floor(Math.random() * 2);
                 var token;
-                if (topOrBottom == 0)
-                    token = $("#" + availableCards[location].toString()).children()[playerNum].id;                 
-                else
+                var index;
+                if (topOrBottom == 0){
+                    token = $("#" + availableCards[location].toString()).children()[playerNum].id;
+                    index = availableCards[location].toString();
+                }                    
+                else {
                     token = $("#" + availableCards[location].toString() + "_1").children()[playerNum].id;
+                    index = availableCards[location].toString() + "_1";
+                }
                 $("#" + token).css("visibility",'visible');//set the token to visible
                 location = indexOf(handArray, availableCards[location]);
                 if (location == -1) {
@@ -533,11 +560,13 @@ function computer(num) {
                     return false;   
                 }
                 handArray = removeACardFromArray(handArray, location);
-               // console.log("comp " + playerNum + " played a random non jack");
+                // console.log("comp " + playerNum + " played a random non jack");
+                checkCondition(index, playerNum);
                 return true;
             }
             else if (isFree) {//the first location is available
                 var token = $("#" + availableCards[location].toString()).children()[playerNum].id;
+                var index = availableCards[location].toString();
                 $("#" + token).css("visibility",'visible');//set the token to visible
                 location = indexOf(handArray, availableCards[location]);
                 if (location == -1) {
@@ -547,10 +576,12 @@ function computer(num) {
                 }
                 handArray = removeACardFromArray(handArray, location);
                 console.log("comp " + playerNum + " played a random non jack");
+                checkCondition(index, playerNum);
                 return true;
             }
             else if (isFree2) {//the second location is available
                 var token = $("#" + availableCards[location].toString() + "_1").children()[playerNum].id;
+                var index = availableCards[location].toString()+ "_1";
                 $("#" + token).css("visibility",'visible');//set the token to visible
                 location = indexOf(handArray, availableCards[location]);
                 if (location == -1) {
@@ -559,7 +590,8 @@ function computer(num) {
                     return false;   
                 }
                 handArray = removeACardFromArray(handArray, location);  
-  //              console.log("comp " + playerNum + " played a random non jack");                  
+                //              console.log("comp " + playerNum + " played a random non jack");  
+                checkCondition(index, playerNum);
                 return true;
            }
            else//can assume now that none of the spots are available
