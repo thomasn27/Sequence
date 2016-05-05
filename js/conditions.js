@@ -49,7 +49,7 @@ for (i = 0; i < 10; i++) {
 
 // function: check if there is a sequence
 function checkCondition(card, player) {
-    console.log("Player played " + card);
+//    console.log("Player "+ player+ " played " + card);
     var x;
     var y;
     for (i = 0; i < 10; i++) {
@@ -62,24 +62,24 @@ function checkCondition(card, player) {
     }
     checkArray[x][y].setValue(player);
 
-    var verticalSequence = checkDirection(x, y, 0, 1) + checkDirection(x, y, 0, -1);
-    var horizontalSequence = checkDirection(x, y, 1, 0) + checkDirection(x, y, -1, 0);
-    var UpLeftDownRight = checkDirection(x, y, -1, -1) + checkDirection(x, y, 1, 1);
-    var UpRightDownLeft = checkDirection(x, y, 1, -1) + checkDirection(x, y, -1, 1);
+    var verticalSequence = checkDirection(x, y, 0, 1, player) + checkDirection(x, y, 0, -1, player);
+    var horizontalSequence = checkDirection(x, y, 1, 0, player) + checkDirection(x, y, -1, 0, player);
+    var UpLeftDownRight = checkDirection(x, y, -1, -1, player) + checkDirection(x, y, 1, 1, player);
+    var UpRightDownLeft = checkDirection(x, y, 1, -1, player) + checkDirection(x, y, -1, 1, player);
 
     if (verticalSequence >= 4 || horizontalSequence >= 4 || UpLeftDownRight >= 4 || UpRightDownLeft >= 4) {
         if (player == 1) {
             $("#endModal").modal('show');
         }
         else {
-            console.log("BOT WON!");
             $("#endModal-label").html('<h1>You lost!</h1>');
             $("#endModal").modal('show');
         }
     }
+    printBoard();
 }
 
-function checkDirection(x, y, i, j) {
+function checkDirection(x, y, i, j, player) {
     var sequence = 0;
     for (q = 1; q < 5; q++) {
         if ((x + i > -1 && x + i < 10) && (y + j > -1 && y + j < 10)) {

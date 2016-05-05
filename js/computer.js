@@ -512,10 +512,10 @@ function computer(num) {
                return false;
            }
             var cardId = $("#row" + locationArray[maxLocation][1]).children()[locationArray[maxLocation][2]].id;
-            var cardToken = $('#' + nextCardId).children()[playerNum].id;
+            var cardToken = $('#' + cardId).children()[playerNum].id;
             $("#" + cardToken).css("visibility",'visible');//set the token to visible
             handArray = removeACardFromArray(handArray, indexOf(handArray, availableCards[locationArray[maxLocation][3]]));
-            console.log("comp " + playerNum + " played a non jack the smart way");
+  //          console.log("comp " + playerNum + " played a non jack the smart way");
             console.log("TODO Comp played this weird spot: " + cardToken + " " + cardId);
             checkCondition(cardId, playerNum);
             return true;
