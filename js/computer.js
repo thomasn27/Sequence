@@ -12,9 +12,6 @@ function computer(num) {
     //returns an array with the card at index removed
     var removeACardFromArray = function(arr, index) {
         var temp = new Array();
-        discardPile.push(arr[index]);
-        showDiscardCard();
-        console.log("  Com" + num + " Played: " + arr[index])
         for (var i = 0; i < arr.length; i++)
             if (i != index) {
                 temp.push(arr[i]);
@@ -123,6 +120,9 @@ function computer(num) {
                                 console.log("THIS IS IN TWO EYE JACK");
                                 return false;   
                             }
+                            discardPile.push(handArray[indexOfCard]);
+                            showDiscardCard();
+                            console.log("  Com" + playerNum + " Played: " + handArray[indexOfCard])
                             handArray = removeACardFromArray(handArray, indexOfCard);//removes the card from the hand
                             checkCondition(cardId, playerNum);
                             return true;
@@ -171,6 +171,9 @@ function computer(num) {
                         console.log("THIS IS IN ONE EYE JACK");
                         return false;   
                     }
+                    discardPile.push(handArray[indexOfCard]);
+                    showDiscardCard();
+                    console.log("  Com" + playerNum + " Played: " + handArray[indexOfCard])
                     handArray = removeACardFromArray(handArray, indexOfCard);//remove the card from the hand
                     console.log("TODO Comp plays this cardID: " + cardId);
                     checkCondition(cardId, playerNum);
@@ -208,6 +211,9 @@ function computer(num) {
                             console.log("THIS IS REGULAR CARD");
                             return false;   
                         }
+                        discardPile.push(handArray[indexOfCard]);
+                        showDiscardCard();
+                        console.log("  Com" + playerNum + " Played: " + handArray[indexOfCard])
                         handArray = removeACardFromArray(handArray, indexOfCard);
                         console.log("Last TODO Comp plays this token: " + token);
 
@@ -223,6 +229,9 @@ function computer(num) {
                             console.log("THIS IS IN REGULAR CARD");
                             return false;   
                         }
+                        discardPile.push(handArray[indexOfCard]);
+                        showDiscardCard();
+                        console.log("  Com" + playerNum + " Played: " + handArray[indexOfCard])
                         handArray = removeACardFromArray(handArray, indexOfCard);
                         console.log("TODO Comp plays this token: " + token + " " + indexOfCard);
                         checkCondition(index, playerNum);
@@ -238,6 +247,9 @@ function computer(num) {
                             console.log("THIS IS IN REGULAR CARD");
                             return false;   
                         }
+                        discardPile.push(handArray[indexOfCard]);
+                        showDiscardCard();
+                        console.log("  Com" + playerNum + " Played: " + handArray[indexOfCard])
                         handArray = removeACardFromArray(handArray, indexOfCard);
                         console.log("TODO Comp plays this token: " + token + " " + indexOfCard);
                         checkCondition(index, playerNum);
@@ -364,9 +376,13 @@ function computer(num) {
                     var token = $("#" + cardId).children()[playerNum].id;
                     $("#" + token).css("visibility",'visible');//set the token to visible
                     var indexofRemoval = indexOf(handArray, availableCards[indexOfCard]);
-                    if (indexofRemoval == -1)
+                    if (indexofRemoval == -1) {
                         console.log("Error!");
-                    //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
+                        return false;
+                    }
+                    discardPile.push(handArray[indexofRemoval]);
+                    showDiscardCard();
+                    console.log("  Com" + playerNum + " Played: " + handArray[indexofRemoval])
                     handArray = removeACardFromArray(handArray, indexofRemoval);//remove the jack from the hand
                     console.log("comp " + playerNum + " played wild card");
                     checkCondition(cardId, playerNum);
@@ -424,7 +440,9 @@ function computer(num) {
                         console.log("THIS IS IN ONE EYE JACK");
                         return false;   
                     }
-                    //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
+                    discardPile.push(handArray[indexOfCard]);
+                    showDiscardCard();
+                    console.log("  Com" + playerNum + " Played: " + handArray[indexOfCard])
                     handArray = removeACardFromArray(handArray, indexOfCard);//remove the card from the hand
                     console.log("comp " + playerNum + " played remove card at " + cardId);
                     deleteToken(cardId);
@@ -522,9 +540,13 @@ function computer(num) {
             var cardToken = $('#' + cardId).children()[playerNum].id;
             $("#" + cardToken).css("visibility",'visible');//set the token to visible
             var indexOfCardToRemove = indexOf(handArray, availableCards[locationArray[maxLocation][3]]);
-            if (indexOfCardToRemove == -1)
+            if (indexOfCardToRemove == -1) {
                 console.log("ERRROR");
-            //PUT YOUR CODE HERE DELTE MY COMMMENT AFTER
+                return false;
+            }
+            discardPile.push(handArray[indexOfCardToRemove]);
+            showDiscardCard();
+            console.log("  Com" + playerNum + " Played: " + handArray[indexOfCardToRemove])
             handArray = removeACardFromArray(handArray, indexOfCardToRemove);
             console.log("TODO Comp played this weird spot: " + cardToken + " " + cardId);
             checkCondition(cardId, playerNum);
@@ -564,7 +586,9 @@ function computer(num) {
                     console.log("THIS IS REGULAR CARD");
                     return false;   
                 }
-                //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
+                discardPile.push(handArray[location]);
+                showDiscardCard();
+                console.log("  Com" + playerNum + " Played: " + handArray[location])
                 handArray = removeACardFromArray(handArray, location);
                 checkCondition(index, playerNum);
                 return true;
@@ -579,7 +603,9 @@ function computer(num) {
                     console.log("THIS IS IN REGULAR CARD");
                     return false;   
                 }
-                //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
+                discardPile.push(handArray[location]);
+                showDiscardCard();
+                console.log("  Com" + playerNum + " Played: " + handArray[location])
                 handArray = removeACardFromArray(handArray, location);
                 checkCondition(index, playerNum);
                 return true;
@@ -594,7 +620,9 @@ function computer(num) {
                     console.log("THIS IS IN REGULAR CARD");
                     return false;   
                 }
-                //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
+                discardPile.push(handArray[location]);
+                showDiscardCard();
+                console.log("  Com" + playerNum + " Played: " + handArray[location])
                 handArray = removeACardFromArray(handArray, location);  
                 checkCondition(index, playerNum);
                 return true;
@@ -612,7 +640,8 @@ function computer(num) {
             return 0;
         var indexOfCard = Math.floor(Math.random() * handArray.length);
         console.log("Removed:" + handArray[indexOfCard].toString());
-        //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
+        discardPile.push(handArray[indexOfCard]);
+        showDiscardCard();
         handArray = removeACardFromArray(handArray, indexOfCard);
         return true;
     }
