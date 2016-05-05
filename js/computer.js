@@ -30,7 +30,7 @@ function computer(num) {
         return -1;
     }
     
-    //returns true or false, indicating if it was able to play a card 
+    /* returns true or false, indicating if it was able to play a card 
     this.playCard = function() {
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the card
@@ -130,7 +130,9 @@ function computer(num) {
                         
                         attemps++;
                     } while (attemps < 200)
+                        
                     availableCards = removeACardFromArray(availableCards, indexOfCard);//remove card from array
+                    
                 }//one eye jack found (removal)
                 else if (availableCards[indexOfCard].toString().includes("heart11") || availableCards[indexOfCard].toString().includes("spade11")) {
                     console.log("one eyed jack found");
@@ -246,7 +248,7 @@ function computer(num) {
                    }            
             }
         } while (true);
-    }
+    } */
     
     //Aggressive
     this.playAgroCard = function() {
@@ -369,7 +371,7 @@ function computer(num) {
             }
             for (var i = 0; i < availableCards.length; i++) {//remove all wild cards
                  if (availableCards[i].toString().includes("clover11") || availableCards[i].toString().includes("diamond11")) {
-                    availableCards = removeACardFromArray(availableCards, indexOf(availableCards, availableCards[i]));
+                    // availableCards = removeACardFromArray(availableCards, indexOf(availableCards, availableCards[i]));
                     i--;
                 }
             }      
