@@ -49,6 +49,7 @@ for (i = 0; i < 10; i++) {
 
 // function: check if there is a sequence
 function checkCondition(card, player) {
+    console.log("Player played " + card);
     var x;
     var y;
     for (i = 0; i < 10; i++) {
@@ -71,6 +72,7 @@ function checkCondition(card, player) {
             $("#endModal").modal('show');
         }
         else {
+            console.log("BOT WON!");
             $("#endModal-label").html('<h1>You lost!</h1>');
             $("#endModal").modal('show');
         }
@@ -109,4 +111,10 @@ function deleteToken(card) {
     
     if (checkArray[x][y].getValue() < 4)
         checkArray[x][y].setValue(0);
+}
+
+function printBoard() {
+    for (i = 0; i < 10; i++) {
+        console.log(checkArray[0][i].getValue() + " " + checkArray[1][i].getValue() + " " + checkArray[2][i].getValue() + " " + checkArray[3][i].getValue() + " " + checkArray[4][i].getValue() + " " + checkArray[5][i].getValue() + " " + checkArray[6][i].getValue() + " " + checkArray[7][i].getValue() + " " + checkArray[8][i].getValue() + " " + checkArray[9][i].getValue());
+    }
 }
