@@ -30,7 +30,7 @@ function computer(num) {
         return -1;
     }
     
-    /* returns true or false, indicating if it was able to play a card 
+    // returns true or false, indicating if it was able to play a card 
     this.playCard = function() {
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the card
@@ -248,14 +248,14 @@ function computer(num) {
                    }            
             }
         } while (true);
-    } */
+    } 
     
     //Aggressive
     this.playAgroCard = function() {
         console.log("Computer " + playerNum+ " hand: " + handArray);
         var indexOfCard = -1;
         var availableCards = handArray.slice();//copy the hand arrray
-        
+
         for (var i = 0; i < availableCards.length; i++)
             if (availableCards[i].toString().includes("clover11") || availableCards[i].toString().includes("diamond11")) {
                 indexOfCard = i;
@@ -366,6 +366,7 @@ function computer(num) {
                     var indexofRemoval = indexOf(handArray, availableCards[indexOfCard]);
                     if (indexofRemoval == -1)
                         console.log("Error!");
+                    //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
                     handArray = removeACardFromArray(handArray, indexofRemoval);//remove the jack from the hand
                     console.log("comp " + playerNum + " played wild card");
                     checkCondition(cardId, playerNum);
@@ -374,7 +375,7 @@ function computer(num) {
             }
             for (var i = 0; i < availableCards.length; i++) {//remove all wild cards
                  if (availableCards[i].toString().includes("clover11") || availableCards[i].toString().includes("diamond11")) {
-                    // availableCards = removeACardFromArray(availableCards, indexOf(availableCards, availableCards[i]));
+                    availableCards = removeACardFromArray(availableCards, indexOf(availableCards, availableCards[i]));
                     i--;
                 }
             }      
@@ -423,6 +424,7 @@ function computer(num) {
                         console.log("THIS IS IN ONE EYE JACK");
                         return false;   
                     }
+                    //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
                     handArray = removeACardFromArray(handArray, indexOfCard);//remove the card from the hand
                     console.log("comp " + playerNum + " played remove card at " + cardId);
                     deleteToken(cardId);
@@ -519,8 +521,11 @@ function computer(num) {
             var cardId = $("#row" + locationArray[maxLocation][1]).children()[locationArray[maxLocation][2]].id;
             var cardToken = $('#' + cardId).children()[playerNum].id;
             $("#" + cardToken).css("visibility",'visible');//set the token to visible
-            handArray = removeACardFromArray(handArray, indexOf(handArray, availableCards[locationArray[maxLocation][3]]));
-  //          console.log("comp " + playerNum + " played a non jack the smart way");
+            var indexOfCardToRemove = indexOf(handArray, availableCards[locationArray[maxLocation][3]]);
+            if (indexOfCardToRemove == -1)
+                console.log("ERRROR");
+            //PUT YOUR CODE HERE DELTE MY COMMMENT AFTER
+            handArray = removeACardFromArray(handArray, indexOfCardToRemove);
             console.log("TODO Comp played this weird spot: " + cardToken + " " + cardId);
             checkCondition(cardId, playerNum);
             return true;
@@ -559,8 +564,8 @@ function computer(num) {
                     console.log("THIS IS REGULAR CARD");
                     return false;   
                 }
+                //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
                 handArray = removeACardFromArray(handArray, location);
-                // console.log("comp " + playerNum + " played a random non jack");
                 checkCondition(index, playerNum);
                 return true;
             }
@@ -574,8 +579,8 @@ function computer(num) {
                     console.log("THIS IS IN REGULAR CARD");
                     return false;   
                 }
+                //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
                 handArray = removeACardFromArray(handArray, location);
-                console.log("comp " + playerNum + " played a random non jack");
                 checkCondition(index, playerNum);
                 return true;
             }
@@ -589,8 +594,8 @@ function computer(num) {
                     console.log("THIS IS IN REGULAR CARD");
                     return false;   
                 }
+                //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
                 handArray = removeACardFromArray(handArray, location);  
-                //              console.log("comp " + playerNum + " played a random non jack");  
                 checkCondition(index, playerNum);
                 return true;
            }
@@ -607,6 +612,7 @@ function computer(num) {
             return 0;
         var indexOfCard = Math.floor(Math.random() * handArray.length);
         console.log("Removed:" + handArray[indexOfCard].toString());
+        //PUT YOUR CODE HERE DELETE MY COMMMENT AFTER
         handArray = removeACardFromArray(handArray, indexOfCard);
         return true;
     }
