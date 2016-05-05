@@ -344,7 +344,10 @@ function computer(num) {
                     var cardId = $("#row" + locationArray[location][1]).children()[locationArray[location][2]].id;
                     var token = $("#" + cardId).children()[playerNum].id;
                     $("#" + token).css("visibility",'visible');//set the token to visible
-                    handArray = removeACardFromArray(handArray, indexOf(handArray, availableCards[indexOfCard]));//remove the jack from the hand
+                    var indexofRemoval = indexOf(handArray, availableCards[indexOfCard]);
+                    if (indexofRemoval == -1)
+                        console.log("Error!");
+                    handArray = removeACardFromArray(handArray, indexofRemoval);//remove the jack from the hand
                     console.log("comp " + playerNum + " played wild card");
                     return true;
                 }
