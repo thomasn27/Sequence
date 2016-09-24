@@ -68,3 +68,5 @@ Game Board 50 Green Marker Chips 35 Red Marker Chips
 When two players or teams are playing, use only blue and green marker chips. Red chips are used only when there is a third player or third team.
 
 Joker cards are not used in the play of the Sequence game.
+
+Hello from Thomas
